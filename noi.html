@@ -708,3 +708,104 @@
     }
   }
 </script>
+
+<script type="xtext/javascript" id="ch0105/19">
+  var n = Number(prompt("输入n"));
+  var time = 0;
+
+  for (i = 1; i <= n; i = i + 1) {
+    var x = Number(prompt("输入第" + i + "个屋顶的x"));
+    var y = Number(prompt("输入第" + i + "个屋顶的y"));
+    var amount = Number(prompt("输入第" + i + "个屋顶的人数"));
+
+    var distance = Math.sqrt(x ** 2 + y ** 2);
+
+    time += distance / 50 + amount + distance / 50 + amount / 2;
+  }
+  console.log(Math.ceil(time));
+</script>
+
+<script type="xtext/javascript" id="ch0105/20">
+  var h = Number(prompt("输入h"));
+  var s = 0;
+  var temp = h;
+  var final_bounce = 0;
+
+  for (i = 1; i <= 10; i = i + 1) {
+    if (i === 1) {
+      s += temp;
+    } else {
+      s += temp * 2;
+    }
+    temp = temp / 2;
+    if (i === 10) {
+      final_bounce = temp;
+    }
+  }
+  console.log(s.toFixed(4));
+  console.log(final_bounce.toFixed(7));
+</script>
+
+<script type="xtext/javascript" id="ch0105/21">
+  var n = Number(prompt("输入n"));
+  var result = 0;
+  var temp = n;
+
+  while (temp !== 1) {
+    if (temp % 2 !== 0) {
+      result = temp * 3 + 1;
+      console.log(temp + "*3+1=" + result);
+      temp = result;
+    } else {
+      result = temp / 2;
+      console.log(temp + "/2=" + result);
+      temp = result;
+    }
+  }
+  console.log("End");
+</script>
+
+<script type="xtext/javascript" id="ch0105/22">
+  var saving_account = 0;
+  var rev_beginning = 0;
+  var wallet = 0;
+
+  for (i = 1; i <= 12; i++) {
+    var spend = Number(prompt("输入" + i + "月的预算"));
+    wallet = rev_beginning + 300 - spend;
+    if (wallet < 0) {
+      console.log(-i);
+      break;
+    }
+
+    if (wallet >= 100) {
+      saving_account += parseInt(wallet / 100) * 100;
+      rev_beginning = wallet - parseInt(wallet / 100) * 100;
+      wallet = 0;
+    } else {
+      rev_beginning = wallet;
+      wallet = 0;
+    }
+  }
+
+  if (i === 13) {
+    console.log(saving_account * 1.2 + rev_beginning);
+  }
+</script>
+
+<script type="text/javascript" id="ch0105/23">
+  var m = Number(prompt("输入开始时的药品总量"));
+  var n = Number(prompt("输入取药人数"));
+  var rejected = 0;
+  var residual = m;
+
+  for (i = 1; i <= n; i++) {
+    var num_person = Number(prompt("输入第" + i + "个人的取药量"));
+    if (residual > num_person) {
+      residual -= num_person;
+    } else {
+      rejected++;
+    }
+  }
+  console.log(rejected);
+</script>
