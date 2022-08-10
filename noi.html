@@ -504,7 +504,7 @@
   console.log(max_score);
 </script>
 
-<script type="text/javascript" id="ch0105/06">
+<script type="xtext/javascript" id="ch0105/06">
   var n = Number(prompt("输入n"));
   var max_element = -Infinity;
   var min_element = Infinity;
@@ -518,4 +518,125 @@
     }
   }
   console.log(max_element - min_element);
+</script>
+
+<script type="xtext/javascript" id="ch0105/07">
+  var n = Number(prompt("输入n"));
+  var gold = 0;
+  var silver = 0;
+  var bronze = 0;
+  for (i = 1; i <= n; i++) {
+    var gold_daily = Number(prompt("输入第" + i + "天的金牌数"));
+    var silver_daily = Number(prompt("输入第" + i + "天的银牌数"));
+    var bronze_daily = Number(prompt("输入第" + i + "天的铜牌数"));
+
+    gold += gold_daily;
+    silver += silver_daily;
+    bronze += bronze_daily;
+  }
+
+  console.log(gold);
+  console.log(silver);
+  console.log(bronze);
+  console.log(gold + silver + bronze);
+</script>
+
+<script type="xtext/javascript" id="ch0105/08">
+  var n = Number(prompt("输入n"));
+  var degrees = 0;
+  var degrees_sum = (n - 2) * 180;
+  for (i = 1; i <= n - 1; i++) {
+    var degree = Number(prompt("输入第" + i + "个内角"));
+
+    degrees += degree;
+  }
+
+  console.log(degrees_sum - degrees);
+</script>
+
+<script type="xtext/javascript" id="ch0105/09">
+  var m = Number(prompt("输入m"));
+  var n = Number(prompt("输入n"));
+  var start = m % 2 !== 0 ? m : m + 1;
+  var end = n % 2 !== 0 ? n : n - 1;
+  var sum = 0;
+  for (i = start; i <= end; i = i + 2) {
+    sum += i;
+  }
+
+  console.log(sum);
+</script>
+
+<script type="xtext/javascript" id="ch0105/10">
+  var m = Number(prompt("输入m"));
+  var n = Number(prompt("输入n"));
+  var sum = 0;
+  for (i = m; i <= n; i++) {
+    if (i % 17 === 0) {
+      sum += i;
+    }
+  }
+
+  console.log(sum);
+</script>
+
+<script type="xtext/javascript" id="ch0105/11">
+  var k = Number(prompt("输入k"));
+  var times_1 = 0;
+  var times_5 = 0;
+  var times_10 = 0;
+  for (i = 1; i <= k; i++) {
+    var input = Number(prompt("输入第" + i + "个数"));
+
+    if (input === 1) {
+      times_1++;
+    } else if (input === 5) {
+      times_5++;
+    } else if (input === 10) {
+      times_10++;
+    }
+  }
+
+  console.log(times_1);
+  console.log(times_5);
+  console.log(times_10);
+</script>
+
+<script type="xtext/javascript" id="ch0105/12">
+  var n = Number(prompt("输入n"));
+  var m = Number(prompt("输入m"));
+  var times = 0;
+  for (i = 1; i <= n; i++) {
+    var input = Number(prompt("输入第" + i + "个数"));
+
+    if (input === m) {
+      times++;
+    }
+  }
+
+  console.log(times);
+</script>
+
+<script type="xtext/javascript" id="ch0105/13">
+  var a = Number(prompt("输入a"));
+  var n = Number(prompt("输入n"));
+
+  console.log(Math.pow(a, n));
+</script>
+
+<script type="xtext/javascript" id="ch0105/14">
+  var x = Number(prompt("输入x"));
+  var n = Number(prompt("输入n"));
+  var population = (x * (1 + 0.001) ** n).toFixed(4);
+
+  console.log(population);
+</script>
+
+<script type="xtext/javascript" id="ch0105/15">
+  var r = Number(prompt("输入r"));
+  var m = Number(prompt("输入m"));
+  var y = Number(prompt("输入y"));
+  var revenue = parseInt(m * (1 + r / 100) ** y);
+
+  console.log(revenue);
 </script>
