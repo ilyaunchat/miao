@@ -477,3 +477,45 @@
 
   console.log(sap_avg);
 </script>
+
+<script type="xtext/javascript" id="ch0105/04">
+  var n = Number(prompt("输入n"));
+  var int_sum = 0;
+  for (i = 1; i <= n; i++) {
+    var int = Number(prompt("输入第" + i + "个整数"));
+    int_sum += int;
+  }
+  var int_avg = (int_sum / n).toFixed(5);
+
+  console.log(int_sum);
+  console.log(int_avg);
+</script>
+
+<script type="xtext/javascript" id="ch0105/05">
+  var n = Number(prompt("输入n"));
+  var max_score = -Infinity;
+  for (i = 1; i <= n; i++) {
+    var score = Number(prompt("输入第" + i + "个成绩"));
+    if (score > max_score) {
+      max_score = score;
+    }
+  }
+
+  console.log(max_score);
+</script>
+
+<script type="text/javascript" id="ch0105/06">
+  var n = Number(prompt("输入n"));
+  var max_element = -Infinity;
+  var min_element = Infinity;
+  for (i = 1; i <= n; i++) {
+    var element = Number(prompt("输入第" + i + "个元素"));
+    if (element > max_element) {
+      max_element = element;
+    }
+    if (element < min_element) {
+      min_element = element;
+    }
+  }
+  console.log(max_element - min_element);
+</script>
