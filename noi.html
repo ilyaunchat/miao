@@ -640,3 +640,71 @@
 
   console.log(revenue);
 </script>
+
+<script type="xtext/javascript" id="ch0105/16">
+  var n = Number(prompt("输入n"));
+  var k = Number(prompt("输入k"));
+  var asset = n;
+  var price = 200;
+  var year = 1;
+
+  while (asset < price) {
+    year++;
+    if (year === 21) {
+      console.log("Impossible");
+      break;
+    }
+    asset += n;
+    price = price * (1 + k / 100);
+  }
+
+  if (year <= 20) {
+    console.log(year);
+  }
+</script>
+
+<script type="xtext/javascript" id="ch0105/17">
+  var k = Number(prompt("输入k"));
+  var a_n = 0;
+  var a_n_2 = 1;
+  var a_n_1 = 1;
+
+  for (i = 1; i <= k; i++) {
+    if (k === 1 || k === 2) {
+      console.log(1);
+      break;
+    }
+
+    if (i >= 3) {
+      a_n = a_n_2 + a_n_1;
+      if (i === k) {
+        console.log(a_n);
+        break;
+      }
+      a_n_2 = a_n_1;
+      a_n_1 = a_n;
+    }
+  }
+</script>
+
+<script type="xtext/javascript" id="ch0105/18">
+  var n = Number(prompt("输入n"));
+
+  var base_sum = Number(prompt("输入鸡尾酒疗法总病例数"));
+  var base_effective = Number(prompt("输入鸡尾酒疗法有效病例数"));
+  var base_rate = base_effective / base_sum;
+
+  for (i = 2; i <= n; i++) {
+    var therapy_sum = Number(prompt("输入第" + i + "个疗法总病例数"));
+    var therapy_effective = Number(prompt("输入第" + i + "个疗法有效病例数"));
+    var therapy_rate = therapy_effective / therapy_sum;
+
+    if (therapy_rate - base_rate > 0.05) {
+      console.log("better");
+    } else if (base_rate - therapy_rate > 0.05) {
+      console.log("worse");
+    } else {
+      console.log("same");
+    }
+  }
+</script>
