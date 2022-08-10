@@ -922,3 +922,52 @@
     console.log(-reversed_n);
   }
 </script>
+
+<script type="xtext/javascript" id="ch0105/30">
+  var m = Number(prompt("输入m"));
+  var k = Number(prompt("输入k"));
+
+  var base = 1;
+  var digits = [];
+
+  while (m / base >= 1) {
+    var temp = parseInt(m / base) % 10;
+    if (temp === 3) {
+      digits.push(temp);
+    }
+    base *= 10;
+  }
+
+  if (digits.length === k && m % 19 === 0) {
+    console.log("YES");
+  } else {
+    console.log("NO");
+  }
+</script>
+
+<script type="text/javascript" id="ch0105/31">
+  var n = Number(prompt("输入n"));
+  var m = Number(prompt("输入m"));
+  var lights = [];
+  var index_of_false_light = [];
+
+  for (i = 0; i < n; i++) {
+    lights[i] = false;
+  }
+
+  for (i = 2; i <= m; i++) {
+    for (j = 1; j <= n; j++) {
+      if (j % i === 0) {
+        lights[j - 1] = !lights[j - 1];
+      }
+    }
+  }
+
+  for (i = 0; i < n; i++) {
+    if (!lights[i]) {
+      index_of_false_light.push(i + 1);
+    }
+  }
+
+  console.log(index_of_false_light.join(","));
+</script>
