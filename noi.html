@@ -1252,7 +1252,7 @@
   }
 </script>
 
-<script type="text/javascript" id="complete-number">
+<script type="xtext/javascript" id="complete-number">
   var n = Number(prompt("输入n"));
   var factors = [1];
   var factors_sum = 0;
@@ -1274,7 +1274,34 @@
   }
 </script>
 
-<script type="text/javascript" id="prime">
+<script type="text/javascript" id="complete-numbers">
+  var completeNumbers = [];
+
+  for (var i = 2; i <= 1000; i++) {
+    var factors = [];
+    var factors_sum = 0;
+
+    for (var j = 1; j < i; j++) {
+      if (i % j === 0) {
+        factors.push(j);
+      }
+    }
+
+    for (var k = 0; k < factors.length; k++) {
+      factors_sum += factors[k];
+    }
+
+    if (factors_sum === i) {
+      completeNumbers.push(i);
+    }
+  }
+
+  for (var i = 0; i < completeNumbers.length; i++) {
+    console.log(completeNumbers[i]);
+  }
+</script>
+
+<script type="xtext/javascript" id="prime">
   var n = Number(prompt("输入n"));
 
   if (n === 1) {
@@ -1290,4 +1317,35 @@
       console.log("YES");
     }
   }
+</script>
+
+<script type="xtext/javascript" id="primes">
+  var primes = [];
+
+  for (var i = 2; i <= 100; i++) {
+    for (var j = 2; j <= Math.ceil(Math.sqrt(i)); j++) {
+      if (j !== i && i % j === 0) {
+        break;
+      }
+      if (j === Math.ceil(Math.sqrt(i))) {
+        primes.push(i);
+      }
+    }
+  }
+
+  for (var k = 0; k < primes.length; k++) {
+    console.log(primes[k]);
+  }
+</script>
+
+<script type="text/javascript" id="sqrt">
+  var err = 1e-6;
+  var inputNumber = Number(prompt("请输入整数"));
+  var temp = inputNumber;
+
+  while (Math.abs(temp ** 2 - inputNumber) > err) {
+    temp = (temp + inputNumber / temp) / 2;
+  }
+
+  console.log(temp.toFixed(3));
 </script>
