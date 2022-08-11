@@ -1243,6 +1243,31 @@
   console.log(revenue);
 </script>
 
+<script type="text/javascript" id="narcissistic">
+  var n = Number(prompt("输入n"));
+  var digits = 0;
+  var temp = 1;
+  var sum = 0;
+
+  while (parseInt(n / temp) > 0) {
+    digits++;
+    temp *= 10;
+  }
+
+  temp = 1;
+
+  for (var i = 1; i <= digits; i++) {
+    sum += (parseInt(n / temp) % 10) ** digits;
+    temp *= 10;
+  }
+
+  if (sum == n) {
+    console.log("YES");
+  } else {
+    console.log("NO");
+  }
+</script>
+
 <script type="xtext/javascript" id="palindrom">
   var n = Number(prompt("输入n"));
   if (n.toString() === n.toString().split("").reverse().join("")) {
