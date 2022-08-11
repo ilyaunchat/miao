@@ -1268,8 +1268,7 @@
   }
 </script>
 
-<script type="text/javascript" id="narcissistics">
-  debugger;
+<script type="xtext/javascript" id="narcissistics">
   var digits = 0;
   var temp = 1;
   var sum = 0;
@@ -1333,7 +1332,7 @@
   }
 </script>
 
-<script type="text/javascript" id="complete-numbers">
+<script type="xtext/javascript" id="complete-numbers">
   var completeNumbers = [];
 
   for (var i = 2; i <= 1000; i++) {
@@ -1397,7 +1396,28 @@
   }
 </script>
 
-<script type="text/javascript" id="sqrt">
+<script type="xtext/javascript" id="lcf&lcm">
+  var m = Number(prompt("输入第一个数"));
+  var n = Number(prompt("输入第二个数"));
+  var gcd = 0;
+  var lcm = 0;
+
+  var devisor = [m, n];
+  var remainder = Math.max(...devisor) % Math.min(...devisor);
+
+  while (remainder !== 0) {
+    devisor = [remainder, Math.min(...devisor)];
+    remainder = Math.max(...devisor) % Math.min(...devisor);
+  }
+
+  gcd = Math.min(...devisor);
+  lcm = parseInt((m * n) / gcd);
+
+  console.log(gcd);
+  console.log(lcm);
+</script>
+
+<script type="xtext/javascript" id="sqrt">
   var err = 1e-6;
   var inputNumber = Number(prompt("请输入整数"));
   var temp = inputNumber;
