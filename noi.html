@@ -945,7 +945,7 @@
   }
 </script>
 
-<script type="text/javascript" id="ch0105/31">
+<script type="xtext/javascript" id="ch0105/31">
   var n = Number(prompt("输入n"));
   var m = Number(prompt("输入m"));
   var lights = [];
@@ -970,4 +970,20 @@
   }
 
   console.log(index_of_false_light.join(","));
+</script>
+
+<script type="text/javascript" id="ch0105/32">
+  var n = Number(prompt("输入n"));
+  var sn = 0;
+  var numerator = 2;
+  var denominator = 1;
+
+  for (i = 1; i <= n; i++) {
+    sn += numerator / denominator;
+    var temp_n = numerator;
+    var temp_d = denominator;
+    numerator = temp_n + temp_d;
+    denominator = temp_n;
+  }
+  console.log(sn.toFixed(4));
 </script>
