@@ -406,7 +406,7 @@
   }
 </script>
 
-<script type="xtext/javascript" id="ch0104/20">
+<script type="text/javascript" id="ch0104/20">
   var a = Number(prompt("输入a"));
   var b = Number(prompt("输入b"));
   var c = Number(prompt("输入c"));
@@ -423,10 +423,16 @@
     x2 = (((-b - Math.sqrt(b ** 2 - 4 * a * c)) / 2) * a).toFixed(5);
     console.log("x1=" + x1 + ";x2=" + x2);
   } else {
-    var real_part = (-b / (2 * a)).toFixed(5);
-    var imagine_part = (Math.sqrt(4 * a * c - b ** 2) / (2 * a)).toFixed(5);
-    x1 = String(real_part) + "+" + String(imagine_part) + "i";
-    x2 = String(real_part) + "-" + String(imagine_part) + "i";
+    var delta = -(b ** 2 - 4 * a * c);
+    var sdelta = Math.sqrt(delta);
+
+    var x1real = (-b / (2 * a)).toFixed(5); // x1 的实部
+    var x1imag = (sdelta / (2 * a)).toFixed(5); // x1 的虚部
+    var x2real = (-b / (2 * a)).toFixed(5); // x2 的实部
+    var x2imag = (-sdelta / (2 * a)).toFixed(5); // x2 的虚部
+
+    x1 = String(x1real) + (x1imag > 0 ? "+" : "") + x1imag + "i";
+    x2 = String(x2real) + (x2imag > 0 ? "+" : "") + x2imag + "i";
 
     console.log("x1=" + x1 + ";x2=" + x2);
   }
@@ -972,7 +978,7 @@
   console.log(index_of_false_light.join(","));
 </script>
 
-<script type="text/javascript" id="ch0105/32">
+<script type="xtext/javascript" id="ch0105/32">
   var n = Number(prompt("输入n"));
   var sn = 0;
   var numerator = 2;
