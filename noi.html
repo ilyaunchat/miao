@@ -449,7 +449,7 @@
 <script type="xtext/javascript" id="ch0105/01">
   var n = Number(prompt("输入n"));
   var age_sum = 0;
-  for (i = 1; i <= n; i++) {
+  for (var i = 1; i <= n; i++) {
     var age = Number(prompt("输入第" + i + "个" + "年龄"));
     age_sum += age;
   }
@@ -461,7 +461,7 @@
 
 <script type="xtext/javascript" id="ch0105/02">
   var rev_sum = 0;
-  for (i = 1; i <= 12; i++) {
+  for (var i = 1; i <= 12; i++) {
     var rev = Number(prompt("输入第" + i + "个月的" + "结余"));
     rev_sum += rev;
   }
@@ -474,7 +474,7 @@
 <script type="xtext/javascript" id="ch0105/03">
   var n = Number(prompt("输入n"));
   var sap_sum = 0;
-  for (i = 1; i <= n; i++) {
+  for (var i = 1; i <= n; i++) {
     var sap = Number(prompt("输入第" + i + "个样本数据"));
     sap_sum += sap;
   }
@@ -487,7 +487,7 @@
 <script type="xtext/javascript" id="ch0105/04">
   var n = Number(prompt("输入n"));
   var int_sum = 0;
-  for (i = 1; i <= n; i++) {
+  for (var i = 1; i <= n; i++) {
     var int = Number(prompt("输入第" + i + "个整数"));
     int_sum += int;
   }
@@ -500,7 +500,7 @@
 <script type="xtext/javascript" id="ch0105/05">
   var n = Number(prompt("输入n"));
   var max_score = -Infinity;
-  for (i = 1; i <= n; i++) {
+  for (var i = 1; i <= n; i++) {
     var score = Number(prompt("输入第" + i + "个成绩"));
     if (score > max_score) {
       max_score = score;
@@ -514,7 +514,7 @@
   var n = Number(prompt("输入n"));
   var max_element = -Infinity;
   var min_element = Infinity;
-  for (i = 1; i <= n; i++) {
+  for (var i = 1; i <= n; i++) {
     var element = Number(prompt("输入第" + i + "个元素"));
     if (element > max_element) {
       max_element = element;
@@ -531,7 +531,7 @@
   var gold = 0;
   var silver = 0;
   var bronze = 0;
-  for (i = 1; i <= n; i++) {
+  for (var i = 1; i <= n; i++) {
     var gold_daily = Number(prompt("输入第" + i + "天的金牌数"));
     var silver_daily = Number(prompt("输入第" + i + "天的银牌数"));
     var bronze_daily = Number(prompt("输入第" + i + "天的铜牌数"));
@@ -551,7 +551,7 @@
   var n = Number(prompt("输入n"));
   var degrees = 0;
   var degrees_sum = (n - 2) * 180;
-  for (i = 1; i <= n - 1; i++) {
+  for (var i = 1; i <= n - 1; i++) {
     var degree = Number(prompt("输入第" + i + "个内角"));
 
     degrees += degree;
@@ -566,7 +566,7 @@
   var start = m % 2 !== 0 ? m : m + 1;
   var end = n % 2 !== 0 ? n : n - 1;
   var sum = 0;
-  for (i = start; i <= end; i = i + 2) {
+  for (var i = start; i <= end; i = i + 2) {
     sum += i;
   }
 
@@ -577,7 +577,7 @@
   var m = Number(prompt("输入m"));
   var n = Number(prompt("输入n"));
   var sum = 0;
-  for (i = m; i <= n; i++) {
+  for (var i = m; i <= n; i++) {
     if (i % 17 === 0) {
       sum += i;
     }
@@ -591,7 +591,7 @@
   var times_1 = 0;
   var times_5 = 0;
   var times_10 = 0;
-  for (i = 1; i <= k; i++) {
+  for (var i = 1; i <= k; i++) {
     var input = Number(prompt("输入第" + i + "个数"));
 
     if (input === 1) {
@@ -612,7 +612,7 @@
   var n = Number(prompt("输入n"));
   var m = Number(prompt("输入m"));
   var times = 0;
-  for (i = 1; i <= n; i++) {
+  for (var i = 1; i <= n; i++) {
     var input = Number(prompt("输入第" + i + "个数"));
 
     if (input === m) {
@@ -675,7 +675,7 @@
   var a_n_2 = 1;
   var a_n_1 = 1;
 
-  for (i = 1; i <= k; i++) {
+  for (var i = 1; i <= k; i++) {
     if (k === 1 || k === 2) {
       console.log(1);
       break;
@@ -700,7 +700,7 @@
   var base_effective = Number(prompt("输入鸡尾酒疗法有效病例数"));
   var base_rate = base_effective / base_sum;
 
-  for (i = 2; i <= n; i++) {
+  for (var i = 2; i <= n; i++) {
     var therapy_sum = Number(prompt("输入第" + i + "个疗法总病例数"));
     var therapy_effective = Number(prompt("输入第" + i + "个疗法有效病例数"));
     var therapy_rate = therapy_effective / therapy_sum;
@@ -719,7 +719,7 @@
   var n = Number(prompt("输入n"));
   var time = 0;
 
-  for (i = 1; i <= n; i = i + 1) {
+  for (var i = 1; i <= n; i = i + 1) {
     var x = Number(prompt("输入第" + i + "个屋顶的x"));
     var y = Number(prompt("输入第" + i + "个屋顶的y"));
     var amount = Number(prompt("输入第" + i + "个屋顶的人数"));
@@ -737,7 +737,7 @@
   var temp = h;
   var final_bounce = 0;
 
-  for (i = 1; i <= 10; i = i + 1) {
+  for (var i = 1; i <= 10; i = i + 1) {
     if (i === 1) {
       s += temp;
     } else {
@@ -776,7 +776,7 @@
   var rev_beginning = 0;
   var wallet = 0;
 
-  for (i = 1; i <= 12; i++) {
+  for (var i = 1; i <= 12; i++) {
     var spend = Number(prompt("输入" + i + "月的预算"));
     wallet = rev_beginning + 300 - spend;
     if (wallet < 0) {
@@ -805,7 +805,7 @@
   var rejected = 0;
   var residual = m;
 
-  for (i = 1; i <= n; i++) {
+  for (var i = 1; i <= n; i++) {
     var num_person = Number(prompt("输入第" + i + "个人的取药量"));
     if (residual > num_person) {
       residual -= num_person;
@@ -820,7 +820,7 @@
   var n = Number(prompt("输入n"));
   var normal_hour = 0;
 
-  for (i = 1; i <= n; i++) {
+  for (var i = 1; i <= n; i++) {
     var blood_tight = Number(prompt("输入第" + i + "次的收缩压"));
     var blood_loose = Number(prompt("输入第" + i + "次的舒张压"));
 
@@ -840,7 +840,7 @@
 
 <script type="xtext/javascript" id="ch0105/25">
   // 十进制数在 81-342 之间（闭区间）
-  for (i = 81; i <= 342; i++) {
+  for (var i = 81; i <= 342; i++) {
     var seventh = i.toString(7);
     var ninth = i.toString(9);
 
@@ -858,7 +858,7 @@
   var n = Number(prompt("输入n"));
   var count = 0;
 
-  for (i = 1; i <= n; i++) {
+  for (var i = 1; i <= n; i++) {
     var target = Number(prompt("输入第" + i + "个四位数"));
     var digit = target % 10;
     var tens_digit = parseInt(target / 10) % 10;
@@ -898,7 +898,7 @@
     base *= 10;
   }
 
-  for (i = 0; i < digits.length; i++) {
+  for (var i = 0; i < digits.length; i++) {
     console.log(digits[i]);
   }
 </script>
@@ -957,19 +957,19 @@
   var lights = [];
   var index_of_false_light = [];
 
-  for (i = 0; i < n; i++) {
+  for (var i = 0; i < n; i++) {
     lights[i] = false;
   }
 
-  for (i = 2; i <= m; i++) {
-    for (j = 1; j <= n; j++) {
+  for (var i = 2; i <= m; i++) {
+    for (var j = 1; j <= n; j++) {
       if (j % i === 0) {
         lights[j - 1] = !lights[j - 1];
       }
     }
   }
 
-  for (i = 0; i < n; i++) {
+  for (var i = 0; i < n; i++) {
     if (!lights[i]) {
       index_of_false_light.push(i + 1);
     }
@@ -984,7 +984,7 @@
   var numerator = 2;
   var denominator = 1;
 
-  for (i = 1; i <= n; i++) {
+  for (var i = 1; i <= n; i++) {
     sn += numerator / denominator;
     var temp_n = numerator;
     var temp_d = denominator;
@@ -1000,7 +1000,7 @@
   var denominator = 1;
   var flag = 1;
 
-  for (i = 1; i <= n; i++) {
+  for (var i = 1; i <= n; i++) {
     sum += flag * (1 / denominator);
     flag *= -1;
     denominator++;
@@ -1014,8 +1014,8 @@
   var sum = 0;
   var temp_factorial = 1;
 
-  for (i = 1; i <= n; i++) {
-    for (j = 1; j <= i; j++) {
+  for (var i = 1; i <= n; i++) {
+    for (var j = 1; j <= i; j++) {
       temp_factorial *= j;
     }
     sum += temp_factorial;
@@ -1030,8 +1030,8 @@
   var sum = 1;
   var temp_factorial = 1;
 
-  for (i = 1; i <= n; i++) {
-    for (j = 1; j <= i; j++) {
+  for (var i = 1; i <= n; i++) {
+    for (var j = 1; j <= i; j++) {
       temp_factorial *= j;
     }
     sum += 1 / temp_factorial;
@@ -1046,7 +1046,7 @@
   var n = Number(prompt("输入n"));
   var sum = 1;
 
-  for (i = 1; i <= n; i++) {
+  for (var i = 1; i <= n; i++) {
     sum += x ** i;
   }
 
@@ -1082,11 +1082,11 @@
 
 <script type="xtext/javascript" id="ch0105/38">
   var m = Number(prompt("输入m"));
-  for (k = 1; k <= m; k++) {
+  for (var k = 1; k <= m; k++) {
     var n = Number(prompt("输入第" + k + "个多项式的n"));
     var link = [];
 
-    for (i = 1; i <= n + 1; i++) {
+    for (var i = 1; i <= n + 1; i++) {
       var temp = Number(prompt("输入第" + i + "个系数"));
       link.push(temp);
     }
@@ -1094,7 +1094,7 @@
     if (link.length === 1) {
       console.log(0);
     } else {
-      for (i = link.length; i >= 2; i--) {
+      for (var i = link.length; i >= 2; i--) {
         console.log(link[link.length - i] * (i - 1));
       }
     }
@@ -1105,7 +1105,7 @@
   var n = Number(prompt("输入n"));
   var sum = 0;
 
-  for (i = 1; i <= n; i++) {
+  for (var i = 1; i <= n; i++) {
     if (i % 7 !== 0 && i.toString().split("").indexOf("7") === -1) {
       sum += i ** 2;
     }
@@ -1118,7 +1118,7 @@
   var n = Number(prompt("输入n"));
   var sum = 0;
 
-  for (i = 1; i <= n; i++) {
+  for (var i = 1; i <= n; i++) {
     sum += i
       .toString()
       .split("")
@@ -1133,7 +1133,7 @@
   var r = Number(prompt("输入r"));
   var sum = 0;
 
-  for (i = l; i <= r; i++) {
+  for (var i = l; i <= r; i++) {
     sum += i
       .toString()
       .split("")
@@ -1162,7 +1162,7 @@
   }
 </script>
 
-<script type="text/javascript" id="ch0105/43">
+<script type="xtext/javascript" id="ch0105/43">
   var n = Number(prompt("输入n"));
   var primes = [];
 
@@ -1241,4 +1241,53 @@
   }
 
   console.log(revenue);
+</script>
+
+<script type="xtext/javascript" id="palindrom">
+  var n = Number(prompt("输入n"));
+  if (n.toString() === n.toString().split("").reverse().join("")) {
+    console.log("YES");
+  } else {
+    console.log("NO");
+  }
+</script>
+
+<script type="text/javascript" id="complete-number">
+  var n = Number(prompt("输入n"));
+  var factors = [1];
+  var factors_sum = 0;
+
+  for (var i = 2; i < n; i++) {
+    if (n % i === 0) {
+      factors.push(i);
+    }
+  }
+
+  for (var j = 0; j < factors.length; j++) {
+    factors_sum += factors[j];
+  }
+
+  if (factors_sum === n) {
+    console.log("YES");
+  } else {
+    console.log("NO");
+  }
+</script>
+
+<script type="text/javascript" id="prime">
+  var n = Number(prompt("输入n"));
+
+  if (n === 1) {
+    console.log("NO");
+  }
+
+  for (var i = 2; i <= Math.ceil(Math.sqrt(n)); i++) {
+    if (i !== n && n % i === 0) {
+      console.log("NO");
+      break;
+    }
+    if (i === Math.ceil(Math.sqrt(n))) {
+      console.log("YES");
+    }
+  }
 </script>
