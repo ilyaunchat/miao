@@ -1310,6 +1310,15 @@
   }
 </script>
 
+<script type="text/javascript" id="weekday">
+  var year = Number(prompt("输入年份"));
+  var month = Number(prompt("输入月份"));
+
+  var date = new Date(year, month - 1, 1);
+
+  console.log(date.getDay());
+</script>
+
 <script type="xtext/javascript" id="complete-number">
   var n = Number(prompt("输入n"));
   var factors = [1];
