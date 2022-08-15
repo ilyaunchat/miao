@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>画图</title>
+    <style>
+      canvas {
+        border: 2px solid #f0f;
+        display: block;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas width="500" height="400"></canvas>
+  </body>
+  <script>
+    var canvas = document.querySelector("canvas");
+    canvas.style.imageRendering = "pixelated"; //放大时的插帧方式：不插帧，直接放大像素
+    var ctx = canvas.getContext("2d");
+
+    function dot(x, y, color = "black") {
+      x = Math.round(x);
+      y = Math.round(y);
+      ctx.fillStyle = color;
+      ctx.fillRect(x, y, 1, 1);
+    }
+    /**
+   * YOUR TASK
+      * 在 坐标 (42, 42) 画出一个点
+      * 画一条实线
+      * 画一条一个实点一个空点的虚线
+      * 画一条两个实点两个空点的虚线
+      * 画一条三个实点两个空点的虚线
+      * 画一条45度的斜线
+      * 画一条30度的斜线（与x轴或y轴的夹角呈30度）
+      * 画一条跨越画布左上角和右下角的对角线
+      * 画一个空心矩形
+      * 画一个实心矩形
+      * 画两个个空心的圆，居中：
+        * 一个半径为50像素
+        * 一个半径为200像素
+      * 画一个实心的圆，半径至少为100像素
+      * 画一个【大小合适】的sin(x)的图像
+
+      * 画出rgb色彩空间的某一面（尺寸要大于100x100）
+         'rgb(255,255,0)'
+         '#ff00ff'
+        如果做出上一题后，尝试将其每个点的坐标乘以一个矩阵（如(2,0,0,2)或(1,0.27得到新的位置，即绘制出被线性变幻后的色彩空间某一面
+        可以考虑如下几种矩阵：
+           2 0
+           0 2
+           ------
+           1  0.27
+           0  1
+           ------
+           0.5    0.87
+           -0.87  0.5
+
+   */
+  </script>
+  <script>
+    // 不可更改上面的代码
+    // 你的代码写在这里
+    // YOUR CODE GOES BELOW
+
+    // 在 坐标 (42, 42) 画出一个点
+    dot(42, 42, "yellowgreen");
+
+    // 画一条实线
+    for (var i = 40; i <= 200; i++) {
+      dot(i, 50, "tan");
+    }
+
+    // 画一条一个实点一个空点的虚线
+    for (var i = 40; i <= 200; i = i + 2) {
+      dot(i, 75, "black");
+    }
+
+    // 画一条两个实点两个空点的虚线
+    for (var i = 40; i <= 200; i = i + 4) {
+      dot(i, 100, "pink");
+      dot(i + 1, 100, "pink");
+    }
+
+    // 画一条三个实点两个空点的虚线
+    for (var i = 40; i <= 200; i = i + 5) {
+      dot(i, 125, "#00008B");
+      dot(i + 1, 125, "#00008B");
+      dot(i + 2, 125, "#00008B");
+    }
+
+    // 画一条45度的斜线
+    for (var j = 200; j <= 300; j++) {
+      dot(j, j, "#006400");
+    }
+
+    // 画一条30度的斜线（与x轴的夹角呈30度）
+    for (var j = 100, i = 100; j <= 200; j++) {
+      dot(i, j, "#8FBC8F");
+      i = i + 1 / Math.tan(Math.PI / 6);
+    }
+
+    // 画一条跨越画布左上角和右下角的对角线
+    for (var j = 0, i = 0; j <= 400, i <= 500; j++) {
+      dot(i, j, "#FF1493");
+      i = i + 1 / Math.tan(Math.atan(4 / 5));
+    }
+
+    // 画一个空心矩形
+    var topLeft = [250, 10];
+    var topRight = [350, 10];
+    var bottomLeft = [250, 20];
+    var bottomRight = [350, 20];
+    var colorKong = "#228B22";
+
+    for (var i = topLeft[0]; i <= topRight[0]; i++) {
+      dot(i, topLeft[1], colorKong);
+    }
+
+    for (var i = bottomLeft[0]; i <= bottomRight[0]; i++) {
+      dot(i, bottomLeft[1], colorKong);
+    }
+
+    for (var j = topLeft[1]; j <= bottomLeft[1]; j++) {
+      dot(topLeft[0], j, colorKong);
+    }
+
+    for (var j = topRight[1]; j <= bottomRight[1]; j++) {
+      dot(topRight[0], j, colorKong);
+    }
+
+    // 画一个实心矩形
+    var topLeft = [250, 30];
+    var topRight = [350, 30];
+    var bottomLeft = [250, 40];
+    var bottomRight = [350, 40];
+    var colorShi = "#4B0082";
+
+    for (var i = topLeft[0]; i <= topRight[0]; i++) {
+      dot(i, topLeft[1], colorShi);
+    }
+
+    for (var i = bottomLeft[0]; i <= bottomRight[0]; i++) {
+      dot(i, bottomLeft[1], colorShi);
+    }
+
+    for (var j = topLeft[1]; j <= bottomLeft[1]; j++) {
+      dot(topLeft[0], j, colorShi);
+    }
+
+    for (var j = topRight[1]; j <= bottomRight[1]; j++) {
+      dot(topRight[0], j, colorShi);
+    }
+
+    for (var k = topLeft[1]; k <= bottomLeft[1]; k++) {
+      for (var m = topLeft[0]; m <= topRight[0]; m++) {
+        dot(m, k, colorShi);
+      }
+    }
+
+    // 画两个个空心的圆 一个半径为50像素
+    // debugger;
+    // var circleCenter = [500 / 2, 400 / 2];
+
+    // for (
+    //   var y = circleCenter[1], x = circleCenter[0] + 50;
+    //   y <= circleCenter[1] + 50, x >= circleCenter[0];
+    //   y = y + 0.5, x = x - (50 - 0.5 / Math.tan(Math.asin(0.5 / 50)))
+    // ) {
+    //   dot(x, y, "black");
+    // }
+  </script>
+</html>
