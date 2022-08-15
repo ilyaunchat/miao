@@ -838,11 +838,11 @@
   console.log(normal_hour);
 </script>
 
-<script type="xtext/javascript" id="ch0105/25">
+<script type="text/javascript" id="ch0105/25">
   // 十进制数在 81-342 之间（闭区间）
   for (var i = 81; i <= 342; i++) {
-    var seventh = i.toString(7);
-    var ninth = i.toString(9);
+    var seventh = i.toString(7); // JS现成的进制转换方法
+    var ninth = i.toString(9); // JS现成的进制转换方法
 
     var reversed_seventh = seventh.split("").reverse().join("");
 
@@ -852,6 +852,24 @@
       console.log(ninth);
     }
   }
+
+  // Alternative solution
+
+  // for (var x = 81; x <= 342; x++) {
+  //   var a7 = x % 7; // 7进制个位数
+  //   var b7 = ((x - a7) / 7) % 7; // 7进制右数第二位数
+  //   var c7 = ((x - a7 - b7 * 7) / 7 / 7) % 7; // 7进制右数第三位数
+
+  //   var a9 = x % 9; // 9进制个位数
+  //   var b9 = ((x - a9) / 9) % 9; // 9进制右数第二位数
+  //   var c9 = ((x - a9 - b9 * 9) / 9 / 9) % 9; // 9进制右数第三位数
+
+  //   if (a7 === c9 && b7 === b9 && c7 === c9) {
+  //     console.log(x);
+  //     console.log("" + c7 + b7 + a7);
+  //     console.log("" + c9 + b9 + a9);
+  //   }
+  // }
 </script>
 
 <script type="xtext/javascript" id="ch0105/26">
