@@ -192,10 +192,23 @@
         j = j + 0.01
       ) {
         var y = Math.sqrt(k ** 2 - (j - 250) ** 2) + 200;
-        dot(j, y, "black");
+        dot(j, y, "rgba(33,52,13,0.01)");
         y = 200 - Math.sqrt(k ** 2 - (j - 250) ** 2);
-        dot(j, y, "aqua");
+        dot(j, y, "rgba(33,52,13,0.01)");
       }
     }
+
+    // 画一个【大小合适】的sin(x)的图像
+    // var startPoint = [40, 300];
+
+    // debugger;
+    // for (
+    //   var i = startPoint[0], j = startPoint[1];
+    //   i <= startPoint[0] + 4 * Math.PI;
+    //   i = i + 0.8
+    // ) {
+    //   j = j - 10 * Math.sin(i - startPoint[0]);
+    //   dot(i, j, "#90EE90");
+    // }
   </script>
 </html>
