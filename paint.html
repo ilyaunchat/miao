@@ -199,16 +199,9 @@
     }
 
     // 画一个【大小合适】的sin(x)的图像
-    // var startPoint = [40, 300];
-
-    // debugger;
-    // for (
-    //   var i = startPoint[0], j = startPoint[1];
-    //   i <= startPoint[0] + 4 * Math.PI;
-    //   i = i + 0.8
-    // ) {
-    //   j = j - 10 * Math.sin(i - startPoint[0]);
-    //   dot(i, j, "#90EE90");
-    // }
+    for (var x = 0; x < 500; x++) {
+      var y = 10 * Math.sin(x / 10);
+      dot(x, y + 20, "#F08080");
+    }
   </script>
 </html>
