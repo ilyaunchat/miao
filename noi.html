@@ -838,8 +838,10 @@
   console.log(normal_hour);
 </script>
 
-<script type="text/javascript" id="ch0105/25">
+<script type="xtext/javascript" id="ch0105/25">
   // 十进制数在 81-342 之间（闭区间）
+
+  // Solution 1
   for (var i = 81; i <= 342; i++) {
     var seventh = i.toString(7); // JS现成的进制转换方法
     var ninth = i.toString(9); // JS现成的进制转换方法
@@ -853,7 +855,7 @@
     }
   }
 
-  // Alternative solution
+  // Solution 2
 
   // for (var x = 81; x <= 342; x++) {
   //   var a7 = x % 7; // 7进制个位数
@@ -1119,16 +1121,45 @@
   }
 </script>
 
-<script type="xtext/javascript" id="ch0105/39">
+<script type="text/javascript" id="ch0105/39">
+  // 接受输入
   var n = Number(prompt("输入n"));
+
   var sum = 0;
 
+  // Solution 1
+
+  // for (var i = 1; i <= n; i++) {
+  //   if (i % 7 !== 0 && i.toString().split("").indexOf("7") === -1) {
+  //     sum += i ** 2;
+  //   }
+  // }
+  // console.log(sum);
+
+  // Solution 2
+
+  var has7 = function (n) {
+    if (n % 7 === 0 && n !== 0) {
+      return true;
+    }
+    var temp = n;
+    while (true) {
+      if (temp % 10 === 7) {
+        return true;
+      }
+      temp = parseInt(temp / 10);
+      if (temp > 0) {
+        continue;
+      } else {
+        return false;
+      }
+    }
+  };
   for (var i = 1; i <= n; i++) {
-    if (i % 7 !== 0 && i.toString().split("").indexOf("7") === -1) {
+    if (!has7(i)) {
       sum += i ** 2;
     }
   }
-
   console.log(sum);
 </script>
 
