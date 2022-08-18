@@ -1386,10 +1386,12 @@
   var n = Number(prompt("输入n"));
 
   function isCompleteNumber(n) {
-    var sumOfDevisors = 1;
+    var sumOfDevisors = 0;
 
-    for (var i = 2; i <= Math.sqrt(n); i++) {
-      if (n % i === 0) {
+    for (var i = 1; i <= Math.sqrt(n); i++) {
+      if (n % i === 0 && i === 1 && n !== 1) {
+        sumOfDevisors += i;
+      } else if (n % i === 0 && n !== 1) {
         sumOfDevisors += i + n / i;
       }
     }
@@ -1405,29 +1407,28 @@
 </script>
 
 <script type="xtext/javascript" id="complete-numbers">
-  var completeNumbers = [];
+  function isCompleteNumber(n) {
+    var sumOfDevisors = 0;
 
-  for (var i = 2; i <= 1000; i++) {
-    var factors = [];
-    var factors_sum = 0;
-
-    for (var j = 1; j < i; j++) {
-      if (i % j === 0) {
-        factors.push(j);
+    for (var i = 1; i <= Math.sqrt(n); i++) {
+      if (n % i === 0 && i === 1 && n !== 1) {
+        sumOfDevisors += i;
+      } else if (n % i === 0 && n !== 1) {
+        sumOfDevisors += i + n / i;
       }
     }
 
-    for (var k = 0; k < factors.length; k++) {
-      factors_sum += factors[k];
-    }
-
-    if (factors_sum === i) {
-      completeNumbers.push(i);
+    if (sumOfDevisors === n) {
+      return true;
+    } else {
+      return false;
     }
   }
 
-  for (var i = 0; i < completeNumbers.length; i++) {
-    console.log(completeNumbers[i]);
+  for (var i = 1; i <= 1000; i++) {
+    if (isCompleteNumber(i)) {
+      console.log(i);
+    }
   }
 </script>
 
