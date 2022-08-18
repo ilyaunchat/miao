@@ -1293,27 +1293,33 @@
 
 <script type="xtext/javascript" id="narcissistic">
   var n = Number(prompt("输入n"));
-  var digits = 0;
-  var temp = 1;
-  var sum = 0;
 
-  while (parseInt(n / temp) > 0) {
-    digits++;
-    temp *= 10;
+  function isNarcissistic(n) {
+    var digits = 0;
+    var digitsArr = [];
+    var temp = 0;
+    var m = n;
+    var sum = 0;
+
+    do {
+      digits++;
+      temp = m % 10;
+      digitsArr.push(temp);
+      m = (m - temp) / 10;
+    } while (m / 10 > 0);
+
+    for (var i = 0; i < digitsArr.length; i++) {
+      sum += digitsArr[i] ** digits;
+    }
+
+    if (sum === n) {
+      return "YES";
+    } else {
+      return "NO";
+    }
   }
 
-  temp = 1;
-
-  for (var i = 1; i <= digits; i++) {
-    sum += (parseInt(n / temp) % 10) ** digits;
-    temp *= 10;
-  }
-
-  if (sum === n) {
-    console.log("YES");
-  } else {
-    console.log("NO");
-  }
+  console.log(isNarcissistic(n));
 </script>
 
 <script type="xtext/javascript" id="narcissistics">
