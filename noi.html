@@ -1121,10 +1121,9 @@
   }
 </script>
 
-<script type="text/javascript" id="ch0105/39">
-  // 接受输入
+<script type="xtext/javascript" id="ch0105/39">
+  // 接受输入以及准备一个sum变量
   var n = Number(prompt("输入n"));
-
   var sum = 0;
 
   // Solution 1
@@ -1481,14 +1480,38 @@
   console.log(lcm);
 </script>
 
-<script type="xtext/javascript" id="sqrt">
+<script type="text/javascript" id="sqrt">
+  // 输入整数以及设置误差范围
   var err = 1e-6;
   var inputNumber = Number(prompt("请输入整数"));
-  var temp = inputNumber;
 
-  while (Math.abs(temp ** 2 - inputNumber) > err) {
-    temp = (temp + inputNumber / temp) / 2;
+  // Solution1 牛顿法
+  // var temp = inputNumber;
+
+  // while (Math.abs(temp ** 2 - inputNumber) > err) {
+  //   temp = (temp + inputNumber / temp) / 2;
+  // }
+
+  // console.log(temp.toFixed(3));
+
+  // Solution2 二分法
+  var beginPoint = 0;
+  var endPoint = Math.max(2, inputNumber);
+  var middlePoint = (beginPoint + endPoint) / 2;
+  var diff = middlePoint ** 2 - inputNumber;
+
+  while (Math.abs(diff) > err) {
+    if (diff > 0) {
+      endPoint = middlePoint;
+      middlePoint = (beginPoint + endPoint) / 2;
+      diff = middlePoint ** 2 - inputNumber;
+    } else if (diff < 0) {
+      beginPoint = middlePoint;
+      middlePoint = (beginPoint + endPoint) / 2;
+      diff = middlePoint ** 2 - inputNumber;
+    } else {
+      break;
+    }
   }
-
-  console.log(temp.toFixed(3));
+  console.log(middlePoint.toFixed(3));
 </script>
