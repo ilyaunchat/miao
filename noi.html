@@ -1416,22 +1416,25 @@
   }
 </script>
 
-<script type="xtext/javascript" id="prime">
+<script type="text/javascript" id="prime">
   var n = Number(prompt("输入n"));
 
-  if (n === 1) {
-    console.log("NO");
+  function isPrime(n) {
+    if (n === 1) {
+      return "NO";
+    }
+
+    for (var i = 2; i <= Math.ceil(Math.sqrt(n)); i++) {
+      if (i !== n && n % i === 0) {
+        return "NO";
+      }
+      if (i === Math.ceil(Math.sqrt(n))) {
+        return "YES";
+      }
+    }
   }
 
-  for (var i = 2; i <= Math.ceil(Math.sqrt(n)); i++) {
-    if (i !== n && n % i === 0) {
-      console.log("NO");
-      break;
-    }
-    if (i === Math.ceil(Math.sqrt(n))) {
-      console.log("YES");
-    }
-  }
+  console.log(isPrime(n));
 </script>
 
 <script type="xtext/javascript" id="primes">
@@ -1480,7 +1483,7 @@
   console.log(lcm);
 </script>
 
-<script type="text/javascript" id="sqrt">
+<script type="xtext/javascript" id="sqrt">
   // 输入整数以及设置误差范围
   var err = 1e-6;
   var inputNumber = Number(prompt("请输入整数"));
