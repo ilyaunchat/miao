@@ -1323,35 +1323,35 @@
 </script>
 
 <script type="xtext/javascript" id="narcissistics">
-  var digits = 0;
-  var temp = 1;
-  var sum = 0;
-  var narArray = [];
+  function isNarcissistic(n) {
+    var digits = 0;
+    var digitsArr = [];
+    var temp = 0;
+    var m = n;
+    var sum = 0;
 
-  for (var n = 100; n < 1000; n++) {
-    while (parseInt(n / temp) > 0) {
+    do {
       digits++;
-      temp *= 10;
-    }
+      temp = m % 10;
+      digitsArr.push(temp);
+      m = (m - temp) / 10;
+    } while (m / 10 > 0);
 
-    temp = 1;
-
-    for (var i = 1; i <= digits; i++) {
-      sum += (parseInt(n / temp) % 10) ** digits;
-      temp *= 10;
+    for (var i = 0; i < digitsArr.length; i++) {
+      sum += digitsArr[i] ** digits;
     }
 
     if (sum === n) {
-      console.log(n);
+      return true;
+    } else {
+      return false;
     }
-
-    digits = 0;
-    temp = 1;
-    sum = 0;
   }
 
-  for (var k = 0; k < narArray.length; k++) {
-    console.log(k);
+  for (var i = 100; i <= 1000; i++) {
+    if (isNarcissistic(i)) {
+      console.log(i);
+    }
   }
 </script>
 
