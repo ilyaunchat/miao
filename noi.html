@@ -1382,10 +1382,63 @@
 <script type="xtext/javascript" id="weekday">
   var year = Number(prompt("输入年份"));
   var month = Number(prompt("输入月份"));
+  var days = 0;
 
-  var date = new Date(year, month - 1, 1);
+  function isLeapYear(n) {
+    if (n % 400 === 0) {
+      return true;
+    }
+    if (n % 100 === 0) {
+      return false;
+    }
+    if (n % 4 === 0) {
+      return true;
+    }
+    return false;
+  }
 
-  console.log(date.getDay());
+  function daysOfAMonth(n) {
+    switch (n) {
+      case 1:
+      case 3:
+      case 5:
+      case 7:
+      case 8:
+      case 10:
+      case 12: {
+        return 31;
+      }
+
+      case 4:
+      case 6:
+      case 9:
+      case 11: {
+        return 30;
+      }
+
+      case 2: {
+        if (isLeapYear(n)) {
+          return 29;
+        } else {
+          return 28;
+        }
+      }
+    }
+  }
+
+  for (var i = 1; i < year; i++) {
+    if (isLeapYear(i)) {
+      days += 366;
+    } else {
+      days += 365;
+    }
+  }
+
+  for (var j = 1; j < month; j++) {
+    days += daysOfAMonth(j);
+  }
+
+  console.log((days + 1) % 7);
 </script>
 
 <script type="xtext/javascript" id="complete-number">
