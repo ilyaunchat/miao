@@ -1428,10 +1428,9 @@
       if (i !== n && n % i === 0) {
         return "NO";
       }
-      if (i === Math.ceil(Math.sqrt(n))) {
-        return "YES";
-      }
     }
+
+    return "YES";
   }
 
   console.log(isPrime(n));
