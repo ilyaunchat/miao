@@ -1436,7 +1436,7 @@
   console.log(isPrime(n));
 </script>
 
-<script type="text/javascript" id="primes">
+<script type="xtext/javascript" id="primes">
   function isPrime(n) {
     if (n === 1) {
       return false;
@@ -1458,10 +1458,63 @@
   }
 </script>
 
-<script type="xtext/javascript" id="itob">
-  var userInput = prompt("输入一个整数");
+<script type="text/javascript" id="itob">
+  var i = Number(prompt("输入一个整数"));
+  var j = Math.abs(i);
 
-  console.log(userInput);
+  var resultStr = "";
+
+  var digits = 0;
+  var temp = 0;
+
+  function itos(k) {
+    switch (k) {
+      case 0: {
+        return "0";
+      }
+      case 1: {
+        return "1";
+      }
+      case 2: {
+        return "2";
+      }
+      case 3: {
+        return "3";
+      }
+      case 4: {
+        return "4";
+      }
+      case 5: {
+        return "5";
+      }
+      case 6: {
+        return "6";
+      }
+      case 7: {
+        return "7";
+      }
+      case 8: {
+        return "8";
+      }
+      case 9: {
+        return "9";
+      }
+    }
+  }
+
+  // do-while 循环可以让数值0也正常变成字符串
+  do {
+    digits++;
+    temp = j % 10;
+    resultStr = itos(temp) + resultStr;
+    j = (j - temp) / 10;
+  } while (j / 10 > 0);
+
+  if (Math.abs(i) !== i) {
+    resultStr = "-" + resultStr;
+  }
+
+  console.log(resultStr);
 </script>
 
 <script type="xtext/javascript" id="lcf&lcm">
