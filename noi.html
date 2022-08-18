@@ -1384,24 +1384,24 @@
 
 <script type="xtext/javascript" id="complete-number">
   var n = Number(prompt("输入n"));
-  var factors = [1];
-  var factors_sum = 0;
 
-  for (var i = 2; i < n; i++) {
-    if (n % i === 0) {
-      factors.push(i);
+  function isCompleteNumber(n) {
+    var sumOfDevisors = 1;
+
+    for (var i = 2; i <= Math.sqrt(n); i++) {
+      if (n % i === 0) {
+        sumOfDevisors += i + n / i;
+      }
+    }
+
+    if (sumOfDevisors === n) {
+      return "YES";
+    } else {
+      return "NO";
     }
   }
 
-  for (var j = 0; j < factors.length; j++) {
-    factors_sum += factors[j];
-  }
-
-  if (factors_sum === n) {
-    console.log("YES");
-  } else {
-    console.log("NO");
-  }
+  console.log(isCompleteNumber(n));
 </script>
 
 <script type="xtext/javascript" id="complete-numbers">
@@ -1532,7 +1532,7 @@
   console.log(resultStr);
 </script>
 
-<script type="text/javascript" id="lcf&lcm">
+<script type="xtext/javascript" id="lcf&lcm">
   var m = Number(prompt("输入第一个数"));
   var n = Number(prompt("输入第二个数"));
   var gcd = 0;
