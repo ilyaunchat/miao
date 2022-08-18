@@ -1532,22 +1532,30 @@
   console.log(resultStr);
 </script>
 
-<script type="xtext/javascript" id="lcf&lcm">
+<script type="text/javascript" id="lcf&lcm">
   var m = Number(prompt("输入第一个数"));
   var n = Number(prompt("输入第二个数"));
   var gcd = 0;
   var lcm = 0;
 
-  var devisor = [m, n];
-  var remainder = Math.max(...devisor) % Math.min(...devisor);
+  function GCD(m, n) {
+    var remainder = 0;
 
-  while (remainder !== 0) {
-    devisor = [remainder, Math.min(...devisor)];
-    remainder = Math.max(...devisor) % Math.min(...devisor);
+    do {
+      remainder = m % n;
+      m = n;
+      n = remainder;
+    } while (remainder > 0);
+
+    return m;
   }
 
-  gcd = Math.min(...devisor);
-  lcm = parseInt((m * n) / gcd);
+  function LCM(m, n) {
+    return (m * n) / GCD(m, n);
+  }
+
+  gcd = GCD(m, n);
+  lcm = LCM(m, n);
 
   console.log(gcd);
   console.log(lcm);
