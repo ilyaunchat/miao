@@ -1416,7 +1416,7 @@
   }
 </script>
 
-<script type="text/javascript" id="prime">
+<script type="xtext/javascript" id="prime">
   var n = Number(prompt("输入n"));
 
   function isPrime(n) {
@@ -1436,22 +1436,25 @@
   console.log(isPrime(n));
 </script>
 
-<script type="xtext/javascript" id="primes">
-  var primes = [];
+<script type="text/javascript" id="primes">
+  function isPrime(n) {
+    if (n === 1) {
+      return false;
+    }
 
-  for (var i = 2; i <= 100; i++) {
-    for (var j = 2; j <= Math.ceil(Math.sqrt(i)); j++) {
-      if (j !== i && i % j === 0) {
-        break;
-      }
-      if (j === Math.ceil(Math.sqrt(i))) {
-        primes.push(i);
+    for (var i = 2; i <= Math.ceil(Math.sqrt(n)); i++) {
+      if (i !== n && n % i === 0) {
+        return false;
       }
     }
+
+    return true;
   }
 
-  for (var k = 0; k < primes.length; k++) {
-    console.log(primes[k]);
+  for (var i = 1; i <= 100; i++) {
+    if (isPrime(i)) {
+      console.log(i);
+    }
   }
 </script>
 
