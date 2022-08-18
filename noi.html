@@ -1350,8 +1350,23 @@
 </script>
 
 <script type="xtext/javascript" id="palindrom">
+  function reverseNumber(n) {
+    var j = n;
+    var temp = 0;
+    var reversedN = 0;
+
+    do {
+      temp = j % 10;
+      reversedN = reversedN * 10 + temp;
+      j = (j - temp) / 10;
+    } while (j / 10 > 0);
+
+    return reversedN;
+  }
+
   var n = Number(prompt("输入n"));
-  if (n.toString() === n.toString().split("").reverse().join("")) {
+
+  if (n === reverseNumber(n)) {
     console.log("YES");
   } else {
     console.log("NO");
@@ -1458,7 +1473,7 @@
   }
 </script>
 
-<script type="text/javascript" id="itob">
+<script type="xtext/javascript" id="itob">
   var i = Number(prompt("输入一个整数"));
   var j = Math.abs(i);
 
