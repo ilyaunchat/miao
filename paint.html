@@ -161,27 +161,68 @@
 
     // 画两个空心的圆 一个半径为50像素
     var circleCenter = [500 / 2, 400 / 2];
-    for (
-      var x = circleCenter[0] - 50;
-      x <= circleCenter[0] + 50;
-      x = x + 0.01
-    ) {
-      var y = Math.sqrt(50 ** 2 - (x - 250) ** 2) + 200;
-      dot(x, y, "pink");
-      y = 200 - Math.sqrt(50 ** 2 - (x - 250) ** 2);
-      dot(x, y, "pink");
+    var radius = 50;
+
+    for (var x = 0, y = -radius; x <= radius / Math.sqrt(2); ) {
+      dot(x + circleCenter[0], y + circleCenter[1], "#7cfc00");
+      dot(-x + circleCenter[0], y + circleCenter[1], "#ff00ff");
+      dot(x + circleCenter[0], -y + circleCenter[1], "#daa520");
+      dot(-x + circleCenter[0], -y + circleCenter[1], "#00fa9a");
+
+      dot(y + circleCenter[0], x + circleCenter[1], "#ffa500");
+      dot(-y + circleCenter[0], x + circleCenter[1], "#ffff00");
+      dot(y + circleCenter[0], -x + circleCenter[1], "#9acd32");
+      dot(-y + circleCenter[0], -x + circleCenter[1], "#b0e0e6");
+
+      x = x + 1;
+
+      var yPlanA = y;
+      var yPlanB = y + 1;
+
+      var squareDistanceA = (x - 0) ** 2 + (yPlanA - 0) ** 2;
+      var squareDistanceB = (x - 0) ** 2 + (yPlanB - 0) ** 2;
+
+      if (
+        Math.abs(squareDistanceA - radius ** 2) <
+        Math.abs(squareDistanceB - radius ** 2)
+      ) {
+        y = yPlanA;
+      } else {
+        y = yPlanB;
+      }
     }
 
     // 一个半径为200像素
-    for (
-      var x = circleCenter[0] - 200;
-      x <= circleCenter[0] + 200;
-      x = x + 0.01
-    ) {
-      var y = Math.sqrt(200 ** 2 - (x - 250) ** 2) + 200;
-      dot(x, y, "black");
-      y = 200 - Math.sqrt(200 ** 2 - (x - 250) ** 2);
-      dot(x, y, "black");
+    var circleCenter = [500 / 2, 400 / 2];
+    var radius = 200;
+
+    for (var x = 0, y = -radius; x <= radius / Math.sqrt(2); ) {
+      dot(x + circleCenter[0], y + circleCenter[1], "#7cfc00");
+      dot(-x + circleCenter[0], y + circleCenter[1], "#ff00ff");
+      dot(x + circleCenter[0], -y + circleCenter[1], "#daa520");
+      dot(-x + circleCenter[0], -y + circleCenter[1], "#00fa9a");
+
+      dot(y + circleCenter[0], x + circleCenter[1], "#ffa500");
+      dot(-y + circleCenter[0], x + circleCenter[1], "#ffff00");
+      dot(y + circleCenter[0], -x + circleCenter[1], "#9acd32");
+      dot(-y + circleCenter[0], -x + circleCenter[1], "#b0e0e6");
+
+      x = x + 1;
+
+      var yPlanA = y;
+      var yPlanB = y + 1;
+
+      var squareDistanceA = (x - 0) ** 2 + (yPlanA - 0) ** 2;
+      var squareDistanceB = (x - 0) ** 2 + (yPlanB - 0) ** 2;
+
+      if (
+        Math.abs(squareDistanceA - radius ** 2) <
+        Math.abs(squareDistanceB - radius ** 2)
+      ) {
+        y = yPlanA;
+      } else {
+        y = yPlanB;
+      }
     }
 
     // 画一个实心的圆，半径至少为100像素
