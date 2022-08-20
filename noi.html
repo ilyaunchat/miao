@@ -1499,7 +1499,8 @@
       return "NO";
     }
 
-    for (var i = 2; i <= Math.ceil(Math.sqrt(n)); i++) {
+    // 这样的循环条件，也能适用于2和3，它们根本就不会执行循环，直接跳到返回true
+    for (var i = 2; i <= Math.sqrt(n); i++) {
       if (i !== n && n % i === 0) {
         return "NO";
       }
@@ -1517,7 +1518,8 @@
       return false;
     }
 
-    for (var i = 2; i <= Math.ceil(Math.sqrt(n)); i++) {
+    // 这样的循环条件，也能适用于2和3，它们根本就不会执行循环，直接跳到返回true
+    for (var i = 2; i <= Math.sqrt(n); i++) {
       if (i !== n && n % i === 0) {
         return false;
       }
