@@ -356,4 +356,20 @@ var ilyaunchat = {
 
         return resultAry
     },
+
+    reverse: function (array) {
+        var left = 0
+        var right = array.length - 1
+
+        while (left < right) {
+            var temp = ary[left]
+            ary[left] = ary[right]
+            ary[right] = temp
+
+            left++
+            right--
+        }
+
+        return array
+    },
 }
