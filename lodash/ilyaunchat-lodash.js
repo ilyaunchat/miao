@@ -23,6 +23,18 @@ var ilyaunchat = {
         return resultAry
     },
 
+    compact: function (array) {
+        var resultAry = []
+
+        for (var item of array) {
+            if (Boolean(item)) {
+                resultAry.push(item)
+            }
+        }
+
+        return resultAry
+    },
+
     difference: function (array, ...values) {
         var resultAry = []
 
