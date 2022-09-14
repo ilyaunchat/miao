@@ -174,4 +174,8 @@ var ilyaunchat = {
         }
         return map
     },
+
+    head: function (array) {
+        return array[0]
+    },
 }
