@@ -191,4 +191,8 @@ var ilyaunchat = {
 
         return -1
     },
+
+    initial: function (array) {
+        return array.slice(0, array.length - 1)
+    },
 }
