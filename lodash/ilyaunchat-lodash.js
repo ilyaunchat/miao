@@ -232,4 +232,8 @@ var ilyaunchat = {
 
         return resultStr
     },
+
+    last: function (array) {
+        return array.at(-1)
+    },
 }
