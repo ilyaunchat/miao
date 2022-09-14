@@ -143,4 +143,27 @@ var ilyaunchat = {
 
         return resultAry
     },
+
+    flattenDepth: function (array, depth = 1) {
+        var resultAry = []
+        var level = 1
+
+        function innerFlat(array) {
+            for (var i = 0; i < array.length; i++) {
+                if (!(Array.isArray(array[i]))) {
+                    resultAry.push(array[i])
+                } else if ((Array.isArray(array[i])) && (level <= depth)) {
+                    level++
+                    innerFlat(array[i])
+                } else if ((Array.isArray(array[i])) && (level > depth)) {
+                    level = 1
+                    resultAry.push(array[i])
+                }
+            }
+        }
+
+        innerFlat(array)
+
+        return resultAry
+    },
 }
