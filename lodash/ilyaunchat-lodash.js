@@ -166,4 +166,12 @@ var ilyaunchat = {
 
         return resultAry
     },
+
+    fromPairs: function (pairs) {
+        var map = {}
+        for (var i = 0; i < pairs.length; i++) {
+            map[pairs[i][0]] = pairs[i][1]
+        }
+        return map
+    },
 }
