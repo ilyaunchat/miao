@@ -236,4 +236,17 @@ var ilyaunchat = {
     last: function (array) {
         return array.at(-1)
     },
+
+    lastIndexOf: function (array, value, fromIndex = array.length - 1) {
+        var ary = array.slice()
+        var idx = (fromIndex >= 0) ? fromIndex : (ary.length + fromIndex)
+
+        for (var i = idx; i >= 0; i--) {
+            if (ary[i] === value) {
+                return i
+            }
+        }
+
+        return -1
+    },
 }
