@@ -321,4 +321,39 @@ var ilyaunchat = {
 
         return array
     },
+
+    pullAt: function (array, indexes) {
+        var standardAry = indexes
+        var count = 0
+        var boundary = array.length - count
+        var resultAry = []
+
+        for (var i = 0; i < array.length; i++) {
+            if (standardAry.indexOf(i + count) === -1) {
+                continue
+            } else if (standardAry.indexOf(i + count) !== -1) {
+                if ((i + 1) === boundary) {
+                    count++
+                    boundary = array.length - count
+                    break
+                } else {
+                    for (var j = i + 1; j < boundary; j++) {
+                        var temp = array[j]
+                        array[j] = array[j - 1]
+                        array[j - 1] = temp
+                    }
+                    count++
+                    boundary = array.length - count
+                    i = i - 1
+                }
+            }
+        }
+
+        while (count > 0) {
+            resultAry.push(array.pop())
+            count--
+        }
+
+        return resultAry
+    },
 }
