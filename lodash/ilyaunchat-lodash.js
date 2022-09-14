@@ -125,4 +125,22 @@ var ilyaunchat = {
 
         return resultAry
     },
+
+    flattenDeep: function (array) {
+        var resultAry = []
+
+        function innerFlat(array) {
+            for (var i = 0; i < array.length; i++) {
+                if (!(Array.isArray(array[i]))) {
+                    resultAry.push(array[i])
+                } else {
+                    innerFlat(array[i])
+                }
+            }
+        }
+
+        innerFlat(array)
+
+        return resultAry
+    },
 }
