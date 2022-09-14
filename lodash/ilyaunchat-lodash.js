@@ -178,4 +178,17 @@ var ilyaunchat = {
     head: function (array) {
         return array[0]
     },
+
+    indexOf: function (array, value, fromIndex = 0) {
+        var ary = array.slice()
+        var idx = (fromIndex >= 0) ? fromIndex : (fromIndex + ary.length)
+
+        for (var i = idx; i < ary.length; i++) {
+            if (ary[i] === value) {
+                return i
+            }
+        }
+
+        return -1
+    },
 }
