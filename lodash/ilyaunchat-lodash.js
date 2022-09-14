@@ -362,9 +362,9 @@ var ilyaunchat = {
         var right = array.length - 1
 
         while (left < right) {
-            var temp = ary[left]
-            ary[left] = ary[right]
-            ary[right] = temp
+            var temp = array[left]
+            array[left] = array[right]
+            array[right] = temp
 
             left++
             right--
