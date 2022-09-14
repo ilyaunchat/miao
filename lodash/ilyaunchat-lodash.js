@@ -372,4 +372,28 @@ var ilyaunchat = {
 
         return array
     },
+
+    slice: function (array, start = 0, end = array.length) {
+        var from = (start >= 0) ? start : array.length + start
+        var to = (end >= 0) ? end : array.length + end
+        var resultAry = array.slice()
+
+        if (to < array.length) {
+            var diff = array.length - to
+            while (diff > 0) {
+                resultAry.pop()
+                diff--
+            }
+        }
+
+        if (from > 0) {
+            var diff = from - 0
+            while (diff > 0) {
+                resultAry.shift()
+                diff--
+            }
+        }
+
+        return resultAry
+    },
 }
