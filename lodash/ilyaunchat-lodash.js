@@ -35,6 +35,27 @@ var ilyaunchat = {
         return resultAry
     },
 
+    concat: function (array, ...values) {
+        var remain = values
+        var resultAry = []
+
+        for (var i = 0; i < array.length; i++) {
+            resultAry.push(array[i])
+        }
+
+        for (var i = 0; i < remain.length; i++) {
+            if (Array.isArray(remain[i])) {
+                for (var j = 0; j < (remain[i]).length; j++) {
+                    resultAry.push(remain[i][j])
+                }
+            } else if (!(Array.isArray(remain[i]))) {
+                resultAry.push(remain[i])
+            }
+        }
+
+        return resultAry
+    },
+
     difference: function (array, ...values) {
         var resultAry = []
 
