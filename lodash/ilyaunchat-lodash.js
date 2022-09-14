@@ -249,4 +249,8 @@ var ilyaunchat = {
 
         return -1
     },
+
+    nth: function (array, n = 0) {
+        return array.at(n)
+    },
 }
