@@ -217,4 +217,19 @@ var ilyaunchat = {
 
         return resultAry
     },
+
+    join: function (array, separator = ',') {
+        var resultStr = ""
+
+        for (var i = 0; i < array.length; i++) {
+            if (i === array.length - 1) {
+                resultStr += String(array[i])
+                break
+            } else {
+                resultStr += (String(array[i]) + separator)
+            }
+        }
+
+        return resultStr
+    },
 }
