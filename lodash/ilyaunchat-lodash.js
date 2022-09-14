@@ -56,6 +56,15 @@ var ilyaunchat = {
         return resultAry
     },
 
+    drop: function (array, n = 1) {
+        var resultAry = []
+        resultAry = array.slice()
+        for (var i = 1; i <= n; i++) {
+            resultAry.shift()
+        }
+        return resultAry
+    },
+
     difference: function (array, ...values) {
         var resultAry = []
 
