@@ -195,4 +195,26 @@ var ilyaunchat = {
     initial: function (array) {
         return array.slice(0, array.length - 1)
     },
+
+    intersection: function (...arrays) {
+        var resultAry = []
+        var flag = 1
+
+        for (var i = 0; i < arrays[0].length; i++) {
+            for (var j = 1; j < arrays.length; j++) {
+                if ((arrays[j]).indexOf(arrays[0][i]) === -1) {
+                    flag = 0
+                    break
+                }
+            }
+
+            if (flag === 0) {
+                flag = 1
+            } else if (flag === 1) {
+                resultAry.push(arrays[0][i])
+            }
+        }
+
+        return resultAry
+    },
 }
