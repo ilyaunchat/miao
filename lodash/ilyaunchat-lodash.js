@@ -109,4 +109,20 @@ var ilyaunchat = {
 
         return resultAry
     },
+
+    flatten: function (array) {
+        var resultAry = []
+
+        for (var i = 0; i < array.length; i++) {
+            if (!(Array.isArray(array[i]))) {
+                resultAry.push(array[i])
+            } else if (Array.isArray(array[i])) {
+                for (var j = 0; j < (array[i]).length; j++) {
+                    resultAry.push(array[i][j])
+                }
+            }
+        }
+
+        return resultAry
+    },
 }
