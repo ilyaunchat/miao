@@ -98,4 +98,15 @@ var ilyaunchat = {
         }
         return resultAry
     },
+
+    fill: function (array, value, start = 0, end = array.length) {
+        var resultAry = []
+        resultAry = array.slice()
+
+        for (var i = start; i < end; i++) {
+            resultAry[i] = value
+        }
+
+        return resultAry
+    },
 }
