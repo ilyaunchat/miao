@@ -583,4 +583,21 @@ var ilyaunchat = {
 
         return resultAry
     },
+
+    unzip: function (array) {
+        var resultAry = []
+        var tempAry = []
+        var x = array.length
+        var y = array[0].length
+
+        for (var i = 0; i < y; i++) {
+            for (var j = 0; j < x; j++) {
+                tempAry.push(array[j][i])
+            }
+            resultAry.push(tempAry.slice())
+            tempAry = []
+        }
+
+        return resultAry
+    },
 }
