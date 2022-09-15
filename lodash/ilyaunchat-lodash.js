@@ -472,4 +472,35 @@ var ilyaunchat = {
 
         return (array[left - 1] === value) ? (left - 1) : -1
     },
+
+    sortedUniq: function (array) {
+        var resultAry = []
+
+        var left = 0
+        var right = left + 1
+        var flag = 0
+
+        while (right < array.length) {
+            if ((array[left] === array[right]) && (flag === 0)) {
+                resultAry.push(array[left])
+                flag = 1
+                right++
+            } else if ((array[left] !== array[right]) && (flag === 1)) {
+                resultAry.push(array[right])
+                flag = 1
+                left = right
+                right++
+            } else if ((array[left] !== array[right]) && (flag === 0)) {
+                resultAry.push(array[left])
+                resultAry.push(array[right])
+                left = right
+                flag = 1
+                right++
+            } else if ((array[left] === array[right]) && (flag === 1)) {
+                right++
+            }
+        }
+
+        return resultAry
+    },
 }
