@@ -600,4 +600,21 @@ var ilyaunchat = {
         }
         return resultAry
     },
+
+    zip: function (...arrays) {
+        var resultAry = []
+        var tempAry = []
+        var x = arrays.length
+        var y = arrays[0].length
+
+        for (var i = 0; i < y; i++) {
+            for (var j = 0; j < x; j++) {
+                tempAry.push(arrays[j][i])
+            }
+            resultAry.push(tempAry.slice())
+            tempAry = []
+        }
+
+        return resultAry
+    },
 }
