@@ -415,4 +415,23 @@ var ilyaunchat = {
 
         return left
     },
+
+    sortedIndexOf: function (array, value) {
+        var left = 0
+        var right = array.length
+
+        while (left < right) {
+            var mid = Math.floor(left + (right - left) / 2)
+
+            if (array[mid] === value) {
+                right = mid
+            } else if (array[mid] > value) {
+                right = mid
+            } else if (array[mid] < value) {
+                left = mid + 1
+            }
+        }
+
+        return (array[left] === value) ? left : -1
+    },
 }
