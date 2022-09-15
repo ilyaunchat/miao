@@ -434,4 +434,23 @@ var ilyaunchat = {
 
         return (array[left] === value) ? left : -1
     },
+
+    sortedLastIndex: function (array, value) {
+        var left = 0
+        var right = array.length
+
+        while (left < right) {
+            var mid = Math.floor(left + (right - left) / 2)
+
+            if (array[mid] === value) {
+                left = mid + 1
+            } else if (array[mid] > value) {
+                right = mid
+            } else if (array[mid] < value) {
+                left = mid + 1
+            }
+        }
+
+        return left
+    },
 }
