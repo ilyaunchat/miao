@@ -564,19 +564,9 @@ var ilyaunchat = {
 
     uniq: function (array) {
         var resultAry = []
-        var flag = 1
 
         for (var i = 0; i < array.length; i++) {
-            for (var j = i + 1; j < array.length; j++) {
-                if (array[j] === array[i]) {
-                    flag = 0
-                    break
-                }
-            }
-            if (flag === 0) {
-                flag = 1
-                continue
-            } else {
+            if (resultAry.indexOf(array[i]) === -1) {
                 resultAry.push(array[i])
             }
         }
