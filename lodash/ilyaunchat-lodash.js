@@ -1,5 +1,5 @@
-var ilyaunchat = {
-    chunk: function (array, size = 1) {
+var ilyaunchat = function () {
+    function chunk(array, size = 1) {
         var resultAry = []
         var itemAry = []
         var count = 0
@@ -21,9 +21,9 @@ var ilyaunchat = {
         }
 
         return resultAry
-    },
+    }
 
-    compact: function (array) {
+    function compact(array) {
         var resultAry = []
 
         for (var item of array) {
@@ -33,9 +33,9 @@ var ilyaunchat = {
         }
 
         return resultAry
-    },
+    }
 
-    concat: function (array, ...values) {
+    function concat(array, ...values) {
         var remain = values
         var resultAry = []
 
@@ -54,9 +54,9 @@ var ilyaunchat = {
         }
 
         return resultAry
-    },
+    }
 
-    difference: function (array, ...values) {
+    function difference(array, ...values) {
         var resultAry = []
 
         var map = {}
@@ -79,27 +79,27 @@ var ilyaunchat = {
         }
 
         return resultAry
-    },
+    }
 
-    drop: function (array, n = 1) {
+    function drop(array, n = 1) {
         var resultAry = []
         resultAry = array.slice()
         for (var i = 1; i <= n; i++) {
             resultAry.shift()
         }
         return resultAry
-    },
+    }
 
-    dropRight: function (array, n = 1) {
+    function dropRight(array, n = 1) {
         var resultAry = []
         resultAry = array.slice()
         for (var i = 1; i <= n; i++) {
             resultAry.pop()
         }
         return resultAry
-    },
+    }
 
-    fill: function (array, value, start = 0, end = array.length) {
+    function fill(array, value, start = 0, end = array.length) {
         var resultAry = []
         resultAry = array.slice()
 
@@ -108,9 +108,9 @@ var ilyaunchat = {
         }
 
         return resultAry
-    },
+    }
 
-    flatten: function (array) {
+    function flatten(array) {
         var resultAry = []
 
         for (var i = 0; i < array.length; i++) {
@@ -124,9 +124,9 @@ var ilyaunchat = {
         }
 
         return resultAry
-    },
+    }
 
-    flattenDeep: function (array) {
+    function flattenDeep(array) {
         var resultAry = []
 
         function innerFlat(array) {
@@ -142,9 +142,9 @@ var ilyaunchat = {
         innerFlat(array)
 
         return resultAry
-    },
+    }
 
-    flattenDepth: function (array, depth = 1) {
+    function flattenDepth(array, depth = 1) {
         var resultAry = []
         var level = 1
 
@@ -165,21 +165,21 @@ var ilyaunchat = {
         innerFlat(array)
 
         return resultAry
-    },
+    }
 
-    fromPairs: function (pairs) {
+    function fromPairs(pairs) {
         var map = {}
         for (var i = 0; i < pairs.length; i++) {
             map[pairs[i][0]] = pairs[i][1]
         }
         return map
-    },
+    }
 
-    head: function (array) {
+    function head(array) {
         return array[0]
-    },
+    }
 
-    indexOf: function (array, value, fromIndex = 0) {
+    function indexOf(array, value, fromIndex = 0) {
         var ary = array.slice()
         var idx = (fromIndex >= 0) ? fromIndex : (fromIndex + ary.length)
 
@@ -190,13 +190,13 @@ var ilyaunchat = {
         }
 
         return -1
-    },
+    }
 
-    initial: function (array) {
+    function initial(array) {
         return array.slice(0, array.length - 1)
-    },
+    }
 
-    intersection: function (...arrays) {
+    function intersection(...arrays) {
         var resultAry = []
         var flag = 1
 
@@ -216,9 +216,9 @@ var ilyaunchat = {
         }
 
         return resultAry
-    },
+    }
 
-    join: function (array, separator = ',') {
+    function join(array, separator = ',') {
         var resultStr = ""
 
         for (var i = 0; i < array.length; i++) {
@@ -231,13 +231,13 @@ var ilyaunchat = {
         }
 
         return resultStr
-    },
+    }
 
-    last: function (array) {
+    function last(array) {
         return array.at(-1)
-    },
+    }
 
-    lastIndexOf: function (array, value, fromIndex = array.length - 1) {
+    function lastIndexOf(array, value, fromIndex = array.length - 1) {
         var ary = array.slice()
         var idx = (fromIndex >= 0) ? fromIndex : (ary.length + fromIndex)
 
@@ -248,13 +248,13 @@ var ilyaunchat = {
         }
 
         return -1
-    },
+    }
 
-    nth: function (array, n = 0) {
+    function nth(array, n = 0) {
         return array.at(n)
-    },
+    }
 
-    pull: function (array, ...values) {
+    function pull(array, ...values) {
         var standardAry = values
         var count = 0
         var boundary = array.length - count
@@ -286,9 +286,9 @@ var ilyaunchat = {
         }
 
         return array
-    },
+    }
 
-    pullAll: function (array, values) {
+    function pullAll(array, values) {
         var standardAry = values
         var count = 0
         var boundary = array.length - count
@@ -320,9 +320,9 @@ var ilyaunchat = {
         }
 
         return array
-    },
+    }
 
-    pullAt: function (array, indexes) {
+    function pullAt(array, indexes) {
         var standardAry = indexes
         var count = 0
         var boundary = array.length - count
@@ -355,9 +355,9 @@ var ilyaunchat = {
         }
 
         return resultAry
-    },
+    }
 
-    reverse: function (array) {
+    function reverse(array) {
         var left = 0
         var right = array.length - 1
 
@@ -371,9 +371,9 @@ var ilyaunchat = {
         }
 
         return array
-    },
+    }
 
-    slice: function (array, start = 0, end = array.length) {
+    function slice(array, start = 0, end = array.length) {
         var from = (start >= 0) ? start : array.length + start
         var to = (end >= 0) ? end : array.length + end
         var resultAry = array.slice()
@@ -395,9 +395,9 @@ var ilyaunchat = {
         }
 
         return resultAry
-    },
+    }
 
-    sortedIndex: function (array, value) {
+    function sortedIndex(array, value) {
         var left = 0
         var right = array.length
 
@@ -414,9 +414,9 @@ var ilyaunchat = {
         }
 
         return left
-    },
+    }
 
-    sortedIndexOf: function (array, value) {
+    function sortedIndexOf(array, value) {
         var left = 0
         var right = array.length
 
@@ -433,9 +433,9 @@ var ilyaunchat = {
         }
 
         return (array[left] === value) ? left : -1
-    },
+    }
 
-    sortedLastIndex: function (array, value) {
+    function sortedLastIndex(array, value) {
         var left = 0
         var right = array.length
 
@@ -452,9 +452,9 @@ var ilyaunchat = {
         }
 
         return left
-    },
+    }
 
-    sortedLastIndexOf: function (array, value) {
+    function sortedLastIndexOf(array, value) {
         var left = 0
         var right = array.length
 
@@ -471,9 +471,9 @@ var ilyaunchat = {
         }
 
         return (array[left - 1] === value) ? (left - 1) : -1
-    },
+    }
 
-    sortedUniq: function (array) {
+    function sortedUniq(array) {
         var resultAry = []
 
         var left = 0
@@ -502,9 +502,9 @@ var ilyaunchat = {
         }
 
         return resultAry
-    },
+    }
 
-    sortedUniqBy: function (array, iteratee) {
+    function sortedUniqBy(array, iteratee) {
         var operatedAry = array.map(it => iteratee(it))
         var resultAry = []
 
@@ -534,22 +534,22 @@ var ilyaunchat = {
         }
 
         return resultAry
-    },
+    }
 
-    tail: function (array) {
+    function tail(array) {
         return array.slice(1)
-    },
+    }
 
-    take: function (array, n = 1) {
+    function take(array, n = 1) {
         return array.slice(0, n)
-    },
+    }
 
-    takeRight: function (array, n = 1) {
+    function takeRight(array, n = 1) {
         var idx = (n >= array.length) ? 0 : array.length - n
         return array.slice(idx)
-    },
+    }
 
-    union: function (...arrays) {
+    function union(...arrays) {
         var ary = arrays.flat(1)
         var resultAry = []
 
@@ -560,9 +560,9 @@ var ilyaunchat = {
         }
 
         return resultAry
-    },
+    }
 
-    uniq: function (array) {
+    function uniq(array) {
         var resultAry = []
 
         for (var i = 0; i < array.length; i++) {
@@ -572,9 +572,9 @@ var ilyaunchat = {
         }
 
         return resultAry
-    },
+    }
 
-    unzip: function (array) {
+    function unzip(array) {
         var resultAry = []
         var tempAry = []
         var x = array.length
@@ -589,9 +589,9 @@ var ilyaunchat = {
         }
 
         return resultAry
-    },
+    }
 
-    without: function (array, ...values) {
+    function without(array, ...values) {
         var resultAry = []
         for (var i = 0; i < array.length; i++) {
             if (values.indexOf(array[i]) === -1) {
@@ -599,9 +599,9 @@ var ilyaunchat = {
             }
         }
         return resultAry
-    },
+    }
 
-    zip: function (...arrays) {
+    function zip(...arrays) {
         var resultAry = []
         var tempAry = []
         var x = arrays.length
@@ -616,9 +616,9 @@ var ilyaunchat = {
         }
 
         return resultAry
-    },
+    }
 
-    countBy: function (collection, iteratee = identity) {
+    function countBy(collection, iteratee = identity) {
         var map = {}
         if (typeof iteratee === "string") {
             var operatedAry = collection.map(it => it[iteratee])
@@ -635,5 +635,47 @@ var ilyaunchat = {
         }
 
         return map
-    },
-}
+    }
+
+    return {
+        chunk,
+        compact,
+        concat,
+        difference,
+        drop,
+        dropRight,
+        fill,
+        flatten,
+        flattenDeep,
+        flattenDepth,
+        fromPairs,
+        head,
+        indexOf,
+        initial,
+        intersection,
+        join,
+        last,
+        lastIndexOf,
+        nth,
+        pull,
+        pullAll,
+        pullAt,
+        reverse,
+        slice,
+        sortedIndex,
+        sortedIndexOf,
+        sortedLastIndex,
+        sortedLastIndexOf,
+        sortedUniq,
+        sortedUniqBy,
+        tail,
+        take,
+        takeRight,
+        union,
+        uniq,
+        unzip,
+        without,
+        zip,
+        countBy,
+    }
+}()
