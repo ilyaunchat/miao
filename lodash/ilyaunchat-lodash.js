@@ -548,4 +548,17 @@ var ilyaunchat = {
         var idx = (n >= array.length) ? 0 : array.length - n
         return array.slice(idx)
     },
+
+    union: function (...arrays) {
+        var ary = arrays.flat(1)
+        var resultAry = []
+
+        for (var i = 0; i < ary.length; i++) {
+            if (resultAry.indexOf(ary[i]) === -1) {
+                resultAry.push(ary[i])
+            }
+        }
+
+        return resultAry
+    },
 }
