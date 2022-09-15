@@ -503,4 +503,37 @@ var ilyaunchat = {
 
         return resultAry
     },
+
+    sortedUniqBy: function (array, iteratee) {
+        var operatedAry = array.map(it => iteratee(it))
+        var resultAry = []
+
+        var left = 0
+        var right = left + 1
+        var flag = 0
+
+        while (right < operatedAry.length) {
+            if ((operatedAry[left] === operatedAry[right]) && (flag === 0)) {
+                resultAry.push(array[left])
+                flag = 1
+                right++
+            } else if ((operatedAry[left] !== operatedAry[right]) && (flag === 1)) {
+                resultAry.push(array[right])
+                flag = 1
+                left = right
+                right++
+            } else if ((operatedAry[left] !== operatedAry[right]) && (flag === 0)) {
+                resultAry.push(array[left])
+                resultAry.push(array[right])
+                left = right
+                flag = 1
+                right++
+            } else if ((operatedAry[left] === operatedAry[right]) && (flag === 1)) {
+                right++
+            }
+        }
+
+        return resultAry
+
+    },
 }
