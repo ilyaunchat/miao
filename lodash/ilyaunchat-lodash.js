@@ -590,4 +590,14 @@ var ilyaunchat = {
 
         return resultAry
     },
+
+    without: function (array, ...values) {
+        var resultAry = []
+        for (var i = 0; i < array.length; i++) {
+            if (values.indexOf(array[i]) === -1) {
+                resultAry.push(array[i])
+            }
+        }
+        return resultAry
+    },
 }
