@@ -539,4 +539,8 @@ var ilyaunchat = {
     tail: function (array) {
         return array.slice(1)
     },
+
+    take: function (array, n = 1) {
+        return array.slice(0, n)
+    },
 }
