@@ -543,4 +543,9 @@ var ilyaunchat = {
     take: function (array, n = 1) {
         return array.slice(0, n)
     },
+
+    takeRight: function (array, n = 1) {
+        var idx = (n >= array.length) ? 0 : array.length - n
+        return array.slice(idx)
+    },
 }
