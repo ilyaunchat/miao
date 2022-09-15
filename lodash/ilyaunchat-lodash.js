@@ -619,8 +619,12 @@ var ilyaunchat = {
     },
 
     countBy: function (collection, iteratee = identity) {
-        var operatedAry = collection.map(it => iteratee(it))
         var map = {}
+        if (typeof iteratee === "string") {
+            var operatedAry = collection.map(it => it[iteratee])
+        } else if (typeof iteratee === "function") {
+            var operatedAry = collection.map(it => iteratee(it))
+        }
 
         for (var i = 0; i < operatedAry.length; i++) {
             if (!(operatedAry[i] in map)) {
