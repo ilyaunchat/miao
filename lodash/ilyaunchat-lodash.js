@@ -637,6 +637,21 @@ var ilyaunchat = function () {
         return map
     }
 
+    function max(array) {
+        if ((array.length === 0) || (Boolean(array) === false)) {
+            return undefined
+        }
+
+        var max = -Infinity
+        for (var i = 0; i < array.length; i++) {
+            if (array[i] > max) {
+                max = array[i]
+            }
+        }
+
+        return max
+    }
+
     return {
         chunk,
         compact,
@@ -677,5 +692,6 @@ var ilyaunchat = function () {
         without,
         zip,
         countBy,
+        max,
     }
 }()
