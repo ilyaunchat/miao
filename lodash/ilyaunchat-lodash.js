@@ -921,6 +921,21 @@ var ilyaunchat = function () {
         }
     }
 
+    function min(array) {
+        if ((array.length === 0) || (Boolean(array) === false)) {
+            return undefined
+        }
+
+        var min = Infinity
+        for (var i = 0; i < array.length; i++) {
+            if (array[i] < min) {
+                min = array[i]
+            }
+        }
+
+        return min
+    }
+
     return {
         chunk,
         compact,
@@ -974,5 +989,6 @@ var ilyaunchat = function () {
         eq,
         identity,
         negate,
+        min,
     }
 }()
