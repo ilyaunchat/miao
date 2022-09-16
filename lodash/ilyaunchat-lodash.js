@@ -823,6 +823,61 @@ var ilyaunchat = function () {
         }
     }
 
+    function differenceBy(array, ...values) {
+        var theLastArg = values.pop()
+        var resultAry = []
+
+        if (typeof theLastArg === "function") {
+            var map = {}
+
+            for (var i = 0; i < values.length; i++) {
+                for (var j = 0; j < values[i].length; j++) {
+                    if (!(theLastArg(values[i][j]) in map)) {
+                        map[theLastArg(values[i][j])] = 1
+                    } else {
+                        map[theLastArg(values[i][j])]++
+                    }
+                }
+            }
+
+            for (var i = 0; i < array.length; i++) {
+                var val = ((map[theLastArg(array[i])]) || 0)
+                if (!val) {
+                    resultAry.push(array[i])
+                }
+            }
+
+            return resultAry
+        } else if (typeof theLastArg === "string") {
+            var map = {}
+
+            for (var i = 0; i < values.length; i++) {
+                for (var j = 0; j < values[i].length; j++) {
+                    var obj = values[i][j]
+                    var prop = property(theLastArg)
+                    var temp = prop(obj)
+                    if (!(temp in map)) {
+                        map[temp] = 1
+                    } else {
+                        map[temp]++
+                    }
+                }
+            }
+
+            for (var i = 0; i < array.length; i++) {
+                var it = array[i]
+                var prop = property(theLastArg)
+                var val = prop(it)
+                var freq = (map[val] || 0)
+                if (!freq) {
+                    resultAry.push(it)
+                }
+            }
+
+            return resultAry
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -871,5 +926,6 @@ var ilyaunchat = function () {
         matchesProperty,
         findIndex,
         findLastIndex,
+        differenceBy,
     }
 }()
