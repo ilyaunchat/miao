@@ -936,6 +936,31 @@ var ilyaunchat = function () {
         return min
     }
 
+    function xor(...arrays) {
+        var resultAry = []
+        var memoAry = []
+        var basicAry = flatten(arrays)
+
+        var smallest = min(basicAry)
+        var largest = max(basicAry)
+
+        memoAry = Array(largest - smallest + 1).fill(0)
+
+        for (var i = 0; i < basicAry.length; i++) {
+            var indexNeeded = basicAry[i] - smallest
+            memoAry[indexNeeded]++
+        }
+
+        for (var i = 0; i < basicAry.length; i++) {
+            var indexNeeded = basicAry[i] - smallest
+            if (memoAry[indexNeeded] === 1) {
+                resultAry.push(basicAry[i])
+            }
+        }
+
+        return resultAry
+    }
+
     return {
         chunk,
         compact,
@@ -990,5 +1015,6 @@ var ilyaunchat = function () {
         identity,
         negate,
         min,
+        xor,
     }
 }()
