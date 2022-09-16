@@ -717,6 +717,19 @@ var ilyaunchat = function () {
         }
     }
 
+    function toPath(value) {
+        var tempAry = value.split(/[.\[\].]/)
+        var resultAry = []
+
+        for (var it of tempAry) {
+            if (it !== "") {
+                resultAry.push(it)
+            }
+        }
+
+        return resultAry
+    }
+
     return {
         chunk,
         compact,
@@ -761,5 +774,6 @@ var ilyaunchat = function () {
         map,
         property,
         matches,
+        toPath,
     }
 }()
