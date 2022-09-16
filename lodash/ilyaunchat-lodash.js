@@ -652,6 +652,30 @@ var ilyaunchat = function () {
         return max
     }
 
+    function map(collection, iteratee = identity) {
+        var resultAry = []
+
+        if (typeof iteratee === "function") {
+            if (Array.isArray(collection)) {
+                for (var i = 0; i < collection.length; i++) {
+                    resultAry.push(iteratee(collection[i]))
+                }
+            } else if (typeof collection === "object") {
+                for (var val of Object.values(collection)) {
+                    resultAry.push(iteratee(val))
+                }
+            }
+        } else if (typeof iteratee === "string") {
+            if (Array.isArray(collection)) {
+                for (var i = 0; i < collection.length; i++) {
+                    resultAry.push(collection[i][iteratee])
+                }
+            }
+        }
+
+        return resultAry
+    }
+
     return {
         chunk,
         compact,
@@ -693,5 +717,6 @@ var ilyaunchat = function () {
         zip,
         countBy,
         max,
+        map,
     }
 }()
