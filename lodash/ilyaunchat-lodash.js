@@ -758,6 +758,7 @@ var ilyaunchat = function () {
                     return i
                 }
             }
+            return -1
         } else if ((typeof predicate === "object") && (Array.isArray(predicate) === false)) {
             var func = matches(predicate)
             for (var i = fromIndex; i < array.length; i++) {
@@ -765,6 +766,7 @@ var ilyaunchat = function () {
                     return i
                 }
             }
+            return -1
         } else if (Array.isArray(predicate) === true) {
             var func = matchesProperty(predicate[0], predicate[1])
             for (var i = fromIndex; i < array.length; i++) {
@@ -772,12 +774,14 @@ var ilyaunchat = function () {
                     return i
                 }
             }
+            return -1
         } else if (typeof predicate === "string") {
             for (var i = fromIndex; i < array.length; i++) {
                 if (property(predicate)(array[i]) === true) {
                     return i
                 }
             }
+            return -1
         }
     }
 
