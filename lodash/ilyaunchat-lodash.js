@@ -657,18 +657,23 @@ var ilyaunchat = function () {
 
         if (typeof iteratee === "function") {
             if (Array.isArray(collection)) {
-                for (var i = 0; i < collection.length; i++) {
-                    resultAry.push(iteratee(collection[i]))
-                }
+                collection.forEach((it, idx, ary) => {
+                    resultAry.push(iteratee(it, idx, ary))
+                })
             } else if (typeof collection === "object") {
                 for (var val of Object.values(collection)) {
                     resultAry.push(iteratee(val))
                 }
             }
         } else if (typeof iteratee === "string") {
+            var propertyAry = iteratee.split(".")
             if (Array.isArray(collection)) {
                 for (var i = 0; i < collection.length; i++) {
-                    resultAry.push(collection[i][iteratee])
+                    var target = collection[i]
+                    for (var j = 0; j < propertyAry.length; j++) {
+                        target = target[propertyAry[j]]
+                    }
+                    resultAry.push(target)
                 }
             }
         }
