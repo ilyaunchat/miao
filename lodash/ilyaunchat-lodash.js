@@ -681,7 +681,7 @@ var ilyaunchat = function () {
         return resultAry
     }
 
-    function property() {
+    function property(path) {
         if (typeof path === "string") {
             var pathAry = path.split(".")
             return function (it, idx, ary) {
