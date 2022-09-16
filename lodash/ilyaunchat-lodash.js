@@ -785,6 +785,44 @@ var ilyaunchat = function () {
         }
     }
 
+    function findLastIndex(array, predicate = identity, fromIndex = array.length - 1) {
+        if (typeof predicate === "function") {
+            for (var i = fromIndex; i >= 0; i--) {
+                if (predicate(array[i]) === true) {
+                    return i
+                }
+            }
+
+            return -1
+        } else if ((typeof predicate === "object") && (Array.isArray(predicate) === false)) {
+            var func = matches(predicate)
+            for (var i = fromIndex; i >= 0; i--) {
+                if (func(array[i]) === true) {
+                    return i
+                }
+            }
+
+            return -1
+        } else if (Array.isArray(predicate) === true) {
+            var func = matchesProperty(predicate[0], predicate[1])
+            for (var i = fromIndex; i >= 0; i--) {
+                if (func(array[i]) === true) {
+                    return i
+                }
+            }
+
+            return -1
+        } else if (typeof predicate === "string") {
+            for (var i = fromIndex; i >= 0; i--) {
+                if (property(predicate)(array[i]) === true) {
+                    return i
+                }
+            }
+
+            return -1
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -832,5 +870,6 @@ var ilyaunchat = function () {
         toPath,
         matchesProperty,
         findIndex,
+        findLastIndex,
     }
 }()
