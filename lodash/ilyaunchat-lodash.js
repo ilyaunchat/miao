@@ -915,6 +915,12 @@ var ilyaunchat = function () {
         return value
     }
 
+    function negate(predicate) {
+        return (...args) => {
+            return !predicate(...args)
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -967,5 +973,6 @@ var ilyaunchat = function () {
         mean,
         eq,
         identity,
+        negate,
     }
 }()
