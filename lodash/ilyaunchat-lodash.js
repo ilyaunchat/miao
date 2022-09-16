@@ -886,6 +886,13 @@ var ilyaunchat = function () {
         }
     }
 
+    function mean(array) {
+        var sum = array.reduce((prev, curr) => {
+            return prev + curr
+        })
+        return sum / array.length
+    }
+
     return {
         chunk,
         compact,
@@ -935,5 +942,6 @@ var ilyaunchat = function () {
         findIndex,
         findLastIndex,
         differenceBy,
+        mean,
     }
 }()
