@@ -751,6 +751,36 @@ var ilyaunchat = function () {
         }
     }
 
+    function findIndex(array, predicate = identity, fromIndex = 0) {
+        if (typeof predicate === "function") {
+            for (var i = fromIndex; i < array.length; i++) {
+                if (predicate(array[i]) === true) {
+                    return i
+                }
+            }
+        } else if ((typeof predicate === "object") && (Array.isArray(predicate) === false)) {
+            var func = matches(predicate)
+            for (var i = fromIndex; i < array.length; i++) {
+                if (func(array[i]) === true) {
+                    return i
+                }
+            }
+        } else if (Array.isArray(predicate) === true) {
+            var func = matchesProperty(predicate[0], predicate[1])
+            for (var i = fromIndex; i < array.length; i++) {
+                if (func(array[i]) === true) {
+                    return i
+                }
+            }
+        } else if (typeof predicate === "string") {
+            for (var i = fromIndex; i < array.length; i++) {
+                if (property(predicate)(array[i]) === true) {
+                    return i
+                }
+            }
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -797,5 +827,6 @@ var ilyaunchat = function () {
         matches,
         toPath,
         matchesProperty,
+        findIndex,
     }
 }()
