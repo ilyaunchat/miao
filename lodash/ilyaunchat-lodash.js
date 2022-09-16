@@ -681,6 +681,28 @@ var ilyaunchat = function () {
         return resultAry
     }
 
+    function property() {
+        if (typeof path === "string") {
+            var pathAry = path.split(".")
+            return function (it, idx, ary) {
+                var propertyResult = it
+                for (var i = 0; i < pathAry.length; i++) {
+                    propertyResult = propertyResult[pathAry[i]]
+                }
+                return propertyResult
+            }
+        } else if (Array.isArray(path)) {
+            var pathAry = path.slice()
+            return function (it, idx, ary) {
+                var propertyResult = it
+                for (var i = 0; i < pathAry.length; i++) {
+                    propertyResult = it[pathAry[i]]
+                }
+                return propertyResult
+            }
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -723,5 +745,6 @@ var ilyaunchat = function () {
         countBy,
         max,
         map,
+        property,
     }
 }()
