@@ -730,6 +730,27 @@ var ilyaunchat = function () {
         return resultAry
     }
 
+    function matchesProperty(path, srcValue) {
+        var pathAry
+        if (Array.isArray(path)) {
+            pathAry = path.slice()
+        } else if (typeof path === "string") {
+            pathAry = toPath(path)
+        }
+
+        return function (oneObject) {
+            var target = oneObject
+            for (var i = 0; i < pathAry.length; i++) {
+                target = target[pathAry[i]]
+                if (target === srcValue) {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -775,5 +796,6 @@ var ilyaunchat = function () {
         property,
         matches,
         toPath,
+        matchesProperty,
     }
 }()
