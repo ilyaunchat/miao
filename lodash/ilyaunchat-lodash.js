@@ -893,6 +893,24 @@ var ilyaunchat = function () {
         return sum / array.length
     }
 
+    function eq(value, other) {
+        var valA = value
+        var valB = other
+        if (typeof valA !== typeof valB) {
+            return false
+        } else {
+            if (typeof valA === "number") {
+                if ((Number.isNaN(valA)) && (Number.isNaN(valB))) {
+                    return true
+                } else {
+                    return valA === valB
+                }
+            } else {
+                return valA === valB
+            }
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -943,5 +961,6 @@ var ilyaunchat = function () {
         findLastIndex,
         differenceBy,
         mean,
+        eq,
     }
 }()
