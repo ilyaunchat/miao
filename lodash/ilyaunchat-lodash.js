@@ -703,6 +703,20 @@ var ilyaunchat = function () {
         }
     }
 
+    function matches(source) {
+        return function (oneObject) {
+            for (var key of Object.keys(source)) {
+                if (!(key in oneObject)) {
+                    return false
+                } else if (oneObject[key] !== source[key]) {
+                    return false
+                }
+            }
+
+            return true
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -746,5 +760,6 @@ var ilyaunchat = function () {
         max,
         map,
         property,
+        matches,
     }
 }()
