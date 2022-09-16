@@ -911,6 +911,10 @@ var ilyaunchat = function () {
         }
     }
 
+    function identity(value) {
+        return value
+    }
+
     return {
         chunk,
         compact,
@@ -962,5 +966,6 @@ var ilyaunchat = function () {
         differenceBy,
         mean,
         eq,
+        identity,
     }
 }()
