@@ -1021,6 +1021,14 @@ var ilyaunchat = function () {
         }
     }
 
+    function times(n, iteratee = identity) {
+        var resultAry = []
+        for (var i = 0; i < n; i++) {
+            resultAry.push(iteratee(i))
+        }
+        return resultAry
+    }
+
     return {
         chunk,
         compact,
@@ -1082,5 +1090,6 @@ var ilyaunchat = function () {
         lt,
         lte,
         constant,
+        times,
     }
 }()
