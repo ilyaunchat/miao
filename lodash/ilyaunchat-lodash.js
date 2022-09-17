@@ -1015,6 +1015,12 @@ var ilyaunchat = function () {
         return (value <= other) ? true : false
     }
 
+    function constant(value) {
+        return function () {
+            return value
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -1075,5 +1081,6 @@ var ilyaunchat = function () {
         gte,
         lt,
         lte,
+        constant,
     }
 }()
