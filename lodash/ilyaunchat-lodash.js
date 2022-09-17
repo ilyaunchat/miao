@@ -1076,6 +1076,55 @@ var ilyaunchat = function () {
         }
     }
 
+    function dropWhile(array, predicate = identity) {
+
+        var resultAry = cloneDeep(array)
+        var targetIndexesAry = []
+
+        if (typeof predicate === "function") {
+            for (var i = 0; i < resultAry.length; i++) {
+                if (predicate(resultAry[i]) === true) {
+                    targetIndexesAry.push(i)
+                } else if (predicate(resultAry[i]) === false) {
+                    break
+                }
+            }
+            pullAt(resultAry, targetIndexesAry)
+            return resultAry
+        } else if (typeof predicate === "string") {
+            for (var i = 0; i < resultAry.length; i++) {
+                if (property(predicate)(resultAry[i]) === true) {
+                    targetIndexesAry.push(i)
+                } else if (property(predicate)(resultAry[i]) === false) {
+                    break
+                }
+            }
+            pullAt(resultAry, targetIndexesAry)
+            return resultAry
+        } else if (Array.isArray(predicate)) {
+            for (var i = 0; i < resultAry.length; i++) {
+                if (matchesProperty(...predicate)(resultAry[i]) === true) {
+                    targetIndexesAry.push(i)
+                } else if (matchesProperty(...predicate)(resultAry[i]) === false) {
+                    break
+                }
+            }
+            pullAt(resultAry, targetIndexesAry)
+            return resultAry
+        } else if (typeof predicate === "object") {
+            for (var i = 0; i < resultAry.length; i++) {
+                if (matches(predicate)(resultAry[i]) === true) {
+                    targetIndexesAry.push(i)
+                } else if (matches(predicate)(resultAry[i]) === false) {
+                    break
+                }
+            }
+            pullAt(resultAry, targetIndexesAry)
+            return resultAry
+        }
+
+    }
+
     return {
         chunk,
         compact,
@@ -1142,5 +1191,6 @@ var ilyaunchat = function () {
         nthArg,
         clone,
         cloneDeep,
+        dropWhile,
     }
 }()
