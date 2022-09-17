@@ -1264,6 +1264,45 @@ var ilyaunchat = function () {
         return collection[idx]
     }
 
+    function intersectionWith(...arrays) {
+        if (typeof arrays.at(-1) !== "function") {
+            return intersection(...arrays)
+        } else {
+            var copiedArys = cloneDeep(arrays)
+            var theLastArg = copiedArys.pop()
+            var copiedFirstAry = copiedArys.shift()
+            var resultAry = []
+            var flagInner = 0
+            var flagOuter = 0
+
+            for (var i = 0; i < copiedFirstAry.length; i++) {
+                for (var j = 0; j < copiedArys.length; j++) {
+                    for (var k = 0; k < copiedArys[j].length; k++) {
+                        if (theLastArg(copiedFirstAry[i], copiedArys[j][k])) {
+                            flagInner = 1
+                            break
+                        }
+                    }
+                    if (flagInner === 0) {
+                        break
+                    } else if ((flagInner === 1) && (j < copiedArys.length - 1)) {
+                        flagInner = 0
+                        continue
+                    } else if ((flagInner === 1) && (j === copiedArys.length - 1)) {
+                        flagOuter = 1
+                        break
+                    }
+                }
+                if (flagOuter === 1) {
+                    resultAry.push(copiedFirstAry[i])
+                    flagOuter = 0
+                    flagInner = 0
+                }
+            }
+            return resultAry
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -1336,5 +1375,6 @@ var ilyaunchat = function () {
         repeat,
         intersectionBy,
         sample,
+        intersectionWith,
     }
 }()
