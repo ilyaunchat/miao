@@ -1045,7 +1045,7 @@ var ilyaunchat = function () {
     }
 
     function cloneDeep(value) {
-        if (typeof value === "number" || typeof value === "string" || typeof value === "boolean" || typeof value === "undefined" || ((String(value) !== "[object Object]") && (typeof value === "object") && (!(Array.isArray(value))))) {
+        if (typeof value === "number" || typeof value === "string" || typeof value === "boolean" || typeof value === "undefined" || ((String(value) !== "[object Object]") && (typeof value === "object") && (!(Array.isArray(value)))) || typeof value === "function") {
             var copyVal = value
             return copyVal
         } else if (Array.isArray(value)) {
