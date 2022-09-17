@@ -1161,6 +1161,31 @@ var ilyaunchat = function () {
 
     }
 
+    function differenceWith(array, ...values) {
+        if (values.length === 1) {
+            return difference(array, ...values)
+        } else if (values.length > 1) {
+            if (Array.isArray(values.at(-1))) {
+                return difference(array, ...values)
+            } else {
+                var theLastArg = values.pop()
+                var resultAry = cloneDeep(array)
+                var targetIndexesAry = []
+                for (var i = 0; i < array.length; i++) {
+                    for (var j = 0; j < values.length; j++) {
+                        for (var k = 0; k < (values[j]).length; k++) {
+                            if (theLastArg(array[i], values[j][k])) {
+                                targetIndexesAry.push(i)
+                            }
+                        }
+                    }
+                }
+                pullAt(resultAry, targetIndexesAry)
+                return resultAry
+            }
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -1229,5 +1254,6 @@ var ilyaunchat = function () {
         cloneDeep,
         dropWhile,
         dropRightWhile,
+        differenceWith,
     }
 }()
