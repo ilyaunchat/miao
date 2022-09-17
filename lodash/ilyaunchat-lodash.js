@@ -683,7 +683,7 @@ var ilyaunchat = function () {
 
     function property(path) {
         if (typeof path === "string") {
-            var pathAry = path.split(".")
+            var pathAry = toPath(path)
             return function (it, idx, ary) {
                 var propertyResult = it
                 for (var i = 0; i < pathAry.length; i++) {
