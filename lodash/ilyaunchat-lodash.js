@@ -1259,6 +1259,11 @@ var ilyaunchat = function () {
         }
     }
 
+    function sample(collection) {
+        var idx = Math.floor(Math.random() * collection.length)
+        return collection[idx]
+    }
+
     return {
         chunk,
         compact,
@@ -1330,5 +1335,6 @@ var ilyaunchat = function () {
         differenceWith,
         repeat,
         intersectionBy,
+        sample,
     }
 }()
