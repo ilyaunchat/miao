@@ -999,6 +999,10 @@ var ilyaunchat = function () {
         return value === other
     }
 
+    function gt(value, other) {
+        return (value > other) ? true : false
+    }
+
     return {
         chunk,
         compact,
@@ -1055,5 +1059,6 @@ var ilyaunchat = function () {
         min,
         xor,
         isEqual,
+        gt,
     }
 }()
