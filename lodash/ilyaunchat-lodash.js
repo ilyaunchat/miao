@@ -961,6 +961,44 @@ var ilyaunchat = function () {
         return resultAry
     }
 
+    function isEqual(value, other) {
+        if (value === other) {
+            return true
+        }
+
+        if (Number.isNaN(value) === true && Number.isNaN(other) === true) {
+            return true
+        }
+
+        if (Array.isArray(value) === true && Array.isArray(other) === true) {
+            if (value.length !== other.length) {
+                return false
+            } else {
+                for (var i = 0; i < value.length; i++) {
+                    if (!(isEqual(value[i], other[i]))) {
+                        return false
+                    }
+                }
+                return true
+            }
+        }
+
+        if (value && other && typeof value === "object" && typeof other === "object" && !(Array.isArray(value)) && !(Array.isArray(other))) {
+            if (Object.keys(value).length !== Object.keys(other).length) {
+                return false
+            } else {
+                for (var key of Object.keys(value)) {
+                    if (!(isEqual(value[key], other[key]))) {
+                        return false
+                    }
+                }
+                return true
+            }
+        }
+
+        return value === other
+    }
+
     return {
         chunk,
         compact,
@@ -1016,5 +1054,6 @@ var ilyaunchat = function () {
         negate,
         min,
         xor,
+        isEqual,
     }
 }()
