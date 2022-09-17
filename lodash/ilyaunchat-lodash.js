@@ -1186,6 +1186,14 @@ var ilyaunchat = function () {
         }
     }
 
+    function repeat(string = "", n = 1) {
+        var resultStr = ""
+        for (var i = 1; i <= n; i++) {
+            resultStr += string
+        }
+        return resultStr
+    }
+
     return {
         chunk,
         compact,
@@ -1255,5 +1263,6 @@ var ilyaunchat = function () {
         dropWhile,
         dropRightWhile,
         differenceWith,
+        repeat,
     }
 }()
