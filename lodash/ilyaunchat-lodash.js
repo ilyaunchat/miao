@@ -1125,6 +1125,55 @@ var ilyaunchat = function () {
 
     }
 
+    function dropRightWhile(array, predicate = identity) {
+
+        var resultAry = cloneDeep(array)
+        var targetIndexesAry = []
+
+        if (typeof predicate === "function") {
+            for (var i = resultAry.length - 1; i >= 0; i--) {
+                if (predicate(resultAry[i]) === true) {
+                    targetIndexesAry.push(i)
+                } else if (predicate(resultAry[i]) === false) {
+                    break
+                }
+            }
+            pullAt(resultAry, targetIndexesAry)
+            return resultAry
+        } else if (typeof predicate === "string") {
+            for (var i = resultAry.length - 1; i >= 0; i--) {
+                if (property(predicate)(resultAry[i]) === true) {
+                    targetIndexesAry.push(i)
+                } else if (property(predicate)(resultAry[i]) === false) {
+                    break
+                }
+            }
+            pullAt(resultAry, targetIndexesAry)
+            return resultAry
+        } else if (Array.isArray(predicate)) {
+            for (var i = resultAry.length - 1; i >= 0; i--) {
+                if (matchesProperty(...predicate)(resultAry[i]) === true) {
+                    targetIndexesAry.push(i)
+                } else if (matchesProperty(...predicate)(resultAry[i]) === false) {
+                    break
+                }
+            }
+            pullAt(resultAry, targetIndexesAry)
+            return resultAry
+        } else if (typeof predicate === "object") {
+            for (var i = resultAry.length - 1; i >= 0; i--) {
+                if (matches(predicate)(resultAry[i]) === true) {
+                    targetIndexesAry.push(i)
+                } else if (matches(predicate)(resultAry[i]) === false) {
+                    break
+                }
+            }
+            pullAt(resultAry, targetIndexesAry)
+            return resultAry
+        }
+
+    }
+
     return {
         chunk,
         compact,
@@ -1192,5 +1241,6 @@ var ilyaunchat = function () {
         clone,
         cloneDeep,
         dropWhile,
+        dropRightWhile,
     }
 }()
