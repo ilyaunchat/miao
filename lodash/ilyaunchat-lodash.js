@@ -1007,6 +1007,10 @@ var ilyaunchat = function () {
         return (value >= other) ? true : false
     }
 
+    function lt(value, other) {
+        return (value < other) ? true : false
+    }
+
     return {
         chunk,
         compact,
@@ -1065,5 +1069,6 @@ var ilyaunchat = function () {
         isEqual,
         gt,
         gte,
+        lt,
     }
 }()
