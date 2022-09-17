@@ -1057,6 +1057,25 @@ var ilyaunchat = function () {
         return value.slice()
     }
 
+    function cloneDeep(value) {
+        if (typeof value === "number" || typeof value === "string" || typeof value === "boolean" || typeof value === "undefined" || ((Boolean(value) === false) && (typeof value === "object"))) {
+            var copyVal = value
+            return copyVal
+        } else if (Array.isArray(value)) {
+            var resultAry = []
+            for (var i = 0; i < value.length; i++) {
+                resultAry.push(cloneDeep(value[i]))
+            }
+            return resultAry
+        } else if (typeof value === "object") {
+            var resultObj = {}
+            for (var key of Object.keys(value)) {
+                resultObj[key] = cloneDeep(value[key])
+            }
+            return resultObj
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -1122,5 +1141,6 @@ var ilyaunchat = function () {
         once,
         nthArg,
         clone,
+        cloneDeep,
     }
 }()
