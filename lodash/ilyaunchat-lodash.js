@@ -1043,6 +1043,16 @@ var ilyaunchat = function () {
         }
     }
 
+    function nthArg(n = 0) {
+        return function (...args) {
+            if (n >= 0) {
+                return args[n]
+            } else if (n < 0) {
+                return args[args.length + n]
+            }
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -1106,5 +1116,6 @@ var ilyaunchat = function () {
         constant,
         times,
         once,
+        nthArg,
     }
 }()
