@@ -1029,6 +1029,20 @@ var ilyaunchat = function () {
         return resultAry
     }
 
+    function once(func) {
+        var times = 0
+        var res = 0
+        return function (...args) {
+            if (times === 0) {
+                times++
+                res = func(...args)
+                return res
+            } else {
+                return res
+            }
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -1091,5 +1105,6 @@ var ilyaunchat = function () {
         lte,
         constant,
         times,
+        once,
     }
 }()
