@@ -1053,6 +1053,10 @@ var ilyaunchat = function () {
         }
     }
 
+    function clone(value) {
+        return value.slice()
+    }
+
     return {
         chunk,
         compact,
@@ -1117,5 +1121,6 @@ var ilyaunchat = function () {
         times,
         once,
         nthArg,
+        clone,
     }
 }()
