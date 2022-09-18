@@ -1422,6 +1422,38 @@ var ilyaunchat = function () {
         }
     }
 
+    function sortedLastIndexBy(array, value, iteratee = identity) {
+        if (typeof iteratee === "function") {
+            var left = 0
+            var right = array.length
+            while (left < right) {
+                var mid = Math.floor(left + (right - left) / 2)
+                if (iteratee(array[mid]) === iteratee(value)) {
+                    left = mid + 1
+                } else if (iteratee(array[mid]) < iteratee(value)) {
+                    left = mid + 1
+                } else if (iteratee(array[mid]) > iteratee(value)) {
+                    right = mid
+                }
+            }
+            return left
+        } else if (typeof iteratee === "string") {
+            var left = 0
+            var right = array.length
+            while (left < right) {
+                var mid = Math.floor(left + (right - left) / 2)
+                if (property(iteratee)(array[mid]) === property(iteratee)(value)) {
+                    left = mid + 1
+                } else if (property(iteratee)(array[mid]) < property(iteratee)(value)) {
+                    left = mid + 1
+                } else if (property(iteratee)(array[mid]) > property(iteratee)(value)) {
+                    right = mid
+                }
+            }
+            return left
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -1498,5 +1530,6 @@ var ilyaunchat = function () {
         pullAllBy,
         pullAllWith,
         sortedIndexBy,
+        sortedLastIndexBy,
     }
 }()
