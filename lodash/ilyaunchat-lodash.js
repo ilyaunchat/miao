@@ -1560,6 +1560,30 @@ var ilyaunchat = function () {
         }
     }
 
+    function unionWith(...arrays) {
+        if (typeof arrays.at(-1) === "function") {
+            var theLastArg = arrays.pop()
+            var resultAry = arrays.shift()
+            var flag = 0
+            for (var i = 0; i < arrays.length; i++) {
+                for (var j = 0; j < arrays[i].length; j++) {
+                    for (var val of resultAry) {
+                        if (theLastArg(val, arrays[i][j])) {
+                            flag = 1
+                            break
+                        }
+                    }
+                    if (flag === 1) {
+                        flag = 0
+                    } else if (flag === 0) {
+                        resultAry.push(arrays[i][j])
+                    }
+                }
+            }
+            return resultAry
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -1640,5 +1664,6 @@ var ilyaunchat = function () {
         takeWhile,
         takeRightWhile,
         unionBy,
+        unionWith,
     }
 }()
