@@ -292,10 +292,11 @@ var ilyaunchat = function () {
         var standardAry = cloneDeep(values)
         var count = 0
         var boundary = array.length - count
-
         for (var i = 0; i < array.length; i++) {
-            if (standardAry.indexOf(array[i]) === -1) {
+            if ((standardAry.indexOf(array[i]) === -1) && (i < boundary - 1)) {
                 continue
+            } else if ((standardAry.indexOf(array[i]) === -1) && (i === boundary - 1)) {
+                break
             } else if (standardAry.indexOf(array[i]) !== -1) {
                 if ((i + 1) === boundary) {
                     count++
@@ -313,12 +314,10 @@ var ilyaunchat = function () {
                 }
             }
         }
-
         while (count > 0) {
             array.pop()
             count--
         }
-
         return array
     }
 
