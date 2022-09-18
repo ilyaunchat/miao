@@ -289,7 +289,7 @@ var ilyaunchat = function () {
     }
 
     function pullAll(array, values) {
-        var standardAry = values
+        var standardAry = cloneDeep(values)
         var count = 0
         var boundary = array.length - count
 
