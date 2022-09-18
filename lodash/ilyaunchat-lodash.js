@@ -1303,6 +1303,51 @@ var ilyaunchat = function () {
         }
     }
 
+    function pullAllBy(array, values, iteratee = identity) {
+        var standardAry = cloneDeep(values)
+        var count = 0
+        var boundary = array.length - count
+        var flag = 0
+        if (typeof iteratee === "string") {
+            for (var i = 0; i < array.length; i++) {
+                for (var j = 0; j < standardAry.length; j++) {
+                    if (property(iteratee)(array[i]) && property(iteratee)(standardAry[j]) && (property(iteratee)(array[i]) === property(iteratee)(standardAry[j]))) {
+                        flag = 1
+                        break
+                    } else {
+                        continue
+                    }
+                }
+                if (flag === 1) {
+                    if ((i + 1) === boundary) {
+                        count++
+                        boundary = array.length - count
+                        break
+                    } else {
+                        for (var j = i + 1; j < boundary; j++) {
+                            var temp = array[j]
+                            array[j] = array[j - 1]
+                            array[j - 1] = temp
+                        }
+                        count++
+                        boundary = array.length - count
+                        i = i - 1
+                    }
+                    flag = 0
+                } else if ((flag === 0) && (i < (boundary - 1))) {
+                    continue
+                } else if ((flag === 0) && (i === (boundary - 1))) {
+                    break
+                }
+            }
+            while (count > 0) {
+                array.pop()
+                count--
+            }
+            return array
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -1376,5 +1421,6 @@ var ilyaunchat = function () {
         intersectionBy,
         sample,
         intersectionWith,
+        pullAllBy,
     }
 }()
