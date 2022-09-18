@@ -1492,6 +1492,44 @@ var ilyaunchat = function () {
         return resultAry
     }
 
+    function takeRightWhile(array, predicate = identity) {
+        var resultAry = []
+        if (typeof predicate === "function") {
+            for (var i = array.length - 1; i >= 0; i--) {
+                if (predicate(array[i])) {
+                    resultAry.unshift(array[i])
+                } else {
+                    break
+                }
+            }
+        } else if (Array.isArray(predicate)) {
+            for (var i = array.length - 1; i >= 0; i--) {
+                if (matchesProperty(predicate[0], predicate[1])(array[i])) {
+                    resultAry.unshift(array[i])
+                } else {
+                    break
+                }
+            }
+        } else if (typeof predicate === "object") {
+            for (var i = array.length - 1; i >= 0; i--) {
+                if (matches(predicate)(array[i])) {
+                    resultAry.unshift(array[i])
+                } else {
+                    break
+                }
+            }
+        } else if (typeof predicate === "string") {
+            for (var i = array.length - 1; i >= 0; i--) {
+                if (property(predicate)(array[i])) {
+                    resultAry.unshift(array[i])
+                } else {
+                    break
+                }
+            }
+        }
+        return resultAry
+    }
+
     return {
         chunk,
         compact,
@@ -1570,5 +1608,6 @@ var ilyaunchat = function () {
         sortedIndexBy,
         sortedLastIndexBy,
         takeWhile,
+        takeRightWhile,
     }
 }()
