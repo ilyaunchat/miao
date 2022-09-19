@@ -1608,6 +1608,28 @@ var ilyaunchat = function () {
         }
     }
 
+    function uniqWith(array, comparator) {
+        if (typeof comparator === "function") {
+            var resultAry = [array[0]]
+            var flag = 1
+            for (var i = 1; i < array.length; i++) {
+                for (var j = 0; j < resultAry.length; j++) {
+                    if (comparator(array[i], resultAry[j])) {
+                        flag = 0
+                        break
+                    }
+                }
+                if (flag === 0) {
+                    flag = 1
+                } else if (flag === 1) {
+                    resultAry.push(array[i])
+                    flag = 1
+                }
+            }
+            return resultAry
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -1690,5 +1712,6 @@ var ilyaunchat = function () {
         unionBy,
         unionWith,
         uniqBy,
+        uniqWith,
     }
 }()
