@@ -1664,6 +1664,18 @@ var ilyaunchat = function () {
         return resultObj
     }
 
+    function size(collection) {
+        var len = 0
+        if (typeof collection === "string") {
+            len = collection.length
+        } else if (Array.isArray(collection)) {
+            len = collection.length
+        } else if (typeof collection === "object") {
+            len = Object.keys(collection).length
+        }
+        return len
+    }
+
     return {
         chunk,
         compact,
@@ -1751,5 +1763,6 @@ var ilyaunchat = function () {
         isUndefined,
         unzipWith,
         zipObject,
+        size,
     }
 }()
