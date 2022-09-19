@@ -1638,6 +1638,19 @@ var ilyaunchat = function () {
         return (value === undefined)
     }
 
+    function unzipWith(array, iteratee = identity) {
+        var resultAry = []
+        var k = 0
+        for (var i = 0; i < array[0].length; i++) {
+            for (var j = 0; j < array.length; j++) {
+                k = iteratee(array[j][i], k)
+            }
+            resultAry.push(k)
+            k = 0
+        }
+        return resultAry
+    }
+
     return {
         chunk,
         compact,
@@ -1723,5 +1736,6 @@ var ilyaunchat = function () {
         uniqWith,
         add,
         isUndefined,
+        unzipWith,
     }
 }()
