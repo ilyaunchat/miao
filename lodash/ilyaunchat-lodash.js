@@ -1676,6 +1676,69 @@ var ilyaunchat = function () {
         return len
     }
 
+    function stringifyJSON(obj) {
+        if (Array.isArray(obj)) {
+            var str = "["
+            for (var i = 0; i < obj.length; i++) {
+                if (i === obj.length - 1) {
+                    if (typeof obj[i] === "number" || typeof obj[i] === "boolean") {
+                        str += String(obj[i])
+                    } else if (typeof obj[i] === "string") {
+                        str += `"` + String(obj[i]) + `"`
+                    } else if (Array.isArray(obj[i])) {
+                        str += stringify(obj[i])
+                    } else if (typeof obj[i] === "object") {
+                        str += stringify(obj[i])
+                    }
+                    str += "]"
+                } else if (i < obj.length - 1) {
+                    if (typeof obj[i] === "number" || typeof obj[i] === "boolean") {
+                        str += String(obj[i])
+                    } else if (typeof obj[i] === "string") {
+                        str += `"` + String(obj[i]) + `"`
+                    } else if (Array.isArray(obj[i])) {
+                        str += stringify(obj[i])
+                    } else if (typeof obj[i] === "object") {
+                        str += stringify(obj[i])
+                    }
+                    str += ","
+                }
+            }
+            return str
+        } else if (typeof obj === "object") {
+            var str = "{"
+            var keys = Object.keys(obj)
+            for (var i = 0; i < keys.length; i++) {
+                if (i === keys.length - 1) {
+                    str += `"` + String(keys[i]) + `"` + `:`
+                    if (typeof obj[keys[i]] === "number" || typeof obj[keys[i]] === "boolean") {
+                        str += String(obj[keys[i]])
+                    } else if (typeof obj[keys[i]] === "string") {
+                        str += `"` + String(obj[keys[i]]) + `"`
+                    } else if (Array.isArray(obj[keys[i]])) {
+                        str += stringify(obj[keys[i]])
+                    } else if (typeof obj[keys[i]] === "object") {
+                        str += stringify(obj[keys[i]])
+                    }
+                    str += "}"
+                } else if (i < keys.length - 1) {
+                    str += `"` + String(keys[i]) + `"` + `:`
+                    if (typeof obj[keys[i]] === "number" || typeof obj[keys[i]] === "boolean") {
+                        str += String(obj[keys[i]])
+                    } else if (typeof obj[keys[i]] === "string") {
+                        str += `"` + String(obj[keys[i]]) + `"`
+                    } else if (Array.isArray(obj[keys[i]])) {
+                        str += stringify(obj[keys[i]])
+                    } else if (typeof obj[keys[i]] === "object") {
+                        str += stringify(obj[keys[i]])
+                    }
+                    str += ","
+                }
+            }
+            return str
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -1764,5 +1827,6 @@ var ilyaunchat = function () {
         unzipWith,
         zipObject,
         size,
+        stringifyJSON,
     }
 }()
