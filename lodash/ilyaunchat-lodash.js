@@ -717,7 +717,7 @@ var ilyaunchat = function () {
     }
 
     function toPath(value) {
-        const regex = /\w/gm
+        const regex = /(\w)+/gm
         var m
         var resultAry = []
 
@@ -726,8 +726,10 @@ var ilyaunchat = function () {
                 regex.lastIndex++
             }
 
-            m.forEach((match) => {
-                resultAry.push(match)
+            m.forEach((match, groupIndex) => {
+                if (groupIndex === 0) {
+                    resultAry.push(match)
+                }
             })
         }
 
