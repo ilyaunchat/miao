@@ -1630,6 +1630,10 @@ var ilyaunchat = function () {
         }
     }
 
+    function add(augend, addend) {
+        return augend + addend
+    }
+
     return {
         chunk,
         compact,
@@ -1713,5 +1717,6 @@ var ilyaunchat = function () {
         unionWith,
         uniqBy,
         uniqWith,
+        add,
     }
 }()
