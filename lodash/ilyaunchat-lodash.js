@@ -1651,6 +1651,14 @@ var ilyaunchat = function () {
         return resultAry
     }
 
+    function zipObject(props = [], values = []) {
+        var resultObj = {}
+        for (var i = 0; i < props.length; i++) {
+            resultObj[props[i]] = values[i]
+        }
+        return resultObj
+    }
+
     return {
         chunk,
         compact,
@@ -1737,5 +1745,6 @@ var ilyaunchat = function () {
         add,
         isUndefined,
         unzipWith,
+        zipObject,
     }
 }()
