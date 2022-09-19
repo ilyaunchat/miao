@@ -1584,6 +1584,30 @@ var ilyaunchat = function () {
         }
     }
 
+    function uniqBy(array, iteratee = identity) {
+        if (typeof iteratee === "function") {
+            var memoAry = []
+            var resultAry = []
+            for (var i = 0; i < array.length; i++) {
+                if (memoAry.indexOf(iteratee(array[i])) === -1) {
+                    memoAry.push(iteratee(array[i]))
+                    resultAry.push(array[i])
+                }
+            }
+            return resultAry
+        } else if (typeof iteratee === "string") {
+            var memoAry = []
+            var resultAry = []
+            for (var i = 0; i < array.length; i++) {
+                if (memoAry.indexOf(property(iteratee)(array[i])) === -1) {
+                    memoAry.push(property(iteratee)(array[i]))
+                    resultAry.push(array[i])
+                }
+            }
+            return resultAry
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -1665,5 +1689,6 @@ var ilyaunchat = function () {
         takeRightWhile,
         unionBy,
         unionWith,
+        uniqBy,
     }
 }()
