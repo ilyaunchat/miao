@@ -1634,6 +1634,10 @@ var ilyaunchat = function () {
         return augend + addend
     }
 
+    function isUndefined(value) {
+        return (value === undefined)
+    }
+
     return {
         chunk,
         compact,
@@ -1718,5 +1722,6 @@ var ilyaunchat = function () {
         uniqBy,
         uniqWith,
         add,
+        isUndefined,
     }
 }()
