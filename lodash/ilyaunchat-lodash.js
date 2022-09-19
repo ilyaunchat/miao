@@ -717,13 +717,18 @@ var ilyaunchat = function () {
     }
 
     function toPath(value) {
-        var tempAry = value.split(/[\.\[\]]/)
+        const regex = /\w/gm
+        var m
         var resultAry = []
 
-        for (var it of tempAry) {
-            if (it !== "") {
-                resultAry.push(it)
+        while ((m = regex.exec(value)) !== null) {
+            if (m.index === regex.lastIndex) {
+                regex.lastIndex++
             }
+
+            m.forEach((match) => {
+                resultAry.push(match)
+            })
         }
 
         return resultAry
