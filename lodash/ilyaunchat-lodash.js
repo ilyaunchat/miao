@@ -1686,9 +1686,9 @@ var ilyaunchat = function () {
                     } else if (typeof obj[i] === "string") {
                         str += `"` + String(obj[i]) + `"`
                     } else if (Array.isArray(obj[i])) {
-                        str += stringify(obj[i])
+                        str += stringifyJSON(obj[i])
                     } else if (typeof obj[i] === "object") {
-                        str += stringify(obj[i])
+                        str += stringifyJSON(obj[i])
                     }
                     str += "]"
                 } else if (i < obj.length - 1) {
@@ -1697,15 +1697,15 @@ var ilyaunchat = function () {
                     } else if (typeof obj[i] === "string") {
                         str += `"` + String(obj[i]) + `"`
                     } else if (Array.isArray(obj[i])) {
-                        str += stringify(obj[i])
+                        str += stringifyJSON(obj[i])
                     } else if (typeof obj[i] === "object") {
-                        str += stringify(obj[i])
+                        str += stringifyJSON(obj[i])
                     }
                     str += ","
                 }
             }
             return str
-        } else if (typeof obj === "object") {
+        } else if (obj && typeof obj === "object") {
             var str = "{"
             var keys = Object.keys(obj)
             for (var i = 0; i < keys.length; i++) {
@@ -1716,9 +1716,9 @@ var ilyaunchat = function () {
                     } else if (typeof obj[keys[i]] === "string") {
                         str += `"` + String(obj[keys[i]]) + `"`
                     } else if (Array.isArray(obj[keys[i]])) {
-                        str += stringify(obj[keys[i]])
+                        str += stringifyJSON(obj[keys[i]])
                     } else if (typeof obj[keys[i]] === "object") {
-                        str += stringify(obj[keys[i]])
+                        str += stringifyJSON(obj[keys[i]])
                     }
                     str += "}"
                 } else if (i < keys.length - 1) {
@@ -1728,13 +1728,16 @@ var ilyaunchat = function () {
                     } else if (typeof obj[keys[i]] === "string") {
                         str += `"` + String(obj[keys[i]]) + `"`
                     } else if (Array.isArray(obj[keys[i]])) {
-                        str += stringify(obj[keys[i]])
+                        str += stringifyJSON(obj[keys[i]])
                     } else if (typeof obj[keys[i]] === "object") {
-                        str += stringify(obj[keys[i]])
+                        str += stringifyJSON(obj[keys[i]])
                     }
                     str += ","
                 }
             }
+            return str
+        } else if (!(obj) && typeof obj === "object") {
+            str = "null"
             return str
         }
     }
