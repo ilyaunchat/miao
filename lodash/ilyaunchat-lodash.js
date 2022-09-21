@@ -1927,6 +1927,26 @@ var ilyaunchat = function () {
         }
     }
 
+    function maxBy(array, iteratee = identity) {
+        if (typeof iteratee === "function") {
+            let maxIndex = 0
+            array.forEach((it, idx, ary) => {
+                if (iteratee(it) > iteratee(ary[maxIndex])) {
+                    maxIndex = idx
+                }
+            })
+            return array[maxIndex]
+        } else if (typeof iteratee === "string") {
+            let maxIndex = 0
+            array.forEach((it, idx, ary) => {
+                if (property(iteratee)(it) > property(iteratee)(ary[maxIndex])) {
+                    maxIndex = idx
+                }
+            })
+            return array[maxIndex]
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -2027,5 +2047,6 @@ var ilyaunchat = function () {
         sumBy,
         clamp,
         inRange,
+        maxBy,
     }
 }()
