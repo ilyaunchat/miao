@@ -1787,6 +1787,40 @@ var ilyaunchat = function () {
         return resultAry
     }
 
+    function every(collection, predicate = identity) {
+        if (Array.isArray(collection)) {
+            if (typeof predicate === "function") {
+                for (var idx in collection) {
+                    if (!(predicate(collection[idx], idx, collection))) {
+                        return false
+                    }
+                }
+                return true
+            } else if (Array.isArray(predicate)) {
+                for (var it of collection) {
+                    if (!(matchesProperty(predicate[0], predicate[1])(it))) {
+                        return false
+                    }
+                }
+                return true
+            } else if (typeof predicate === "object") {
+                for (var it of collection) {
+                    if (!(matches(predicate)(it))) {
+                        return false
+                    }
+                }
+                return true
+            } else if (typeof predicate === "string") {
+                for (var it of collection) {
+                    if (!(property(predicate)(it))) {
+                        return false
+                    }
+                }
+                return true
+            }
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -1881,5 +1915,6 @@ var ilyaunchat = function () {
         multiply,
         divide,
         at,
+        every,
     }
 }()
