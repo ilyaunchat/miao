@@ -1767,6 +1767,10 @@ var ilyaunchat = function () {
         return minuend - subtrahend
     }
 
+    function multiply(multiplier, multiplicand) {
+        return multiplier * multiplicand
+    }
+
     return {
         chunk,
         compact,
@@ -1858,5 +1862,6 @@ var ilyaunchat = function () {
         stringifyJSON,
         pad,
         subtract,
+        multiply,
     }
 }()
