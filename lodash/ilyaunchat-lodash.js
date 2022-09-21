@@ -1763,6 +1763,10 @@ var ilyaunchat = function () {
         }
     }
 
+    function subtract(minuend, subtrahend) {
+        return minuend - subtrahend
+    }
+
     return {
         chunk,
         compact,
@@ -1853,5 +1857,6 @@ var ilyaunchat = function () {
         size,
         stringifyJSON,
         pad,
+        subtract,
     }
 }()
