@@ -1744,6 +1744,25 @@ var ilyaunchat = function () {
         }
     }
 
+    function pad(string = "", length = 0, chars = ' ') {
+        var originalLen = string.length
+        if (originalLen >= length) {
+            return string
+        } else if (originalLen < length) {
+            var leftPadLen = Math.floor((length - originalLen) / 2)
+            var rightPadLen = (length - originalLen) - leftPadLen
+            var resultStr = ""
+            for (var i = 0; i < leftPadLen; i++) {
+                resultStr += chars[(i % chars.length)]
+            }
+            resultStr += string
+            for (var i = 0; i < rightPadLen; i++) {
+                resultStr += chars[(i % chars.length)]
+            }
+            return resultStr
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -1833,5 +1852,6 @@ var ilyaunchat = function () {
         zipObject,
         size,
         stringifyJSON,
+        pad,
     }
 }()
