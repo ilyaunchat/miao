@@ -1855,6 +1855,13 @@ var ilyaunchat = function () {
         }
     }
 
+    function sum(array) {
+        var result = array.reduce((prev, curr) => {
+            return prev + curr
+        })
+        return result
+    }
+
     return {
         chunk,
         compact,
@@ -1951,5 +1958,6 @@ var ilyaunchat = function () {
         at,
         every,
         some,
+        sum,
     }
 }()
