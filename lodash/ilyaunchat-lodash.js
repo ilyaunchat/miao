@@ -1897,6 +1897,36 @@ var ilyaunchat = function () {
         }
     }
 
+    function inRange(number, ...bounds) {
+        if (bounds.length === 1) {
+            let start = 0
+            let end = bounds[0]
+            if (start > end) {
+                let temp = start
+                start = end
+                end = temp
+            }
+            if (start <= number && number < end) {
+                return true
+            } else {
+                return false
+            }
+        } else if (bounds.length > 1) {
+            let start = bounds[0]
+            let end = bounds[1]
+            if (start > end) {
+                let temp = start
+                start = end
+                end = temp
+            }
+            if (start <= number && number < end) {
+                return true
+            } else {
+                return false
+            }
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -1996,5 +2026,6 @@ var ilyaunchat = function () {
         sum,
         sumBy,
         clamp,
+        inRange,
     }
 }()
