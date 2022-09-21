@@ -1775,6 +1775,18 @@ var ilyaunchat = function () {
         return dividend / divisor
     }
 
+    function at(object, paths) {
+        var resultAry = []
+        if (typeof paths === "string") {
+            resultAry.push(property(paths)(object))
+        } else if (Array.isArray(paths)) {
+            paths.forEach((it) => {
+                resultAry.push(property(it)(object))
+            })
+        }
+        return resultAry
+    }
+
     return {
         chunk,
         compact,
@@ -1868,5 +1880,6 @@ var ilyaunchat = function () {
         subtract,
         multiply,
         divide,
+        at,
     }
 }()
