@@ -1876,6 +1876,27 @@ var ilyaunchat = function () {
         }
     }
 
+    function clamp(number, ...bounds) {
+        if (bounds.length === 1) {
+            var upper = bounds[0]
+            if (number <= upper) {
+                return number
+            } else if (number > upper) {
+                return upper
+            }
+        } else if (bounds.length > 1) {
+            var lower = bounds[0]
+            var upper = bounds[1]
+            if (lower <= number && number <= upper) {
+                return number
+            } else if (number < lower) {
+                return lower
+            } else if (upper < number) {
+                return upper
+            }
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -1974,5 +1995,6 @@ var ilyaunchat = function () {
         some,
         sum,
         sumBy,
+        clamp,
     }
 }()
