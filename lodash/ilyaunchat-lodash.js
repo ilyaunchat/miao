@@ -1771,6 +1771,10 @@ var ilyaunchat = function () {
         return multiplier * multiplicand
     }
 
+    function divide(dividend, divisor) {
+        return dividend / divisor
+    }
+
     return {
         chunk,
         compact,
@@ -1863,5 +1867,6 @@ var ilyaunchat = function () {
         pad,
         subtract,
         multiply,
+        divide,
     }
 }()
