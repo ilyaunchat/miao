@@ -1821,6 +1821,40 @@ var ilyaunchat = function () {
         }
     }
 
+    function some(collection, predicate = identity) {
+        if (Array.isArray(collection)) {
+            if (typeof predicate === "function") {
+                for (var idx in collection) {
+                    if (predicate(collection[idx], idx, collection)) {
+                        return true
+                    }
+                }
+                return false
+            } else if (Array.isArray(predicate)) {
+                for (var it of collection) {
+                    if (matchesProperty(predicate[0], predicate[1])(it)) {
+                        return true
+                    }
+                }
+                return false
+            } else if (typeof predicate === "object") {
+                for (var it of collection) {
+                    if (matches(predicate)(it)) {
+                        return true
+                    }
+                }
+                return false
+            } else if (typeof predicate === "string") {
+                for (var it of collection) {
+                    if (property(predicate)(it)) {
+                        return true
+                    }
+                }
+                return false
+            }
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -1916,5 +1950,6 @@ var ilyaunchat = function () {
         divide,
         at,
         every,
+        some,
     }
 }()
