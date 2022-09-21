@@ -1862,6 +1862,20 @@ var ilyaunchat = function () {
         return result
     }
 
+    function sumBy(array, iteratee = identity) {
+        if (typeof iteratee === "function") {
+            var result = array.reduce((prev, curr) => {
+                return prev + iteratee(curr)
+            }, 0)
+            return result
+        } else if (typeof iteratee === "string") {
+            var result = array.reduce((prev, curr) => {
+                return prev + property(iteratee)(curr)
+            }, 0)
+            return result
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -1959,5 +1973,6 @@ var ilyaunchat = function () {
         every,
         some,
         sum,
+        sumBy,
     }
 }()
