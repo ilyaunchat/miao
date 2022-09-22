@@ -2003,6 +2003,15 @@ var ilyaunchat = function () {
         return resultAry
     }
 
+    function flatMapDepth(collection, iteratee = identity, depth = 1) {
+        var resultAry = []
+        collection.forEach((it, idx, ary) => {
+            resultAry.push(iteratee(it, idx, ary))
+        })
+        resultAry = flattenDepth(resultAry, depth)
+        return resultAry
+    }
+
     return {
         chunk,
         compact,
@@ -2108,5 +2117,6 @@ var ilyaunchat = function () {
         findLast,
         flatMap,
         flatMapDeep,
+        flatMapDepth,
     }
 }()
