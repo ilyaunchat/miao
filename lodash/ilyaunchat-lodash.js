@@ -1947,6 +1947,34 @@ var ilyaunchat = function () {
         }
     }
 
+    function find(collection, predicate = identity, fromIndex = 0) {
+        if (typeof predicate === "function") {
+            for (var i = fromIndex; i < collection.length; i++) {
+                if (predicate(collection[i])) {
+                    return collection[i]
+                }
+            }
+        } else if (Array.isArray(predicate)) {
+            for (var i = fromIndex; i < collection.length; i++) {
+                if (matchesProperty(predicate[0], predicate[1])(collection[i])) {
+                    return collection[i]
+                }
+            }
+        } else if (typeof predicate === "object") {
+            for (var i = fromIndex; i < collection.length; i++) {
+                if (matches(predicate)(collection[i])) {
+                    return collection[i]
+                }
+            }
+        } else if (typeof predicate === "string") {
+            for (var i = fromIndex; i < collection.length; i++) {
+                if (property(predicate)(collection[i])) {
+                    return collection[i]
+                }
+            }
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -2048,5 +2076,6 @@ var ilyaunchat = function () {
         clamp,
         inRange,
         maxBy,
+        find,
     }
 }()
