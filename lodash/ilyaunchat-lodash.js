@@ -2012,6 +2012,42 @@ var ilyaunchat = function () {
         return resultAry
     }
 
+    function filter(collection, predicate = identity) {
+        if (typeof predicate === "function") {
+            let resultAry = []
+            collection.forEach((it, idx, ary) => {
+                if (predicate(it, idx, ary)) {
+                    resultAry.push(it)
+                }
+            })
+            return resultAry
+        } else if (Array.isArray(predicate)) {
+            let resultAry = []
+            collection.forEach((it, idx, ary) => {
+                if (matchesProperty(predicate[0], predicate[1])(it, idx, ary)) {
+                    resultAry.push(it)
+                }
+            })
+            return resultAry
+        } else if (typeof predicate === "object") {
+            let resultAry = []
+            collection.forEach((it, idx, ary) => {
+                if (matches(predicate)(it, idx, ary)) {
+                    resultAry.push(it)
+                }
+            })
+            return resultAry
+        } else if (typeof predicate === "string") {
+            let resultAry = []
+            collection.forEach((it, idx, ary) => {
+                if (property(predicate)(it, idx, ary)) {
+                    resultAry.push(it)
+                }
+            })
+            return resultAry
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -2118,5 +2154,6 @@ var ilyaunchat = function () {
         flatMap,
         flatMapDeep,
         flatMapDepth,
+        filter,
     }
 }()
