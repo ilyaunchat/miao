@@ -1975,6 +1975,16 @@ var ilyaunchat = function () {
         }
     }
 
+    function findLast(collection, predicate = identity, fromIndex = collection.length - 1) {
+        if (typeof predicate === "function") {
+            for (var i = fromIndex; i >= 0; i--) {
+                if (predicate(collection[i])) {
+                    return collection[i]
+                }
+            }
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -2077,5 +2087,6 @@ var ilyaunchat = function () {
         inRange,
         maxBy,
         find,
+        findLast,
     }
 }()
