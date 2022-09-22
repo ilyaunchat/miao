@@ -1985,6 +1985,15 @@ var ilyaunchat = function () {
         }
     }
 
+    function flatMap(collection, iteratee = identity) {
+        var resultAry = []
+        collection.forEach((it, idx, ary) => {
+            resultAry.push(iteratee(it, idx, ary))
+        })
+        resultAry = flatten(resultAry)
+        return resultAry
+    }
+
     return {
         chunk,
         compact,
@@ -2088,5 +2097,6 @@ var ilyaunchat = function () {
         maxBy,
         find,
         findLast,
+        flatMap,
     }
 }()
