@@ -2221,6 +2221,10 @@ var ilyaunchat = function () {
         return (Object.getPrototypeOf(value) === Function.prototype)
     }
 
+    function isBoolean(value) {
+        return (Object.getPrototypeOf(value) === Boolean.prototype)
+    }
+
     return {
         chunk,
         compact,
@@ -2336,5 +2340,6 @@ var ilyaunchat = function () {
         reject,
         isNumber,
         isFunction,
+        isBoolean,
     }
 }()
