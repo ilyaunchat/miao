@@ -2072,6 +2072,58 @@ var ilyaunchat = function () {
         }
     }
 
+    function includes(collection, value, fromIndex = 0) {
+        if (Array.isArray(collection)) {
+            if (fromIndex >= 0) {
+                let targetIdx = fromIndex
+                for (let i = targetIdx; i < collection.length; i++) {
+                    if (collection[targetIdx] === value) {
+                        return true
+                    }
+                }
+                return false
+            } else if (fromIndex < 0) {
+                let targetIdx = collection.length + fromIndex
+                for (let i = targetIdx; i < collection.length; i++) {
+                    if (collection[targetIdx] === value) {
+                        return true
+                    }
+                }
+                return false
+            }
+        } else if (collection && typeof collection === "object") {
+            return includes(Object.values(collection), value, fromIndex)
+        } else if (typeof collection === "string") {
+            let flag = false
+            var pt1 = 0
+            var pt2 = 0
+            while ((pt1 < collection.length) && (pt2 < value.length)) {
+                if (flag === false) {
+                    if (collection[pt1] !== value[pt2]) {
+                        pt1++
+                    } else if (collection[pt1] === value[pt2]) {
+                        flag = true
+                        pt1++
+                        pt2++
+                    }
+                } else if (flag === true) {
+                    if (collection[pt1] !== value[pt2]) {
+                        flag = false
+                        pt2 = 0
+                    } else if (collection[pt1] === value[pt2]) {
+                        pt1++
+                        pt2++
+                    }
+                }
+            }
+            if (pt2 === value.length) {
+                return true
+            } else {
+                return false
+            }
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -2180,5 +2232,6 @@ var ilyaunchat = function () {
         flatMapDepth,
         filter,
         groupBy,
+        includes,
     }
 }()
