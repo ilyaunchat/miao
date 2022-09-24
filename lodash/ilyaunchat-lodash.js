@@ -2124,6 +2124,21 @@ var ilyaunchat = function () {
         }
     }
 
+    function invokeMap(collection, path, args) {
+        if (Array.isArray(collection)) {
+            let resultAry = []
+            collection.forEach(element => {
+                let it = cloneDeep(element)
+                if (typeof path === "string") {
+                    resultAry.push(it[path](args))
+                } else if (typeof path === "function") {
+                    resultAry.push(path.call(element, args))
+                }
+            })
+            return resultAry
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -2233,5 +2248,6 @@ var ilyaunchat = function () {
         filter,
         groupBy,
         includes,
+        invokeMap,
     }
 }()
