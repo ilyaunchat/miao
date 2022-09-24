@@ -2214,7 +2214,13 @@ var ilyaunchat = function () {
     }
 
     function isNumber(value) {
-        return (Object.getPrototypeOf(value) === Number.prototype)
+        if (!(value) && typeof value === "object") {
+            return false
+        } else if (typeof value === "undefined") {
+            return false
+        } else {
+            return (Object.getPrototypeOf(value) === Number.prototype)
+        }
     }
 
     function isFunction(value) {
