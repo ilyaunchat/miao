@@ -2187,6 +2187,32 @@ var ilyaunchat = function () {
         return resultAry
     }
 
+    function reject(collection, predicate = identity) {
+        if (Array.isArray(collection)) {
+            let resultAry = []
+            collection.forEach((element, index, array) => {
+                if (typeof predicate === "function") {
+                    if (!predicate(element, index, array)) {
+                        resultAry.push(element)
+                    }
+                } else if (Array.isArray(predicate)) {
+                    if (!(matchesProperty(predicate[0], predicate[1])(element, index, array))) {
+                        resultAry.push(element)
+                    }
+                } else if (typeof predicate === "object") {
+                    if (!(matches(predicate)(element, index, array))) {
+                        resultAry.push(element)
+                    }
+                } else if (typeof predicate === "string") {
+                    if (!(property(predicate)(element, index, array))) {
+                        resultAry.push(element)
+                    }
+                }
+            })
+            return resultAry
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -2299,5 +2325,6 @@ var ilyaunchat = function () {
         invokeMap,
         keyBy,
         partition,
+        reject,
     }
 }()
