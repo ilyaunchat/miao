@@ -2048,6 +2048,30 @@ var ilyaunchat = function () {
         }
     }
 
+    function groupBy(collection, iteratee = identity) {
+        if (typeof iteratee === "function") {
+            let resultObj = {}
+            collection.forEach(element => {
+                if (!(String(iteratee(element)) in resultObj)) {
+                    resultObj[String(iteratee(element))] = [element]
+                } else if (String(iteratee(element)) in resultObj) {
+                    resultObj[String(iteratee(element))].push(element)
+                }
+            })
+            return resultObj
+        } else if (typeof iteratee === "string") {
+            let resultObj = {}
+            collection.forEach(element => {
+                if (!(String(property(iteratee)(element)) in resultObj)) {
+                    resultObj[String(property(iteratee)(element))] = [element]
+                } else if (String(property(iteratee)(element)) in resultObj) {
+                    resultObj[String(property(iteratee)(element))].push(element)
+                }
+            })
+            return resultObj
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -2155,5 +2179,6 @@ var ilyaunchat = function () {
         flatMapDeep,
         flatMapDepth,
         filter,
+        groupBy,
     }
 }()
