@@ -2139,6 +2139,20 @@ var ilyaunchat = function () {
         }
     }
 
+    function keyBy(collection, iteratee = identity) {
+        var resultObj = {}
+        if (Array.isArray(collection)) {
+            collection.forEach(element => {
+                if (typeof iteratee === "function") {
+                    resultObj[iteratee(element)] = element
+                } else if (typeof iteratee === "string") {
+                    resultObj[property(iteratee)(element)] = element
+                }
+            })
+            return resultObj
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -2249,5 +2263,6 @@ var ilyaunchat = function () {
         groupBy,
         includes,
         invokeMap,
+        keyBy,
     }
 }()
