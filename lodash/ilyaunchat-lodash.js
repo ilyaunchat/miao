@@ -2140,7 +2140,7 @@ var ilyaunchat = function () {
     }
 
     function keyBy(collection, iteratee = identity) {
-        var resultObj = {}
+        let resultObj = {}
         if (Array.isArray(collection)) {
             collection.forEach(element => {
                 if (typeof iteratee === "function") {
