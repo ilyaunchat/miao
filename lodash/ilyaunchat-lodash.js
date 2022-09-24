@@ -2153,6 +2153,40 @@ var ilyaunchat = function () {
         }
     }
 
+    function partition(collection, predicate = identity) {
+        let truthyAry = []
+        let falsyAry = []
+        let resultAry = [truthyAry, falsyAry]
+        collection.forEach(element => {
+            if (typeof predicate === "function") {
+                if (predicate(element)) {
+                    truthyAry.push(element)
+                } else {
+                    falsyAry.push(element)
+                }
+            } else if (Array.isArray(predicate)) {
+                if (matchesProperty(predicate[0], predicate[1])(element)) {
+                    truthyAry.push(element)
+                } else {
+                    falsyAry.push(element)
+                }
+            } else if (typeof predicate === "object") {
+                if (matches(predicate)(element)) {
+                    truthyAry.push(element)
+                } else {
+                    falsyAry.push(element)
+                }
+            } else if (typeof predicate === "string") {
+                if (property(predicate)(element)) {
+                    truthyAry.push(element)
+                } else {
+                    falsyAry.push(element)
+                }
+            }
+        })
+        return resultAry
+    }
+
     return {
         chunk,
         compact,
@@ -2264,5 +2298,6 @@ var ilyaunchat = function () {
         includes,
         invokeMap,
         keyBy,
+        partition,
     }
 }()
