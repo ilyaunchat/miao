@@ -2095,7 +2095,7 @@ var ilyaunchat = function () {
             return includes(Object.values(collection), value, fromIndex)
         } else if (typeof collection === "string") {
             let flag = false
-            var pt1 = 0
+            var pt1 = (fromIndex >= 0) ? fromIndex : (collection.length + fromIndex)
             var pt2 = 0
             while ((pt1 < collection.length) && (pt2 < value.length)) {
                 if (flag === false) {
