@@ -2222,7 +2222,13 @@ var ilyaunchat = function () {
     }
 
     function isBoolean(value) {
-        return (Object.getPrototypeOf(value) === Boolean.prototype)
+        if (!(value) && typeof value === "object") {
+            return false
+        } else if (typeof value === "undefined") {
+            return false
+        } else {
+            return (Object.getPrototypeOf(value) === Boolean.prototype)
+        }
     }
 
     return {
