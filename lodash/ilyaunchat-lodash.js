@@ -2275,6 +2275,10 @@ var ilyaunchat = function () {
         }
     }
 
+    function isNull(value) {
+        return (!(value) && typeof value === "object")
+    }
+
     return {
         chunk,
         compact,
@@ -2394,5 +2398,6 @@ var ilyaunchat = function () {
         castArray,
         isRegExp,
         isDate,
+        isNull,
     }
 }()
