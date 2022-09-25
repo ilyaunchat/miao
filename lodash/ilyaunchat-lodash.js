@@ -256,30 +256,19 @@ var ilyaunchat = function () {
 
     function pull(array, ...values) {
         var standardAry = cloneDeep(values)
-        var count = 0
-        var boundary = array.length - count
-        for (var i = 0; i < array.length; i++) {
-            if ((standardAry.indexOf(array[i]) === -1) && (i < boundary - 1)) {
-                continue
-            } else if ((standardAry.indexOf(array[i]) === -1) && (i === boundary - 1)) {
-                break
-            } else if (standardAry.indexOf(array[i]) !== -1) {
-                if ((i + 1) === boundary) {
-                    count++
-                    boundary = array.length - count
-                    break
-                } else {
-                    for (var j = i + 1; j < boundary; j++) {
-                        var temp = array[j]
-                        array[j] = array[j - 1]
-                        array[j - 1] = temp
-                    }
-                    count++
-                    boundary = array.length - count
-                    i = i - 1
+        var left = 0
+        var right = array.length - 1
+        while (left <= right) {
+            if (standardAry.indexOf(array[left]) === -1) {
+                left++
+            } else if (standardAry.indexOf(array[left]) >= 0) {
+                for (var i = left; i < right; i++) {
+                    array[i] = array[i + 1]
                 }
+                right--
             }
         }
+        var count = array.length - (right + 1)
         while (count > 0) {
             array.pop()
             count--
