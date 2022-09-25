@@ -299,37 +299,34 @@ var ilyaunchat = function () {
     }
 
     function pullAt(array, indexes) {
-        var standardAry = cloneDeep(indexes)
-        var count = 0
-        var boundary = array.length - count
-        var resultAry = Array(indexes.length)
-        var resultAryIndex = 0
-        for (var i = 0; i < array.length; i++) {
-            if ((standardAry.indexOf(i + count) === -1) && (i < boundary - 1)) {
-                continue
-            } else if ((standardAry.indexOf(i + count) === -1) && (i === boundary - 1)) {
-                break
-            } else if (standardAry.indexOf(i + count) !== -1) {
-                if ((i + 1) === boundary) {
-                    count++
-                    boundary = array.length - count
-                    break
-                } else {
-                    for (var j = i + 1; j < boundary; j++) {
-                        var temp = array[j]
-                        array[j] = array[j - 1]
-                        array[j - 1] = temp
-                    }
-                    count++
-                    boundary = array.length - count
-                    i = i - 1
+        let standardAry = indexes
+        let resultAry = []
+        let diff = 0
+        let left = 0
+        let right = array.length - 1
+        while (left < array.length) {
+            if (standardAry.indexOf(left + diff) === -1) {
+                left++
+            } else if ((standardAry.indexOf(left + diff) >= 0) && ((left + diff) < array.length)) {
+                resultAry.push(array[left])
+                for (let i = left; i < right; i++) {
+                    array[i] = array[i + 1]
                 }
+                right--
+                diff++
+            } else if ((standardAry.indexOf(left + diff) >= 0) && ((left + diff) >= array.length)) {
+                left++
             }
         }
+        let count = array.length - (right + 1)
         while (count > 0) {
-            resultAry[resultAryIndex] = array.pop()
-            resultAryIndex++
+            array.pop()
             count--
+        }
+        if (resultAry.length < indexes.length) {
+            for (let i = resultAry.length; i < indexes.length; i++) {
+                resultAry[i] = undefined
+            }
         }
         return resultAry
     }
