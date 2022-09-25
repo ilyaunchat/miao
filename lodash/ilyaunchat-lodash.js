@@ -255,20 +255,20 @@ var ilyaunchat = function () {
     }
 
     function pull(array, ...values) {
-        var standardAry = cloneDeep(values)
-        var left = 0
-        var right = array.length - 1
+        let standardAry = cloneDeep(values)
+        let left = 0
+        let right = array.length - 1
         while (left <= right) {
             if (standardAry.indexOf(array[left]) === -1) {
                 left++
             } else if (standardAry.indexOf(array[left]) >= 0) {
-                for (var i = left; i < right; i++) {
+                for (let i = left; i < right; i++) {
                     array[i] = array[i + 1]
                 }
                 right--
             }
         }
-        var count = array.length - (right + 1)
+        let count = array.length - (right + 1)
         while (count > 0) {
             array.pop()
             count--
