@@ -2243,6 +2243,18 @@ var ilyaunchat = function () {
         }
     }
 
+    function castArray(value) {
+        if (arguments.length === 0) {
+            return []
+        } else if (arguments.length > 0) {
+            if (Array.isArray(value)) {
+                return value
+            } else if (!(Array.isArray(value))) {
+                return [value]
+            }
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -2359,5 +2371,6 @@ var ilyaunchat = function () {
         isNumber,
         isFunction,
         isBoolean,
+        castArray,
     }
 }()
