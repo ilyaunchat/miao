@@ -2255,6 +2255,16 @@ var ilyaunchat = function () {
         }
     }
 
+    function isRegExp(value) {
+        if (!(value) && typeof value === "object") {
+            return false
+        } else if (typeof value === "undefined") {
+            return false
+        } else {
+            return (Object.getPrototypeOf(value) === RegExp.prototype)
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -2372,5 +2382,6 @@ var ilyaunchat = function () {
         isFunction,
         isBoolean,
         castArray,
+        isRegExp,
     }
 }()
