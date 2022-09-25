@@ -2293,6 +2293,16 @@ var ilyaunchat = function () {
         }
     }
 
+    function isSet(value) {
+        if (!(value) && typeof value === "object") {
+            return false
+        } else if (typeof value === "undefined") {
+            return false
+        } else {
+            return (Object.getPrototypeOf(value) === Set.prototype)
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -2415,5 +2425,6 @@ var ilyaunchat = function () {
         isNull,
         isFinite,
         isSymbol,
+        isSet,
     }
 }()
