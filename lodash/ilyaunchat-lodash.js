@@ -2279,6 +2279,10 @@ var ilyaunchat = function () {
         return (!(value) && typeof value === "object")
     }
 
+    function isFinite(value) {
+        return Number.isFinite(value)
+    }
+
     return {
         chunk,
         compact,
@@ -2399,5 +2403,6 @@ var ilyaunchat = function () {
         isRegExp,
         isDate,
         isNull,
+        isFinite,
     }
 }()
