@@ -2283,6 +2283,16 @@ var ilyaunchat = function () {
         return Number.isFinite(value)
     }
 
+    function isSymbol(value) {
+        if (!(value) && typeof value === "object") {
+            return false
+        } else if (typeof value === "undefined") {
+            return false
+        } else {
+            return (Object.getPrototypeOf(value) === Symbol.prototype)
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -2404,5 +2414,6 @@ var ilyaunchat = function () {
         isDate,
         isNull,
         isFinite,
+        isSymbol,
     }
 }()
