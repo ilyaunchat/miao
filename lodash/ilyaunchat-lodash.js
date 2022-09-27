@@ -2508,6 +2508,18 @@ var ilyaunchat = function () {
         }
     }
 
+    function isPlainObject(value) {
+        if (!(value) && typeof value === "object") {
+            return false
+        } else if (typeof value === "undefined") {
+            return false
+        } else if ((Object.getPrototypeOf(value) === null) || (Object.getPrototypeOf(value) === Object.prototype)) {
+            return true
+        } else {
+            return false
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -2648,5 +2660,6 @@ var ilyaunchat = function () {
         isSafeInteger,
         isString,
         isObjectLike,
+        isPlainObject,
     }
 }()
