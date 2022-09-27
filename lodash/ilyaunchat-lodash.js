@@ -2403,6 +2403,7 @@ var ilyaunchat = function () {
                 iteratee(collection[key], key, collection)
             }
         }
+        return collection
     }
 
     function forEachRight(collection, iteratee = identity) {
