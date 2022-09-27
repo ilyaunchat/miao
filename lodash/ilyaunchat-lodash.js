@@ -2501,9 +2501,10 @@ var ilyaunchat = function () {
     function isObjectLike(value) {
         if (!(value) && typeof value === "object") {
             return false
-        }
-        if (typeof value === "object") {
+        } else if (typeof value === "object") {
             return true
+        } else {
+            return false
         }
     }
 
