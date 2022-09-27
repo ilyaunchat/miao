@@ -2498,6 +2498,15 @@ var ilyaunchat = function () {
         }
     }
 
+    function isObjectLike(value) {
+        if (!(value) && typeof value === "object") {
+            return false
+        }
+        if (typeof value === "object") {
+            return true
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -2637,5 +2646,6 @@ var ilyaunchat = function () {
         isObject,
         isSafeInteger,
         isString,
+        isObjectLike,
     }
 }()
