@@ -2383,6 +2383,16 @@ var ilyaunchat = function () {
         return array
     }
 
+    function isNaN(value) {
+        if (typeof value === "number") {
+            return (value !== value)
+        } else if ((typeof value === "object") && (value)) {
+            return ((Object.getPrototypeOf(value) === Number.prototype) && (value.toString() === "NaN"))
+        } else {
+            return false
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -2514,5 +2524,6 @@ var ilyaunchat = function () {
         noop,
         isError,
         sortBy,
+        isNaN,
     }
 }()
