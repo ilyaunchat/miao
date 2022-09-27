@@ -2419,6 +2419,26 @@ var ilyaunchat = function () {
         return collection
     }
 
+    function reduce(collection, iteratee = identity, accumulator) {
+        if (Array.isArray(collection)) {
+            if (accumulator === undefined) {
+                accumulator = collection[0]
+                collection.slice(1).forEach((value, index, collection) => {
+                    accumulator = iteratee(accumulator, value, index, collection)
+                })
+            } else {
+                collection.forEach((value, index, collection) => {
+                    accumulator = iteratee(accumulator, value, index, collection)
+                })
+            }
+        } else if (typeof collection === "object") {
+            (Object.entries(collection)).forEach((value, key, collection) => {
+                accumulator = iteratee(accumulator, value[1], value[0], collection)
+            })
+        }
+        return accumulator
+    }
+
     return {
         chunk,
         compact,
@@ -2553,5 +2573,6 @@ var ilyaunchat = function () {
         isNaN,
         forEach,
         forEachRight,
+        reduce,
     }
 }()
