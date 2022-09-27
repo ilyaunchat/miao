@@ -2343,6 +2343,46 @@ var ilyaunchat = function () {
         }
     }
 
+    function sortBy(collection, iteratees = identity) {
+        let array = cloneDeep(collection)
+        if (typeof iteratees === "function") {
+            array.sort(function (a, b) {
+                if (iteratees(a) < iteratees(b)) {
+                    return -1
+                } else if (iteratees(a) > iteratees(b)) {
+                    return 1
+                } else {
+                    return 0
+                }
+            })
+        } else if (Array.isArray(iteratees)) {
+            iteratees.forEach(element => {
+                if (typeof element === "function") {
+                    array.sort(function (a, b) {
+                        if (element(a) < element(b)) {
+                            return -1
+                        } else if (element(a) > element(b)) {
+                            return 1
+                        } else {
+                            return 0
+                        }
+                    })
+                } else if (typeof element === "string") {
+                    array.sort(function (a, b) {
+                        if (property(element)(a) < property(element)(b)) {
+                            return -1
+                        } else if (property(element)(a) > property(element)(b)) {
+                            return 1
+                        } else {
+                            return 0
+                        }
+                    })
+                }
+            })
+        }
+        return array
+    }
+
     return {
         chunk,
         compact,
@@ -2473,5 +2513,6 @@ var ilyaunchat = function () {
         isArray,
         noop,
         isError,
+        sortBy,
     }
 }()
