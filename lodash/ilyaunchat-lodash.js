@@ -2416,6 +2416,7 @@ var ilyaunchat = function () {
                 iteratee(collection[key], key, collection)
             }
         }
+        return collection
     }
 
     return {
