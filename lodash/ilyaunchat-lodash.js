@@ -2298,6 +2298,17 @@ var ilyaunchat = function () {
         return result
     }
 
+    function conforms(source) {
+        return function (element, index, ary) {
+            for (let key of Object.keys(source)) {
+                if (!(source[key](element[key]))) {
+                    return false
+                }
+            }
+            return true
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -2423,5 +2434,6 @@ var ilyaunchat = function () {
         isSet,
         isMap,
         conformsTo,
+        conforms,
     }
 }()
