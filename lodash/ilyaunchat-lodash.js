@@ -2329,6 +2329,10 @@ var ilyaunchat = function () {
         }
     }
 
+    function noop() {
+        return undefined
+    }
+
     return {
         chunk,
         compact,
@@ -2457,5 +2461,6 @@ var ilyaunchat = function () {
         conforms,
         isElement,
         isArray,
+        noop,
     }
 }()
