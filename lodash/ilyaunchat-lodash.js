@@ -2309,6 +2309,16 @@ var ilyaunchat = function () {
         }
     }
 
+    function isElement(value) {
+        if (!(value) && typeof value === "object") {
+            return false
+        } else if (typeof value === "undefined") {
+            return false
+        } else {
+            return (Object.getPrototypeOf(value) === HTMLBodyElement.prototype)
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -2435,5 +2445,6 @@ var ilyaunchat = function () {
         isMap,
         conformsTo,
         conforms,
+        isElement,
     }
 }()
