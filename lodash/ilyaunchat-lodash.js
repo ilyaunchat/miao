@@ -2459,6 +2459,31 @@ var ilyaunchat = function () {
         return accumulator
     }
 
+    function isObject(value) {
+        if (typeof value === "undefined") {
+            return false
+        }
+        if (!(value) && typeof value === "object") {
+            return false
+        }
+        if (Object.getPrototypeOf(value) === Number.prototype) {
+            return false
+        }
+        if (Object.getPrototypeOf(value) === String.prototype) {
+            return false
+        }
+        if (Object.getPrototypeOf(value) === Boolean.prototype) {
+            return false
+        }
+        if (Object.getPrototypeOf(value) === Symbol.prototype) {
+            return false
+        }
+        if (Object.getPrototypeOf(value) === BigInt.prototype) {
+            return false
+        }
+        return true
+    }
+
     return {
         chunk,
         compact,
@@ -2595,5 +2620,6 @@ var ilyaunchat = function () {
         forEachRight,
         reduce,
         reduceRight,
+        isObject,
     }
 }()
