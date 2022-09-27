@@ -2333,6 +2333,16 @@ var ilyaunchat = function () {
         return undefined
     }
 
+    function isError(value) {
+        if (!(value) && typeof value === "object") {
+            return false
+        } else if (typeof value === "undefined") {
+            return false
+        } else {
+            return (Object.getPrototypeOf(value) === Error.prototype)
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -2462,5 +2472,6 @@ var ilyaunchat = function () {
         isElement,
         isArray,
         noop,
+        isError,
     }
 }()
