@@ -2319,6 +2319,16 @@ var ilyaunchat = function () {
         }
     }
 
+    function isArray(value) {
+        if (!(value) && typeof value === "object") {
+            return false
+        } else if (typeof value === "undefined") {
+            return false
+        } else {
+            return (Object.getPrototypeOf(value) === Array.prototype)
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -2446,5 +2456,6 @@ var ilyaunchat = function () {
         conformsTo,
         conforms,
         isElement,
+        isArray,
     }
 }()
