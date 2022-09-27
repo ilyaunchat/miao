@@ -2484,6 +2484,10 @@ var ilyaunchat = function () {
         return true
     }
 
+    function isSafeInteger(value) {
+        return Number.isSafeInteger(value)
+    }
+
     return {
         chunk,
         compact,
@@ -2621,5 +2625,6 @@ var ilyaunchat = function () {
         reduce,
         reduceRight,
         isObject,
+        isSafeInteger,
     }
 }()
