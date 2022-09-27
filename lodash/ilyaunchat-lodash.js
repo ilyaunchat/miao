@@ -2405,6 +2405,18 @@ var ilyaunchat = function () {
         }
     }
 
+    function forEachRight(collection, iteratee = identity) {
+        if (Array.isArray(collection)) {
+            for (let i = collection.length - 1; i >= 0; i--) {
+                iteratee(collection[i], i, collection)
+            }
+        } else if (typeof collection === "object") {
+            for (let key of Object.keys(collection).reverse()) {
+                iteratee(collection[key], key, collection)
+            }
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -2538,5 +2550,6 @@ var ilyaunchat = function () {
         sortBy,
         isNaN,
         forEach,
+        forEachRight,
     }
 }()
