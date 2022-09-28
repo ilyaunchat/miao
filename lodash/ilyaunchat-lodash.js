@@ -2520,6 +2520,18 @@ var ilyaunchat = function () {
         }
     }
 
+    function ceil(number, precision = 0) {
+        let num = number
+        if (precision === 0) {
+            return Math.ceil(num)
+        } else {
+            num = num * (10 ** precision)
+            num = Math.ceil(num)
+            num = num / (10 ** precision)
+            return num
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -2661,5 +2673,6 @@ var ilyaunchat = function () {
         isString,
         isObjectLike,
         isPlainObject,
+        ceil,
     }
 }()
