@@ -2620,6 +2620,21 @@ var ilyaunchat = function () {
         return object
     }
 
+    function forInRight(object, iteratee = identity) {
+        let obj = object
+        function traverse(hashTable) {
+            if (!hashTable) {
+                return
+            }
+            traverse(Object.getPrototypeOf(hashTable))
+            for (let key of Object.keys(hashTable).reverse()) {
+                iteratee(hashTable[key], key, hashTable)
+            }
+        }
+        traverse(obj)
+        return object
+    }
+
     return {
         chunk,
         compact,
@@ -2769,5 +2784,6 @@ var ilyaunchat = function () {
         forIn,
         forOwn,
         forOwnRight,
+        forInRight,
     }
 }()
