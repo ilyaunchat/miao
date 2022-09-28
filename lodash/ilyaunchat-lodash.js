@@ -2532,6 +2532,16 @@ var ilyaunchat = function () {
         }
     }
 
+    function toArray(value) {
+        if (!(value) && typeof value === "object") {
+            return []
+        } else if (typeof value === "undefined") {
+            return []
+        } else {
+            return Object.values(value)
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -2674,5 +2684,6 @@ var ilyaunchat = function () {
         isObjectLike,
         isPlainObject,
         ceil,
+        toArray,
     }
 }()
