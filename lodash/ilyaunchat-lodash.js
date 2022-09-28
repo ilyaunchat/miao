@@ -2602,7 +2602,7 @@ var ilyaunchat = function () {
 
     function forOwn(object, iteratee = identity) {
         let obj = object
-        if (obj && (Object.getPrototypeOf(obj) !== null)) {
+        if (obj) {
             for (let key of Object.keys(obj)) {
                 iteratee(obj[key], key, obj)
             }
