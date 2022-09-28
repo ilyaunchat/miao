@@ -2651,6 +2651,26 @@ var ilyaunchat = function () {
         }
     }
 
+    function functionsIn(object) {
+        if (!(object) && typeof value === "object") {
+            return []
+        } else if (typeof object === "undefined") {
+            return []
+        } else {
+            let obj = object
+            let result = []
+            while (obj && (Object.getPrototypeOf(obj) !== null)) {
+                for (let key of Object.keys(obj)) {
+                    if (typeof obj[key] === "function") {
+                        result.push(key)
+                    }
+                }
+                obj = Object.getPrototypeOf(obj)
+            }
+            return result
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -2802,5 +2822,6 @@ var ilyaunchat = function () {
         forOwnRight,
         forInRight,
         functions,
+        functionsIn,
     }
 }()
