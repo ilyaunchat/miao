@@ -2597,6 +2597,7 @@ var ilyaunchat = function () {
             }
             obj = Object.getPrototypeOf(obj)
         }
+        return object
     }
 
     return {
