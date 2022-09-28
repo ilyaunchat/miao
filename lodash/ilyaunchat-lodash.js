@@ -2569,6 +2569,26 @@ var ilyaunchat = function () {
         return sum / length
     }
 
+    function minBy(array, iteratee = identity) {
+        if (typeof iteratee === "function") {
+            let minIndex = 0
+            array.forEach((it, idx, ary) => {
+                if (iteratee(it) < iteratee(ary[minIndex])) {
+                    minIndex = idx
+                }
+            })
+            return array[minIndex]
+        } else if (typeof iteratee === "string") {
+            let minIndex = 0
+            array.forEach((it, idx, ary) => {
+                if (property(iteratee)(it) < property(iteratee)(ary[minIndex])) {
+                    minIndex = idx
+                }
+            })
+            return array[minIndex]
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -2714,5 +2734,6 @@ var ilyaunchat = function () {
         toArray,
         floor,
         meanBy,
+        minBy,
     }
 }()
