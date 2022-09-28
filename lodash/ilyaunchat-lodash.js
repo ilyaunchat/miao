@@ -2554,6 +2554,21 @@ var ilyaunchat = function () {
         }
     }
 
+    function meanBy(array, iteratee = identity) {
+        let sum = 0
+        let length = 0
+        array.forEach((element) => {
+            if (typeof iteratee === "function") {
+                sum += iteratee(element)
+                length++
+            } else if (typeof iteratee === "string") {
+                sum += property(iteratee)(element)
+                length++
+            }
+        })
+        return sum / length
+    }
+
     return {
         chunk,
         compact,
@@ -2698,5 +2713,6 @@ var ilyaunchat = function () {
         ceil,
         toArray,
         floor,
+        meanBy,
     }
 }()
