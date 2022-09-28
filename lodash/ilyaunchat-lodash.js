@@ -2610,6 +2610,16 @@ var ilyaunchat = function () {
         return object
     }
 
+    function forOwnRight(object, iteratee = identity) {
+        let obj = object
+        if (obj) {
+            for (let key of Object.keys(obj).reverse()) {
+                iteratee(obj[key], key, obj)
+            }
+        }
+        return object
+    }
+
     return {
         chunk,
         compact,
@@ -2758,5 +2768,6 @@ var ilyaunchat = function () {
         minBy,
         forIn,
         forOwn,
+        forOwnRight,
     }
 }()
