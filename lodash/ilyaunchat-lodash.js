@@ -2589,6 +2589,16 @@ var ilyaunchat = function () {
         }
     }
 
+    function forIn(object, iteratee = identity) {
+        let obj = object
+        while (obj && (Object.getPrototypeOf(obj) !== null)) {
+            for (let key of Object.keys(obj)) {
+                iteratee(obj[key], key, obj)
+            }
+            obj = Object.getPrototypeOf(obj)
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -2735,5 +2745,6 @@ var ilyaunchat = function () {
         floor,
         meanBy,
         minBy,
+        forIn,
     }
 }()
