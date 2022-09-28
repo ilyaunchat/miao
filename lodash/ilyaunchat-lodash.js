@@ -2600,6 +2600,16 @@ var ilyaunchat = function () {
         return object
     }
 
+    function forOwn(object, iteratee = identity) {
+        let obj = object
+        if (obj && (Object.getPrototypeOf(obj) !== null)) {
+            for (let key of Object.keys(obj)) {
+                iteratee(obj[key], key, obj)
+            }
+        }
+        return object
+    }
+
     return {
         chunk,
         compact,
@@ -2747,5 +2757,6 @@ var ilyaunchat = function () {
         meanBy,
         minBy,
         forIn,
+        forOwn,
     }
 }()
