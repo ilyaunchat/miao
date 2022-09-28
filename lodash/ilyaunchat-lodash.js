@@ -2542,6 +2542,18 @@ var ilyaunchat = function () {
         }
     }
 
+    function floor(number, precision = 0) {
+        let num = number
+        if (precision === 0) {
+            return Math.floor(num)
+        } else {
+            num = num * (10 ** precision)
+            num = Math.floor(num)
+            num = num / (10 ** precision)
+            return num
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -2685,5 +2697,6 @@ var ilyaunchat = function () {
         isPlainObject,
         ceil,
         toArray,
+        floor,
     }
 }()
