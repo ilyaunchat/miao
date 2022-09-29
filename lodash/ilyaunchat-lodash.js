@@ -2819,6 +2819,49 @@ var ilyaunchat = function () {
         return resultKey
     }
 
+    function set(object, path, value) {
+        let target = object
+        if (Array.isArray(path)) {
+            for (let i = 0; i < path.length; i++) {
+                if (i === path.length - 1) {
+                    target[path[i]] = value
+                } else if (i < path.length - 1) {
+                    if (target[path[i]] !== undefined) {
+                        target = target[path[i]]
+                    } else if (target[path[i]] === undefined) {
+                        if (Number.isNaN(Number(path[i + 1]))) {
+                            target[path[i]] = {}
+                            target = target[path[i]]
+                        } else {
+                            target[path[i]] = []
+                            target = target[path[i]]
+                        }
+                    }
+                }
+            }
+        } else if (typeof path === "string") {
+            let pathAry = toPath(path)
+            for (let i = 0; i < pathAry.length; i++) {
+                if (i === pathAry.length - 1) {
+                    target[pathAry[i]] = value
+                } else if (i < pathAry.length - 1) {
+                    if (target[pathAry[i]] !== undefined) {
+                        target = target[pathAry[i]]
+                    } else if (target[pathAry[i]] === undefined) {
+                        if (Number.isNaN(Number(pathAry[i + 1]))) {
+                            target[pathAry[i]] = {}
+                            target = target[pathAry[i]]
+                        } else {
+                            target[pathAry[i]] = []
+                            target = target[pathAry[i]]
+                        }
+                    }
+                }
+            }
+        }
+        return object
+    }
+
     return {
         chunk,
         compact,
@@ -2977,5 +3020,6 @@ var ilyaunchat = function () {
         defaultsDeep,
         findKey,
         findLastKey,
+        set,
     }
 }()
