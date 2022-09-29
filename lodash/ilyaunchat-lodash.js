@@ -2695,6 +2695,40 @@ var ilyaunchat = function () {
         }
     }
 
+    function orderBy(collection, iteratees = identity, orders) {
+        let array = cloneDeep(collection)
+        if (Array.isArray(iteratees)) {
+            let reversedIteratees = cloneDeep(iteratees).reverse()
+            let reversedOrders = cloneDeep(orders).reverse()
+            reversedIteratees.forEach((element, index) => {
+                if (typeof element === "string") {
+                    if (reversedOrders[index] === "desc") {
+                        array.sort(function (a, b) {
+                            if (property(element)(a) < property(element)(b)) {
+                                return 1
+                            } else if (property(element)(a) > property(element)(b)) {
+                                return -1
+                            } else {
+                                return 0
+                            }
+                        })
+                    } else if (reversedOrders[index] === "asc") {
+                        array.sort(function (a, b) {
+                            if (property(element)(a) < property(element)(b)) {
+                                return -1
+                            } else if (property(element)(a) > property(element)(b)) {
+                                return 1
+                            } else {
+                                return 0
+                            }
+                        })
+                    }
+                }
+            })
+        }
+        return array
+    }
+
     return {
         chunk,
         compact,
@@ -2848,5 +2882,6 @@ var ilyaunchat = function () {
         functions,
         functionsIn,
         get,
+        orderBy,
     }
 }()
