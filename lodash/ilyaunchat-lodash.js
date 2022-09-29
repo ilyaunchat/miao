@@ -2862,6 +2862,46 @@ var ilyaunchat = function () {
         return object
     }
 
+    function result(object, path, defaultValue) {
+        let target = object
+        if (Array.isArray(path)) {
+            for (let i = 0; i < path.length; i++) {
+                if (target[path[i]] === undefined) {
+                    if (typeof defaultValue === "function") {
+                        return defaultValue.call(target)
+                    } else {
+                        return defaultValue
+                    }
+                } else {
+                    if (typeof target[path[i]] === "function") {
+                        target = target[path[i]].call(target)
+                    } else {
+                        target = target[path[i]]
+                    }
+                }
+            }
+            return target
+        } else if (typeof path === "string") {
+            let pathAry = toPath(path)
+            for (let i = 0; i < pathAry.length; i++) {
+                if (target[pathAry[i]] === undefined) {
+                    if (typeof defaultValue === "function") {
+                        return defaultValue.call(target)
+                    } else {
+                        return defaultValue
+                    }
+                } else {
+                    if (typeof target[pathAry[i]] === "function") {
+                        target = target[pathAry[i]].call(target)
+                    } else {
+                        target = target[pathAry[i]]
+                    }
+                }
+            }
+            return target
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -3021,5 +3061,6 @@ var ilyaunchat = function () {
         findKey,
         findLastKey,
         set,
+        result,
     }
 }()
