@@ -2729,6 +2729,22 @@ var ilyaunchat = function () {
         return array
     }
 
+    function defaults(object, ...sources) {
+        let destination = object
+        sources.forEach((element) => {
+            let obj = element
+            while (obj && typeof obj === "object") {
+                Object.keys(obj).forEach((key) => {
+                    if (!(destination.hasOwnProperty(key))) {
+                        destination[key] = obj[key]
+                    }
+                })
+                obj = Object.getPrototypeOf(obj)
+            }
+        })
+        return destination
+    }
+
     return {
         chunk,
         compact,
@@ -2883,5 +2899,6 @@ var ilyaunchat = function () {
         functionsIn,
         get,
         orderBy,
+        defaults,
     }
 }()
