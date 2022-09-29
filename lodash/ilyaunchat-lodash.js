@@ -2763,6 +2763,34 @@ var ilyaunchat = function () {
         return destination
     }
 
+    function findKey(object, predicate = identity) {
+        let resultKey = undefined
+        for (let key of Object.keys(object)) {
+            if (typeof predicate === "function") {
+                if (predicate(object[key])) {
+                    resultKey = key
+                    break
+                }
+            } else if (Array.isArray(predicate)) {
+                if (matchesProperty(predicate[0], predicate[1])(object[key])) {
+                    resultKey = key
+                    break
+                }
+            } else if (Object.prototype.toString.call(predicate) === "[object Object]") {
+                if (matches(predicate)(object[key])) {
+                    resultKey = key
+                    break
+                }
+            } else if (typeof predicate === "string") {
+                if (property(predicate)(object[key])) {
+                    resultKey = key
+                    break
+                }
+            }
+        }
+        return resultKey
+    }
+
     return {
         chunk,
         compact,
@@ -2919,5 +2947,6 @@ var ilyaunchat = function () {
         orderBy,
         defaults,
         defaultsDeep,
+        findKey,
     }
 }()
