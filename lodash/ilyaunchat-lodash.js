@@ -2745,6 +2745,24 @@ var ilyaunchat = function () {
         return destination
     }
 
+    function defaultsDeep(object, ...sources) {
+        let destination = object
+        sources.forEach((element) => {
+            let obj = element
+            while (obj && typeof obj === "object") {
+                Object.keys(obj).forEach((key) => {
+                    if (obj[key] && typeof (obj[key]) === "object") {
+                        defaultsDeep(destination[key], obj[key])
+                    } else if (!(Object.prototype.hasOwnProperty.call(destination, key))) {
+                        destination[key] = obj[key]
+                    }
+                })
+                obj = Object.getPrototypeOf(obj)
+            }
+        })
+        return destination
+    }
+
     return {
         chunk,
         compact,
@@ -2900,5 +2918,6 @@ var ilyaunchat = function () {
         get,
         orderBy,
         defaults,
+        defaultsDeep,
     }
 }()
