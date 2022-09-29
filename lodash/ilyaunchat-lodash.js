@@ -2735,7 +2735,7 @@ var ilyaunchat = function () {
             let obj = element
             while (obj && typeof obj === "object") {
                 Object.keys(obj).forEach((key) => {
-                    if (!(destination.hasOwnProperty(key))) {
+                    if (!(Object.prototype.hasOwnProperty.call(destination, key))) {
                         destination[key] = obj[key]
                     }
                 })
