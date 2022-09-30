@@ -2902,6 +2902,18 @@ var ilyaunchat = function () {
         }
     }
 
+    function iteratee(func = identity) {
+        if (typeof func === "function") {
+            return func
+        } else if (Array.isArray(func)) {
+            return matchesProperty(func[0], func[1])
+        } else if (Object.prototype.toString.call(func) === "[object Object]") {
+            return matches(func)
+        } else if (typeof func === "string") {
+            return property(func)
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -3062,5 +3074,6 @@ var ilyaunchat = function () {
         findLastKey,
         set,
         result,
+        iteratee,
     }
 }()
