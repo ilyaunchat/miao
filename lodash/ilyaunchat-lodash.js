@@ -2888,6 +2888,20 @@ var ilyaunchat = function () {
         }
     }
 
+    function isEmpty(value) {
+        if (typeof value !== "object") {
+            return true
+        } else if (Object.prototype.toString.call(value) === "[object Null]") {
+            return true
+        } else if (typeof value === "object") {
+            if (Object.keys(value).length !== 0) {
+                return false
+            } else {
+                return true
+            }
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -3049,5 +3063,6 @@ var ilyaunchat = function () {
         set,
         result,
         iteratee,
+        isEmpty,
     }
 }()
