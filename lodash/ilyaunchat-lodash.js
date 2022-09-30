@@ -2947,6 +2947,15 @@ var ilyaunchat = function () {
         }
     }
 
+    function isMatch(object, source) {
+        for (let key of Object.keys(source)) {
+            if (!(isEqual(object[key], source[key]))) {
+                return false
+            }
+        }
+        return true
+    }
+
     return {
         chunk,
         compact,
@@ -3112,5 +3121,6 @@ var ilyaunchat = function () {
         isEqualWith,
         isInteger,
         isLength,
+        isMatch,
     }
 }()
