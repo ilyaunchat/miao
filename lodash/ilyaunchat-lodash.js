@@ -2931,6 +2931,22 @@ var ilyaunchat = function () {
         return Number.isInteger(value)
     }
 
+    function isLength(value) {
+        if (typeof value !== "number") {
+            return false
+        } else {
+            if (!Number.isInteger(value)) {
+                return false
+            } else {
+                if (value >= 0 && value <= (2 ** 53 - 1)) {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -3095,5 +3111,6 @@ var ilyaunchat = function () {
         isEmpty,
         isEqualWith,
         isInteger,
+        isLength,
     }
 }()
