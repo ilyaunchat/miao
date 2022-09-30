@@ -2956,6 +2956,18 @@ var ilyaunchat = function () {
         return true
     }
 
+    function shuffle(collection) {
+        let copy = collection.slice()
+        let n = copy.length
+        for (var i = 0; i < n; i++) {
+            let targetIndex = Math.floor((Math.random() * (n - i)) + i)
+            let temp = copy[targetIndex]
+            copy[targetIndex] = copy[i]
+            copy[i] = temp
+        }
+        return copy
+    }
+
     return {
         chunk,
         compact,
@@ -3122,5 +3134,6 @@ var ilyaunchat = function () {
         isInteger,
         isLength,
         isMatch,
+        shuffle,
     }
 }()
