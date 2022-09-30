@@ -2968,6 +2968,19 @@ var ilyaunchat = function () {
         return copy
     }
 
+    function sampleSize(collection, n = 1) {
+        if (Array.isArray(collection)) {
+            let shuffledArray = shuffle(collection)
+            let resultAry = []
+            for (let i = 0; i < n; i++) {
+                if (i < shuffledArray.length) {
+                    resultAry.push(shuffledArray[i])
+                }
+            }
+            return resultAry
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -3135,5 +3148,6 @@ var ilyaunchat = function () {
         isLength,
         isMatch,
         shuffle,
+        sampleSize,
     }
 }()
