@@ -2993,6 +2993,14 @@ var ilyaunchat = function () {
         }
     }
 
+    function isNil(value) {
+        if (Object.prototype.toString.call(value) === "[object Null]" || Object.prototype.toString.call(value) === "[object Undefined]") {
+            return true
+        } else {
+            return false
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -3162,5 +3170,6 @@ var ilyaunchat = function () {
         shuffle,
         sampleSize,
         round,
+        isNil,
     }
 }()
