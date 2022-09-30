@@ -2902,6 +2902,31 @@ var ilyaunchat = function () {
         }
     }
 
+    function isEqualWith(value, other, customizer) {
+        if (typeof customizer === "undefined") {
+            return isEqual(value, other)
+        } else if (typeof customizer === "function") {
+            if (Array.isArray(value) === true && Array.isArray(other) === true) {
+                if (value.length !== other.length) {
+                    return false
+                } else {
+                    for (let i = 0; i < value.length; i++) {
+                        if (customizer(value[i], other[i]) === undefined) {
+                            if (!isEqual(value[i], other[i])) {
+                                return false
+                            } else {
+                                continue
+                            }
+                        } else if (customizer(value[i], other[i]) === true) {
+                            continue
+                        }
+                    }
+                    return true
+                }
+            }
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -3064,5 +3089,6 @@ var ilyaunchat = function () {
         result,
         iteratee,
         isEmpty,
+        isEqualWith,
     }
 }()
