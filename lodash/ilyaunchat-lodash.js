@@ -3001,6 +3001,18 @@ var ilyaunchat = function () {
         }
     }
 
+    function isArrayLike(value) {
+        if (typeof value === "function") {
+            return false
+        } else {
+            if (value.length === undefined) {
+                return false
+            } else {
+                return ((0 <= value.length) && (value.length <= Number.MAX_SAFE_INTEGER))
+            }
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -3171,5 +3183,6 @@ var ilyaunchat = function () {
         sampleSize,
         round,
         isNil,
+        isArrayLike,
     }
 }()
