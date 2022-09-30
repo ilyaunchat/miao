@@ -2927,6 +2927,10 @@ var ilyaunchat = function () {
         }
     }
 
+    function isInteger(value) {
+        return Number.isInteger(value)
+    }
+
     return {
         chunk,
         compact,
@@ -3090,5 +3094,6 @@ var ilyaunchat = function () {
         iteratee,
         isEmpty,
         isEqualWith,
+        isInteger,
     }
 }()
