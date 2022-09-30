@@ -2981,6 +2981,18 @@ var ilyaunchat = function () {
         }
     }
 
+    function round(number, precision = 0) {
+        let num = number
+        if (precision === 0) {
+            return Math.round(num)
+        } else {
+            num = num * (10 ** precision)
+            num = Math.round(num)
+            num = num / (10 ** precision)
+            return num
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -3149,5 +3161,6 @@ var ilyaunchat = function () {
         isMatch,
         shuffle,
         sampleSize,
+        round,
     }
 }()
