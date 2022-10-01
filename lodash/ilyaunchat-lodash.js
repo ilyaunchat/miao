@@ -3013,6 +3013,14 @@ var ilyaunchat = function () {
         }
     }
 
+    function isWeakMap(value) {
+        if (isNil(value)) {
+            return false
+        } else {
+            return (Object.getPrototypeOf(value) === WeakMap.prototype)
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -3184,5 +3192,6 @@ var ilyaunchat = function () {
         round,
         isNil,
         isArrayLike,
+        isWeakMap,
     }
 }()
