@@ -3021,6 +3021,14 @@ var ilyaunchat = function () {
         }
     }
 
+    function isWeakSet(value) {
+        if (isNil(value)) {
+            return false
+        } else {
+            return (Object.getPrototypeOf(value) === WeakSet.prototype)
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -3193,5 +3201,6 @@ var ilyaunchat = function () {
         isNil,
         isArrayLike,
         isWeakMap,
+        isWeakSet,
     }
 }()
