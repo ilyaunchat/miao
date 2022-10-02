@@ -3029,6 +3029,31 @@ var ilyaunchat = function () {
         }
     }
 
+    function has(object, path) {
+        if (Array.isArray(path)) {
+            let p = object
+            for (let i = 0; i < path.length; i++) {
+                if (!(Object.prototype.hasOwnProperty.call(p, path[i]))) {
+                    return false
+                } else {
+                    p = p[path[i]]
+                }
+            }
+            return true
+        } else if (typeof path === "string") {
+            let pathAry = toPath(path)
+            let p = object
+            for (let i = 0; i < pathAry.length; i++) {
+                if (!(Object.prototype.hasOwnProperty.call(p, pathAry[i]))) {
+                    return false
+                } else {
+                    p = p[path[i]]
+                }
+            }
+            return true
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -3202,5 +3227,6 @@ var ilyaunchat = function () {
         isArrayLike,
         isWeakMap,
         isWeakSet,
+        has,
     }
 }()
