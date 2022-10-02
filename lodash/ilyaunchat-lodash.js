@@ -3062,6 +3062,33 @@ var ilyaunchat = function () {
         return resultObj
     }
 
+    function invoke(object, path, ...args) {
+        if (Array.isArray(path)) {
+            let p = object
+            for (let i = 0; i < path.length; i++) {
+                if (pathAry[i] in p) {
+                    if (i < path.length - 1) {
+                        p = p[path[i]]
+                    } else if (i === path.length - 1) {
+                        return p[path[i]](...args)
+                    }
+                }
+            }
+        } else if (typeof path === "string") {
+            let pathAry = toPath(path)
+            let p = object
+            for (let i = 0; i < pathAry.length; i++) {
+                if (pathAry[i] in p) {
+                    if (i < pathAry.length - 1) {
+                        p = p[pathAry[i]]
+                    } else if (i === pathAry.length - 1) {
+                        return p[pathAry[i]](...args)
+                    }
+                }
+            }
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -3237,5 +3264,6 @@ var ilyaunchat = function () {
         isWeakSet,
         has,
         invert,
+        invoke,
     }
 }()
