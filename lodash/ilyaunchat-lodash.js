@@ -686,7 +686,6 @@ var ilyaunchat = function () {
                     return false
                 }
             }
-
             return true
         }
     }
