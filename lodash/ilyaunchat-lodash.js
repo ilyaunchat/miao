@@ -3054,6 +3054,14 @@ var ilyaunchat = function () {
         }
     }
 
+    function invert(object) {
+        let resultObj = {}
+        for (let [key, value] of Object.entries(object)) {
+            resultObj[String(value)] = key
+        }
+        return resultObj
+    }
+
     return {
         chunk,
         compact,
@@ -3228,5 +3236,6 @@ var ilyaunchat = function () {
         isWeakMap,
         isWeakSet,
         has,
+        invert,
     }
 }()
