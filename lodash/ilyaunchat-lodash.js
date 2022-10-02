@@ -3110,6 +3110,15 @@ var ilyaunchat = function () {
         return resultObj
     }
 
+    function mapKeys(object, predicate = identity) {
+        predicate = iteratee(predicate)
+        let resultObj = {}
+        Object.keys(object).forEach((key) => {
+            resultObj[predicate(object[key], key, object)] = object[key]
+        })
+        return resultObj
+    }
+
     return {
         chunk,
         compact,
@@ -3289,5 +3298,6 @@ var ilyaunchat = function () {
         keys,
         keysIn,
         mapValues,
+        mapKeys,
     }
 }()
