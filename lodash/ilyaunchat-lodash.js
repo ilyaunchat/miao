@@ -3093,6 +3093,14 @@ var ilyaunchat = function () {
         return Object.keys(object)
     }
 
+    function keysIn(object) {
+        let resultAry = []
+        for (let key in object) {
+            resultAry.push(key)
+        }
+        return resultAry
+    }
+
     return {
         chunk,
         compact,
@@ -3270,5 +3278,6 @@ var ilyaunchat = function () {
         invert,
         invoke,
         keys,
+        keysIn,
     }
 }()
