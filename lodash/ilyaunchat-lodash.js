@@ -3118,6 +3118,24 @@ var ilyaunchat = function () {
         return resultObj
     }
 
+    function omit(object, paths) {
+        let resultObj = {}
+        if (typeof paths === "string") {
+            for (let key in object) {
+                if (!(key === paths)) {
+                    resultObj[key] = object[key]
+                }
+            }
+        } else if (Array.isArray(paths)) {
+            for (let key in object) {
+                if (!(paths.includes(key))) {
+                    resultObj[key] = object[key]
+                }
+            }
+        }
+        return resultObj
+    }
+
     return {
         chunk,
         compact,
@@ -3298,5 +3316,6 @@ var ilyaunchat = function () {
         keysIn,
         mapValues,
         mapKeys,
+        omit,
     }
 }()
