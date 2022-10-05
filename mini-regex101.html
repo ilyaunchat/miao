@@ -90,6 +90,9 @@
           html += text.slice(lastIndex, match.index);
           html += "<span>" + match[0] + "</span>";
           lastIndex = re.lastIndex;
+          if (match[0].length === 0) {
+            re.lastIndex++;
+          }
         }
 
         html += text.slice(lastIndex);
