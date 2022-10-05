@@ -7,11 +7,27 @@
     <title>Mini RegExp101</title>
     <style>
       .regexp101-main #regexpInput {
-        width: 300px;
+        width: 500px;
       }
       .regexp101-main #stringInput {
-        width: 300px;
+        width: 500px;
         height: 200px;
+      }
+      #regexpInput,
+      #stringInput {
+        box-sizing: border-box;
+        padding: 0.5em;
+        border: 2px solid;
+        border-radius: 0.5em;
+        margin: 0.3em;
+        font-size: 1.5em;
+        font-family: consolas;
+        outline: none;
+      }
+      label[for="regexpInput"],
+      label[for="stringInput"] {
+        font-size: 1.5em;
+        margin: 0.3em;
       }
     </style>
   </head>
