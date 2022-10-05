@@ -26,6 +26,9 @@
         font-family: consolas;
         outline: none;
       }
+      #stringInput {
+        background-color: transparent;
+      }
       label[for="regexpInput"],
       label[for="stringInput"] {
         font-size: 1.5em;
@@ -55,6 +58,16 @@
         margin-right: -1px;
         background-image: linear-gradient(red, red);
       }
+      #showoff {
+        position: relative;
+      }
+      #result {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        white-space: pre-wrap;
+      }
     </style>
   </head>
   <body>
@@ -79,41 +92,56 @@
       </div>
       <label for="regexpInput">Regular Expressions</label>
       <br />
-      <input type="text" id="regexpInput" onkeypress="run()" />
+      <input type="text" id="regexpInput" oninput="run()" />
       <br />
       <label for="stringInput">Test String</label>
       <br />
-      <textarea name="" id="stringInput" cols="30" rows="10"></textarea>
-      <pre id="result"></pre>
+      <div id="showoff">
+        <textarea
+          oninput="run()"
+          name=""
+          id="stringInput"
+          cols="30"
+          rows="10"
+        ></textarea>
+        <pre id="result"></pre>
+      </div>
     </div>
     <script>
+      run();
       function run() {
         const reStr = regexpInput.value;
         const text = stringInput.value;
-        let re;
-        try {
-          re = new RegExp(reStr, "g");
-        } catch (e) {
-          info.innerHTML = "正则表达式错误";
-          return;
-        }
-        info.innerHTML = "";
-        let html = "";
-        let match = null;
-        let lastIndex = 0;
-
-        while ((match = re.exec(text))) {
-          html += text.slice(lastIndex, match.index);
-          html += "<span>" + match[0] + "</span>";
-          lastIndex = re.lastIndex;
-          if (match[0].length === 0) {
-            re.lastIndex++;
+        if (reStr === "") {
+          result.innerHTML = text;
+        } else if (reStr !== "") {
+          let re;
+          try {
+            re = new RegExp(reStr, "g");
+          } catch (e) {
+            info.innerHTML = "正则表达式错误";
+            return;
           }
+          info.innerHTML = "";
+          let html = "";
+          let match = null;
+          let lastIndex = 0;
+
+          while ((match = re.exec(text))) {
+            html += text.slice(lastIndex, match.index);
+            html += "<span>" + match[0] + "</span>";
+            lastIndex = re.lastIndex;
+            if (match[0].length === 0) {
+              re.lastIndex++;
+            }
+          }
+
+          html += text.slice(lastIndex);
+          if (html === "<span></span>") {
+            html = "";
+          }
+          result.innerHTML = html;
         }
-
-        html += text.slice(lastIndex);
-
-        result.innerHTML = html;
       }
     </script>
   </body>
