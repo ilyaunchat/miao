@@ -31,11 +31,35 @@
         font-size: 1.5em;
         margin: 0.3em;
       }
+      .regexpOptions {
+        box-sizing: border-box;
+        font-size: 1.5em;
+        margin: 0.3em;
+      }
+      .regexpOptions input {
+        margin-left: 0;
+      }
     </style>
   </head>
   <body>
     <button type="button" onclick="run()">显示结果</button>
     <div class="regexp101-main">
+      <div class="regexpOptions">
+        <input type="checkbox" name="global" id="g" />
+        <label for="g">g</label>
+        <input type="checkbox" name="multi-line" id="m" />
+        <label for="m">m</label>
+        <input type="checkbox" name="insensitive" id="i" />
+        <label for="i">i</label>
+        <input type="checkbox" name="sticky" id="y" />
+        <label for="y">y</label>
+        <input type="checkbox" name="unicode" id="u" />
+        <label for="u">u</label>
+        <input type="checkbox" name="single-line" id="s" />
+        <label for="s">s</label>
+        <input type="checkbox" name="indices" id="d" />
+        <label for="d">d</label>
+      </div>
       <label for="regexpInput">Regular Expressions</label>
       <br />
       <input type="text" id="regexpInput" />
