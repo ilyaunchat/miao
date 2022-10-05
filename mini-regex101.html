@@ -47,6 +47,14 @@
         background-color: #9fcfff;
         font-weight: bold;
       }
+      #result span:empty {
+        display: inline-block;
+        width: 2px;
+        height: 1em;
+        margin-left: -1px;
+        margin-right: -1px;
+        background-image: linear-gradient(red, red);
+      }
     </style>
   </head>
   <body>
@@ -67,6 +75,7 @@
         <label for="s">s</label>
         <input type="checkbox" name="indices" id="d" />
         <label for="d">d</label>
+        <span id="info"></span>
       </div>
       <label for="regexpInput">Regular Expressions</label>
       <br />
@@ -81,7 +90,14 @@
       function run() {
         const reStr = regexpInput.value;
         const text = stringInput.value;
-        const re = new RegExp(reStr, "g");
+        let re;
+        try {
+          re = new RegExp(reStr, "g");
+        } catch (e) {
+          info.innerHTML = "正则表达式错误";
+          return;
+        }
+        info.innerHTML = "";
         let html = "";
         let match = null;
         let lastIndex = 0;
