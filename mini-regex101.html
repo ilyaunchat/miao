@@ -68,15 +68,22 @@
         z-index: -1;
         white-space: pre-wrap;
       }
+      #stringInput,
+      #result {
+        line-height: 1.5;
+        overflow: auto;
+        white-space: pre-wrap;
+        overscroll-behavior: none;
+      }
     </style>
   </head>
   <body>
     <button type="button" onclick="run()">显示结果</button>
     <div class="regexp101-main">
       <div class="regexpOptions">
-        <input type="checkbox" name="global" id="g" />
+        <input checked type="checkbox" name="global" id="g" />
         <label for="g">g</label>
-        <input type="checkbox" name="multi-line" id="m" />
+        <input checked type="checkbox" name="multi-line" id="m" />
         <label for="m">m</label>
         <input type="checkbox" name="insensitive" id="i" />
         <label for="i">i</label>
@@ -98,11 +105,13 @@
       <br />
       <div id="showoff">
         <textarea
+          onscroll="同步滚动条()"
           oninput="run()"
           name=""
           id="stringInput"
           cols="30"
           rows="10"
+          spellcheck="false"
         ></textarea>
         <pre id="result"></pre>
       </div>
@@ -143,6 +152,10 @@
           }
           result.innerHTML = html;
         }
+      }
+
+      function 同步滚动条() {
+        result.scrollTo(0, stringInput.scrollTop);
       }
     </script>
   </body>
