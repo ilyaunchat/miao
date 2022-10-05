@@ -5,12 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mini RegExp101</title>
+    <style>
+      .regexp101-main #regexpInput {
+        width: 300px;
+      }
+      .regexp101-main #stringInput {
+        width: 300px;
+        height: 200px;
+      }
+    </style>
   </head>
   <body>
     <div class="regexp101-main">
       <label for="regexpInput">Regular Expressions</label>
-      <input type="text" id="regexpInput" placeholder="" />
+      <br />
+      <input type="text" id="regexpInput" />
+      <br />
       <label for="stringInput">Test String</label>
+      <br />
       <textarea name="" id="stringInput" cols="30" rows="10"></textarea>
       <pre></pre>
     </div>
