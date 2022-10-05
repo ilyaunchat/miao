@@ -9,12 +9,14 @@
       .regexp101-main #regexpInput {
         width: 500px;
       }
-      .regexp101-main #stringInput {
+      .regexp101-main #stringInput,
+      .regexp101-main #result {
         width: 500px;
         height: 200px;
       }
       #regexpInput,
-      #stringInput {
+      #stringInput,
+      #result {
         box-sizing: border-box;
         padding: 0.5em;
         border: 2px solid;
@@ -32,6 +34,7 @@
     </style>
   </head>
   <body>
+    <button type="button" onclick="run()">显示结果</button>
     <div class="regexp101-main">
       <label for="regexpInput">Regular Expressions</label>
       <br />
@@ -40,7 +43,14 @@
       <label for="stringInput">Test String</label>
       <br />
       <textarea name="" id="stringInput" cols="30" rows="10"></textarea>
-      <pre></pre>
+      <pre id="result"></pre>
     </div>
+    <script>
+      function run() {
+        const reStr = regexpInput.value;
+        const text = stringInput.value;
+        const re = new RegExp(reStr, "g");
+      }
+    </script>
   </body>
 </html>
