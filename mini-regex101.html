@@ -62,18 +62,14 @@
         position: relative;
       }
       #result {
-        position: absolute;
-        top: 0;
-        left: 0;
         z-index: -1;
         white-space: pre-wrap;
       }
       #stringInput,
       #result {
         line-height: 1.5;
-        overflow: auto;
-        white-space: pre-wrap;
-        overscroll-behavior: none;
+        overflow: scroll;
+        white-space: normal;
       }
     </style>
   </head>
@@ -155,7 +151,7 @@
       }
 
       function 同步滚动条() {
-        result.scrollTo(0, stringInput.scrollTop);
+        result.scrollTo(stringInput.scrollLeft, stringInput.scrollTop);
       }
     </script>
   </body>
