@@ -3165,6 +3165,14 @@ var ilyaunchat = function () {
         }
     }
 
+    function values(object) {
+        let resultArray = []
+        for (let key of Object.keys(object)) {
+            resultArray.push(object[key])
+        }
+        return resultArray
+    }
+
     return {
         chunk,
         compact,
@@ -3348,5 +3356,6 @@ var ilyaunchat = function () {
         omit,
         padEnd,
         padStart,
+        values,
     }
 }()
