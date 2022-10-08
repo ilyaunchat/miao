@@ -3150,6 +3150,21 @@ var ilyaunchat = function () {
         }
     }
 
+    function padStart(string = "", length = 0, chars = ' ') {
+        let originalLen = string.length
+        if (originalLen >= length) {
+            return string
+        } else if (originalLen < length) {
+            let leftPadLen = length - originalLen
+            let resultStr = ""
+            for (let i = 0; i < leftPadLen; i++) {
+                resultStr += chars[(i % chars.length)]
+            }
+            resultStr += string
+            return resultStr
+        }
+    }
+
     return {
         chunk,
         compact,
@@ -3332,5 +3347,6 @@ var ilyaunchat = function () {
         mapKeys,
         omit,
         padEnd,
+        padStart,
     }
 }()
