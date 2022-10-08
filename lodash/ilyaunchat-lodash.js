@@ -3173,6 +3173,38 @@ var ilyaunchat = function () {
         return resultArray
     }
 
+    function range(...args) {
+        let resultArray = []
+        if (args.length === 1) {
+            if (args[0] >= 0) {
+                for (let i = 0; i < args[0]; i++) {
+                    resultArray.push(i)
+                }
+            } else if (args[0] < 0) {
+                for (let i = 0; i > args[0]; i--) {
+                    resultArray.push(i)
+                }
+            }
+        } else if (args.length === 2) {
+            for (let i = args[0]; i < args[1]; i++) {
+                resultArray.push(i)
+            }
+        } else if (args.length === 3) {
+            if (args[2] === 0) {
+                let i = 0
+                while (i < (args[1] - args[0])) {
+                    i++
+                    resultArray.push(args[0])
+                }
+            } else {
+                for (let i = args[0]; (args[2] > 0) ? (i < args[1]) : (i > args[1]); i = i + args[2]) {
+                    resultArray.push(i)
+                }
+            }
+        }
+        return resultArray
+    }
+
     return {
         chunk,
         compact,
@@ -3357,5 +3389,6 @@ var ilyaunchat = function () {
         padEnd,
         padStart,
         values,
+        range,
     }
 }()
