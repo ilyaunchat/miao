@@ -145,18 +145,18 @@ var ilyaunchat = function () {
     }
 
     function flattenDepth(array, depth = 1) {
-        var resultAry = []
-        var level = 1
+        let resultAry = []
+        let level = 1
 
         function innerFlat(array) {
-            for (var i = 0; i < array.length; i++) {
+            for (let i = 0; i < array.length; i++) {
                 if (!(Array.isArray(array[i]))) {
                     resultAry.push(array[i])
                 } else if ((Array.isArray(array[i])) && (level <= depth)) {
                     level++
                     innerFlat(array[i])
+                    level--
                 } else if ((Array.isArray(array[i])) && (level > depth)) {
-                    level = 1
                     resultAry.push(array[i])
                 }
             }
