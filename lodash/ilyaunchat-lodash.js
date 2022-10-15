@@ -1032,23 +1032,30 @@ var ilyaunchat = function () {
         }
     }
 
-    function cloneDeep(value) {
-        if (typeof value === "number" || typeof value === "string" || typeof value === "boolean" || typeof value === "undefined" || ((String(value) !== "[object Object]") && (typeof value === "object") && (!(Array.isArray(value)))) || typeof value === "function") {
-            var copyVal = value
-            return copyVal
-        } else if (Array.isArray(value)) {
-            var resultAry = []
-            for (var i = 0; i < value.length; i++) {
-                resultAry.push(cloneDeep(value[i]))
-            }
-            return resultAry
-        } else if (typeof value === "object") {
-            var resultObj = {}
-            for (var key of Object.keys(value)) {
-                resultObj[key] = cloneDeep(value[key])
-            }
-            return resultObj
+    function cloneDeep(obj, hash = new WeakMap()) {
+        if (!isComplexDataType(obj)) {
+            return obj
         }
+        if (obj.constructor === Date) {
+            return new Date(obj)
+        }
+        if (obj.constructor === RegExp) {
+            return new RegExp(obj)
+        }
+        if (hash.has(obj)) {
+            return hash.get(obj)
+        }
+        let allDesc = Object.getOwnPropertyDescriptors(obj)
+        let cloneObj = Object.create(Object.getPrototypeOf(obj), allDesc)
+        hash.set(obj, cloneObj)
+        for (let key of Reflect.ownKeys(obj)) {
+            if (isComplexDataType(obj[key]) && typeof obj[key] !== "function") {
+                cloneObj[key] = cloneDeep(obj[key], hash)
+            } else {
+                cloneObj[key] = obj[key]
+            }
+        }
+        return cloneObj
     }
 
     function dropWhile(array, predicate = identity) {
