@@ -204,7 +204,13 @@
           result += "s";
         }
 
-        if (checkboxD.checked) {
+        /*
+          为了满足给每个捕获分组单独上色的这一需求，
+          需要让高亮捕获分组函数可以探测到每个捕获分组的下标范围，
+          这就需要让exec方法的返回的结果数组自带indices属性，
+          于是我们需要让正则对象（不论用户是否勾选了d）都带上d标志
+        */
+        if (true || checkboxD.checked) {
           result += "d";
         }
 
