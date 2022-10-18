@@ -218,9 +218,86 @@
       }
 
       /**
-       * TODO:添加高亮捕获分组函数
+       * TODO:添加高亮捕获分组函数，并且把注释写得更完整
        *
        */
+
+      /*
+          拿测试专用的正则和字符串举例
+          测试专用正则：(((\d+)\w)(\w+))..
+          测试专用字符串：foo 112barr baz 111aaaaa baz 222 4243ddddd 333 cccc
+
+          第一次被传入的match数组就会是：
+          ["112barr b", "112barr", "112b", "112", "arr"]
+          此外还有一些非数字下标的属性：
+            index: 4
+              指的是match[0]的第一个字符位于整个字符串的下标位置
+            indices:
+              它又是一个数组，并且将会成为高亮捕获分组函数的关键「原料」
+              [[4, 13], [4, 11], [4, 8], [4, 7], [8,11]]
+              解释一下这个嵌套数组：
+                每一个数组都是指的是起始和结束下标（左闭右开）
+                除了第0号位置之外，其余所有的结果都和我们设定的捕获分组有关
+                [4, 13]指的是match到的整个部分 '112barr ba'
+                [4, 11]指的是第1个捕获分组 '112barr'
+                [4, 8]指的是第2个捕获分组 '112b'
+                [4, 7]指的是第3个捕获分组 '112'
+                [8, 11]指的是第4个捕获分组 'arr'
+
+
+          高亮捕获分组函数做了什么？
+
+            首先，创建了一个posArray数组
+              最终目的是给match[0]代表的字符串"112barr b"在合适的两侧加入合适的<span>标签
+              并且为了做到更细致的操控（像原版网站那样），我们还给 span 标签添加了一些属性
+                data-group-index，这会和捕获分组的顺序相同
+                  也就是说，'112barr'对应的span标签data-group-index是1
+                  再比如，'112b'对应的span标签data-group-index是2
+                title，这要和原版网站表现的样子尽量保持一致
+                  比如，'112barr'对应的title应该是
+                    Match 1
+                    Group 1: 112barr
+                    Pos: 4-11
+                  又比如，'112b'对应的title应该是
+                    Match 1
+                    Group 2: 112b
+                    Pos: 4-8
+                  以此类推，需要为所有捕获分组都加上这样的属性
+              标签创建好了，才能为后续的高亮动作提供方便
+              长度为1的字符串"a"有两个「两侧」位置，长度为2的字符串"ab"有三个「两侧」位置（a的左边，a的右边——也是b的左边，b的右边）
+              以此类推，所以posArray数组的长度应该是 match[0].length + 1
+
+              拿示例来说，posArray数组最后会变成这样
+              ['<span data-group-index="1" title="Match 1\nGroup 1: 112barr\nPos: 4-11"><span data-group-index="2" title="Match 1\nGroup 2: 112b\nPos: 4-8"><span data-group-index="3" title="Match 1\nGroup 3: 112\nPos: 4-7">',
+                '',
+                '',
+                '</span>',
+                '</span><span data-group-index="4" title="Match 1\nGroup 4: arr\nPos: 8-11">',
+                '',
+                '',
+                '</span></span>',
+                '',
+                '']
+       */
+      function 高亮捕获分组(match, matchIndex) {
+        let posArray = Array(match[0].length + 1).fill("");
+        let i = 1;
+        let start;
+        let end;
+
+        for ([start, end] of match.indices.slice(1)) {
+          start = start - match.index;
+          end = end - match.index;
+
+          posArray[start] =
+            posArray[start] +
+            `<span data-group-index="${i}" title="Match ${matchIndex}\nGroup ${i}: ${
+              match[i]
+            }\nPos: ${start + match.index}-${end + match.index}">`;
+          i++;
+          posArray[end] = "</span>" + posArray[end];
+        }
+      }
     </script>
   </body>
 </html>
