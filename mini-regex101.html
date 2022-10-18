@@ -104,6 +104,9 @@
       <label for="stringInput">Test String</label>
       <br />
       <div id="showoff">
+        <!--
+          TODO:把pre保留下来，然后把texarea移除掉
+         -->
         <textarea
           onscroll="同步滚动条()"
           oninput="run()"
@@ -115,6 +118,9 @@
         ></textarea>
         <pre id="result"></pre>
       </div>
+      <!--
+        TODO:把substition模块加上去，并把对应的JS功能放好
+       -->
     </div>
     <script>
       run();
@@ -202,6 +208,11 @@
 
         return result;
       }
+
+      /**
+       * TODO:添加高亮捕获分组函数
+       *
+       */
     </script>
   </body>
 </html>
