@@ -121,17 +121,21 @@
       function run() {
         const reStr = regexpInput.value;
         const text = stringInput.value;
+        const flags = getFlags();
+
         if (reStr === "") {
           result.innerHTML = text;
           info.innerHTML = "";
         } else if (reStr !== "") {
           let re;
+
           try {
-            re = new RegExp(reStr, "g");
+            re = new RegExp(reStr, flags);
           } catch (e) {
-            info.innerHTML = "正则表达式错误";
+            info.innerHTML = "正则表达式错误" + e;
             return;
           }
+
           info.innerHTML = "";
           let html = "";
           let match = null;
