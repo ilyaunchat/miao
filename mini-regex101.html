@@ -153,6 +153,47 @@
       function 同步滚动条() {
         result.scrollTo(stringInput.scrollLeft, stringInput.scrollTop);
       }
+
+      function getFlags() {
+        let result = "";
+        const checkboxG = document.querySelector("#flagGlobal");
+        const checkboxM = document.querySelector("#flagMultiline");
+        const checkboxI = document.querySelector("#flagIgnoreCase");
+        const checkboxY = document.querySelector("#flagSticky");
+        const checkboxU = document.querySelector("#flagUnicode");
+        const checkboxS = document.querySelector("#flagSingleLine");
+        const checkboxD = document.querySelector("#flagIndices");
+
+        if (checkboxG.checked) {
+          result += "g";
+        }
+
+        if (checkboxM.checked) {
+          result += "m";
+        }
+
+        if (checkboxI.checked) {
+          result += "i";
+        }
+
+        if (checkboxY.checked) {
+          result += "y";
+        }
+
+        if (checkboxU.checked) {
+          result += "u";
+        }
+
+        if (checkboxS.checked) {
+          result += "s";
+        }
+
+        if (checkboxD.checked) {
+          result += "d";
+        }
+
+        return result;
+      }
     </script>
   </body>
 </html>
