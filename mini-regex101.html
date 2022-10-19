@@ -220,7 +220,7 @@
       }
 
       /**
-       * TODO:添加高亮捕获分组函数，并且把注释写得更完整
+       * TODO:
        *
        */
 
@@ -280,6 +280,21 @@
                 '</span></span>',
                 '',
                 '']
+
+              成功填充了posArray数组之后，
+                高亮捕获分组函数的下一步是将数组和match[0]的内容（字符串 "112barr b"）一起拼接成一个新的字符串（一个带html标签的字符串）
+                在这个例子里面，高亮捕获分组函数最后返回的字符串会是这个样子
+                  "<span data-group-index="1" title="Match 1
+                    Group 1: 112barr
+                    Pos: 4-11"><span data-group-index="2" title="Match 1
+                    Group 2: 112b
+                    Pos: 4-8"><span data-group-index="3" title="Match 1
+                    Group 3: 112
+                    Pos: 4-7">112</span>b</span><span data-group-index="4" title="Match 1
+                    Group 4: arr
+                    Pos: 8-11">arr</span></span> b"
+
+                原始的"112barr b"字符串被彻底分割了，112在第293行，arr在第295行，b在第295行的最后
        */
       function 高亮捕获分组(match, matchIndex) {
         let posArray = Array(match[0].length + 1).fill("");
@@ -299,6 +314,14 @@
           i++;
           posArray[end] = "</span>" + posArray[end];
         }
+
+        let html = "";
+        for (let i = 0; i < match[0].length; i++) {
+          html += posArray[i] + match[0][i];
+        }
+        html += posArray[i];
+
+        return html;
       }
     </script>
   </body>
