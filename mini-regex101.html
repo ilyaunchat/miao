@@ -128,6 +128,23 @@
     </div>
     <script>
       run();
+      /**
+       * TODO:根据高亮分组函数来修改run函数的内部代码
+       *
+       */
+
+      /*
+          if (!re.global) {
+              lastIndex = match.index + match[0].length;
+              break;
+          }
+
+          上面这个判断的意义在于
+            当正则对象不包含g标志时，调用exec方法并不会改变正则实例.lastIndex属性的值，它一直都会是默认的0
+            但这样的特性并不利于我们去拼接用户输入的整个字符串
+            所以要在这种情况下手动调整我们自己定义的lastIndex变量指向的下标值
+            然后才能让循环结束后的 html += text.slice(lastIndex); 语句按照预想的情况运作
+       */
       function run() {
         const reStr = regexpInput.value;
         const text = stringInput.value;
@@ -150,11 +167,21 @@
           let html = "";
           let match = null;
           let lastIndex = 0;
+          let i = 1;
 
           while ((match = re.exec(text))) {
             html += text.slice(lastIndex, match.index);
-            html += "<span>" + match[0] + "</span>";
+            html +=
+              `<strong title="Pos: ${match.index}-${
+                match.index + match[0].length
+              }">` +
+              高亮捕获分组(match, i++) +
+              "</strong>";
             lastIndex = re.lastIndex;
+            if (!re.global) {
+              lastIndex = match.index + match[0].length;
+              break;
+            }
             if (match[0].length === 0) {
               re.lastIndex++;
             }
