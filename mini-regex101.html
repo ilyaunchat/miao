@@ -81,19 +81,51 @@
     <div class="regexp101-main">
       <div class="regexpOptions">
         <strong>OPTIONS:&nbsp;</strong>
-        <input checked type="checkbox" name="global" id="flagGlobal" />
+        <input
+          checked
+          type="checkbox"
+          name="global"
+          id="flagGlobal"
+          oninput="run()"
+        />
         <label for="flagGlobal">g</label>
-        <input checked type="checkbox" name="multi-line" id="flagMultiline" />
+        <input
+          checked
+          type="checkbox"
+          name="multi-line"
+          id="flagMultiline"
+          oninput="run()"
+        />
         <label for="flagMultiline">m</label>
-        <input type="checkbox" name="insensitive" id="flagIgnoreCase" />
+        <input
+          type="checkbox"
+          name="insensitive"
+          id="flagIgnoreCase"
+          oninput="run()"
+        />
         <label for="flagIgnoreCase">i</label>
-        <input type="checkbox" name="sticky" id="flagSticky" />
+        <input type="checkbox" name="sticky" id="flagSticky" oninput="run()" />
         <label for="flagSticky">y</label>
-        <input type="checkbox" name="unicode" id="flagUnicode" />
+        <input
+          type="checkbox"
+          name="unicode"
+          id="flagUnicode"
+          oninput="run()"
+        />
         <label for="flagUnicode">u</label>
-        <input type="checkbox" name="single-line" id="flagSingleLine" />
+        <input
+          type="checkbox"
+          name="single-line"
+          id="flagSingleLine"
+          oninput="run()"
+        />
         <label for="flagSingleLine">s</label>
-        <input type="checkbox" name="indices" id="flagIndices" />
+        <input
+          type="checkbox"
+          name="indices"
+          id="flagIndices"
+          oninput="run()"
+        />
         <label for="flagIndices">d</label>
         <span id="info"></span>
       </div>
