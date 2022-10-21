@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mini RegExp101</title>
     <style>
+      /*
+          TODO:根据新的高亮捕获分组函数为其添加合适的样式
+       */
       body > h1 {
         margin-left: 7.2px;
       }
@@ -45,14 +48,22 @@
       .regexpOptions input {
         margin-left: 0;
       }
-      #result span {
+      #result strong {
+        font-weight: normal;
+        background-color: #d5ebff;
+      }
+      #result strong:nth-child(even) {
+        font-weight: normal;
+        background-color: #9fcfff;
+      }
+      /* #result span {
         background-color: #d5ebff;
         font-weight: bold;
       }
       #result span:nth-child(even) {
         background-color: #9fcfff;
         font-weight: bold;
-      }
+      } */
       #result span:empty {
         display: inline-block;
         width: 2px;
