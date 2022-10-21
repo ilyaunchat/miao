@@ -56,6 +56,15 @@
         font-weight: normal;
         background-color: #9fcfff;
       }
+      /* TODO:为零宽断言增加合适的样式 */
+      #result strong:empty {
+        display: inline-block;
+        width: 2px;
+        height: 1em;
+        margin-left: -1px;
+        margin-right: -1px;
+        background-image: linear-gradient(lightcoral, lightcoral);
+      }
       /* #result span {
         background-color: #d5ebff;
         font-weight: bold;
@@ -64,14 +73,14 @@
         background-color: #9fcfff;
         font-weight: bold;
       } */
-      #result span:empty {
+      /* #result span:empty {
         display: inline-block;
         width: 2px;
         height: 1em;
         margin-left: -1px;
         margin-right: -1px;
         background-image: linear-gradient(red, red);
-      }
+      } */
       #showoff {
         position: relative;
       }
