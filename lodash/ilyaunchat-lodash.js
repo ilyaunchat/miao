@@ -1,10 +1,10 @@
 var ilyaunchat = function () {
     function chunk(array, size = 1) {
-        var resultAry = []
-        var itemAry = []
-        var count = 0
+        let resultAry = []
+        let itemAry = []
+        let count = 0
 
-        for (var i = 0; i < array.length; i++) {
+        for (let i = 0; i < array.length; i++) {
             count++
             if (count <= size) {
                 itemAry.push(array[i])
