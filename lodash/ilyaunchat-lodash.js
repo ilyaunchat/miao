@@ -1024,14 +1024,6 @@ var ilyaunchat = function () {
         return value.slice()
     }
 
-    function isComplexDataType(arg) {
-        if ((typeof arg === "object" || typeof arg === "function") && (Boolean(arg))) {
-            return true
-        } else {
-            return false
-        }
-    }
-
     function cloneDeep(value) {
         const copyMap = new Map()
 
