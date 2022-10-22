@@ -3219,6 +3219,20 @@ var ilyaunchat = function () {
         return resultArray
     }
 
+    function pick(object, ...paths) {
+        let res = {}
+
+        if (paths.length === 1 && typeof paths[0] === "string") {
+            res[paths[0]] = object[paths[0]]
+        } else if (paths.length === 1 && Array.isArray(paths[0])) {
+            for (let val of paths[0]) {
+                res[val] = object[val]
+            }
+        }
+
+        return res
+    }
+
     return {
         chunk,
         compact,
@@ -3404,5 +3418,6 @@ var ilyaunchat = function () {
         padStart,
         values,
         range,
+        pick,
     }
 }()
