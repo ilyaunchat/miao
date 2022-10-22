@@ -1032,30 +1032,37 @@ var ilyaunchat = function () {
         }
     }
 
-    function cloneDeep(obj, hash = new WeakMap()) {
-        if (!isComplexDataType(obj)) {
-            return obj
-        }
-        if (obj.constructor === Date) {
-            return new Date(obj)
-        }
-        if (obj.constructor === RegExp) {
-            return new RegExp(obj)
-        }
-        if (hash.has(obj)) {
-            return hash.get(obj)
-        }
-        let allDesc = Object.getOwnPropertyDescriptors(obj)
-        let cloneObj = Object.create(Object.getPrototypeOf(obj), allDesc)
-        hash.set(obj, cloneObj)
-        for (let key of Reflect.ownKeys(obj)) {
-            if (isComplexDataType(obj[key]) && typeof obj[key] !== "function") {
-                cloneObj[key] = cloneDeep(obj[key], hash)
+    function cloneDeep(value) {
+        const copyMap = new Map()
+
+        function innerClone(value) {
+            if (value && typeof value === "object") {
+                if (Object.prototype.toString.call(value) === "[object RegExp]") {
+                    return new RegExp(value)
+                }
+
+                if (Object.prototype.toString.call(value) === "[object Date]") {
+                    return new Date(value)
+                }
+
+                if (copyMap.has(value)) {
+                    return copyMap.get(value)
+                } else {
+                    const result = Array.isArray(value) ? [] : {}
+                    copyMap.set(value, result)
+
+                    for (const key in value) {
+                        result[key] = innerClone(value[key])
+                    }
+
+                    return result
+                }
             } else {
-                cloneObj[key] = obj[key]
+                return value
             }
         }
-        return cloneObj
+
+        return innerClone(value)
     }
 
     function dropWhile(array, predicate = identity) {
