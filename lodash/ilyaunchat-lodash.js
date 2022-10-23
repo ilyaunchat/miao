@@ -1044,7 +1044,9 @@ var ilyaunchat = function () {
                     copyMap.set(value, result)
 
                     for (const key in value) {
-                        result[key] = innerClone(value[key])
+                        if (Object.hasOwn(value, key)) {
+                            result[key] = innerClone(value[key])
+                        }
                     }
 
                     return result
