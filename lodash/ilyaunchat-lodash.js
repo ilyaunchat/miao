@@ -1040,7 +1040,7 @@ var ilyaunchat = function () {
                 if (copyMap.has(value)) {
                     return copyMap.get(value)
                 } else {
-                    const result = Array.isArray(value) ? [] : {}
+                    const result = Array.isArray(value) ? [] : Object.create(Object.getPrototypeOf(value))
                     copyMap.set(value, result)
 
                     for (const key in value) {
