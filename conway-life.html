@@ -188,6 +188,14 @@
         return res;
       }
 
+      function chooseLivingCells(indices) {
+        for (let index of Object.values(indices)) {
+          gridArray[Math.floor(index / gridArray[0].length)][
+            index % gridArray[0].length
+          ].checked = "checked";
+        }
+      }
+
       window.addEventListener("DOMContentLoaded", makeGrid);
     </script>
   </body>
