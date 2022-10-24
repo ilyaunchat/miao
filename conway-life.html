@@ -167,6 +167,27 @@
         }
       }
 
+      function sample(lo, hi, k) {
+        const res = [];
+
+        for (let i = 0; i < k; i++) {
+          res[i] = lo + i;
+        }
+
+        let i = k;
+
+        while (i < hi - lo) {
+          i++;
+          const j = Math.floor(Math.random() * i);
+
+          if (j < k) {
+            res[j] = lo + i - 1;
+          }
+        }
+
+        return res;
+      }
+
       window.addEventListener("DOMContentLoaded", makeGrid);
     </script>
   </body>
