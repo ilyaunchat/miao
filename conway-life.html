@@ -136,5 +136,11 @@
       <button type="button" name="stop">停止演化</button>
       <button type="button" name="random">随机</button>
     </div>
+
+    <script>
+      let NUM_OF_ROWS = document.querySelector(".board").childElementCount;
+      let NUM_OF_COLS =
+        document.querySelectorAll(".board > .row")[0].childElementCount;
+    </script>
   </body>
 </html>
