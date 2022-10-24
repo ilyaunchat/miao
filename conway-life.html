@@ -196,6 +196,13 @@
         }
       }
 
+      function randomlySelectCheckboxes() {
+        resetCheckedCheckboxes();
+        chooseLivingCells(
+          sample(0, TOTAL_NUMBER_OF_CELLS, INITIAL_NUMBER_OF_LIVING_CELLS)
+        );
+      }
+
       window.addEventListener("DOMContentLoaded", makeGrid);
     </script>
   </body>
