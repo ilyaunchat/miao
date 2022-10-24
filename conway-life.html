@@ -143,6 +143,11 @@
         document.querySelectorAll(".board > .row")[0].childElementCount;
       let TOTAL_NUMBER_OF_CELLS = NUM_OF_ROWS * NUM_OF_COLS;
       let INITIAL_NUMBER_OF_LIVING_CELLS = 10;
+      const grid = document.querySelectorAll(".board > .row");
+      const gridArray = Array.from(grid);
+      for (let i = 0; i < gridArray.length; i++) {
+        gridArray[i] = Array.from(gridArray[i].children);
+      }
     </script>
   </body>
 </html>
