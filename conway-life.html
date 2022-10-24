@@ -159,6 +159,14 @@
         }
       }
 
+      function resetCheckedCheckboxes() {
+        for (let i = 0; i < gridArray.length; i++) {
+          for (let j = 0; j < gridArray[i].length; j++) {
+            gridArray[i][j].checked = null;
+          }
+        }
+      }
+
       window.addEventListener("DOMContentLoaded", makeGrid);
     </script>
   </body>
