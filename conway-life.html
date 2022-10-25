@@ -183,12 +183,7 @@
        * 初始化 gridArray 变量
        */
       function makeGrid() {
-        NUM_OF_ROWS = document.querySelector(".board").childElementCount;
-        NUM_OF_COLS =
-          document.querySelectorAll(".board > .row")[0].childElementCount;
-        TOTAL_NUMBER_OF_CELLS = NUM_OF_ROWS * NUM_OF_COLS;
-
-        const grid = document.querySelectorAll(".board > .row");
+        const grid = document.querySelectorAll(".board > [data-row]");
         gridArray = Array.from(grid);
 
         for (let i = 0; i < gridArray.length; i++) {
