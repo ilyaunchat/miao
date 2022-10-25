@@ -206,6 +206,21 @@
         );
       }
 
+      function makeCurrentStateArray() {
+        const currentState = [];
+        let currentRowState = [];
+
+        for (let i = 0; i < gridArray.length; i++) {
+          for (let j = 0; j < gridArray[i].length; j++) {
+            currentRowState[j] = Boolean(gridArray[i][j].checked) ? 1 : 0;
+          }
+          currentState.push(currentRowState.slice());
+          currentRowState = [];
+        }
+
+        return currentState;
+      }
+
       window.addEventListener("DOMContentLoaded", makeGrid);
       randomButton.addEventListener("click", randomlySelectCheckboxes);
     </script>
