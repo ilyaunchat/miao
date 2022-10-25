@@ -221,6 +221,46 @@
         return currentState;
       }
 
+      function generateNextStateArray(currState) {
+        const NUM_OF_ROWS = currState.length;
+        const NUM_OF_COLS = currState[0].length;
+        const nextState = [];
+        const row = Array(NUM_OF_COLS).fill(0);
+
+        for (let i = 0; i < NUM_OF_ROWS; i++) {
+          nextState.push(row.slice());
+        }
+
+        for (let i = 0; i < NUM_OF_ROWS; i++) {
+          for (let j = 0; j < NUM_OF_COLS; j++) {
+            const neighbours = [];
+            neighbours[0] = currState[i - 1]?.[j - 1] ?? 0;
+            neighbours[1] = currState[i - 1]?.[j] ?? 0;
+            neighbours[2] = currState[i - 1]?.[j + 1] ?? 0;
+            neighbours[3] = currState[i][j + 1] ?? 0;
+            neighbours[4] = currState[i + 1]?.[j + 1] ?? 0;
+            neighbours[5] = currState[i + 1]?.[j] ?? 0;
+            neighbours[6] = currState[i + 1]?.[j - 1] ?? 0;
+            neighbours[7] = currState[i][j - 1] ?? 0;
+            const numOfLivingNeighbours = neighbours.reduce((prev, curr) => {
+              return prev + curr;
+            }, 0);
+
+            if (currState[i][j] === 1) {
+              if (numOfLivingNeighbours === 2 || numOfLivingNeighbours === 3) {
+                nextState[i][j] = 1;
+              }
+            } else if (currState[i][j] === 0) {
+              if (numOfLivingNeighbours === 3) {
+                nextState[i][j] = 1;
+              }
+            }
+          }
+        }
+
+        return nextState;
+      }
+
       window.addEventListener("DOMContentLoaded", makeGrid);
       randomButton.addEventListener("click", randomlySelectCheckboxes);
     </script>
