@@ -194,6 +194,13 @@
       function automaticallyEvolve() {
         animationID = setInterval(nextRoundGrid, 300);
       }
+
+      function stopautomaticallyEvolve() {
+        if (animationID != undefined) {
+          clearInterval(animationID);
+        }
+      }
+
       initializeCheckboxes();
       window.addEventListener("DOMContentLoaded", makeGrid);
       randomButton.addEventListener("click", randomlySelectCheckboxes);
