@@ -261,6 +261,22 @@
         return nextState;
       }
 
+      function nextRoundGrid() {
+        const nextState = generateNextStateArray(
+          makeCurrentStateArray(gridArray)
+        );
+
+        resetCheckedCheckboxes();
+
+        for (let i = 0; i < NUM_OF_ROWS; i++) {
+          for (let j = 0; j < NUM_OF_COLS; j++) {
+            if (nextState[i][j] === 1) {
+              gridArray[i][j].checked = "checked";
+            }
+          }
+        }
+      }
+
       window.addEventListener("DOMContentLoaded", makeGrid);
       randomButton.addEventListener("click", randomlySelectCheckboxes);
     </script>
