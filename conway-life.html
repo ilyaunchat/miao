@@ -149,6 +149,16 @@
       );
       const board = document.querySelector(".board");
 
+      function makeOneRowOfCheckboxes(elementNode, row, cols) {
+        for (let i = 0; i < cols; i++) {
+          const checkbox = document.createElement("input");
+          checkbox.setAttribute("type", "checkbox");
+          checkbox.setAttribute("data-row", `${row}`);
+          checkbox.setAttribute("data-col", `${i}`);
+          elementNode.appendChild(checkbox);
+        }
+      }
+
       /**
        * 初始化 gridArray 变量
        */
