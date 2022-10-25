@@ -191,6 +191,9 @@
         }
       }
 
+      function automaticallyEvolve() {
+        animationID = setInterval(nextRoundGrid, 300);
+      }
       initializeCheckboxes();
       window.addEventListener("DOMContentLoaded", makeGrid);
       randomButton.addEventListener("click", randomlySelectCheckboxes);
