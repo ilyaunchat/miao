@@ -149,6 +149,26 @@
       );
       const board = document.querySelector(".board");
 
+      function initializeCheckboxes(rows = 10, cols = 10) {
+        if (!isNaN(rows) && !isNaN(cols)) {
+          rows = Math.abs(Number(rows.toFixed(0)));
+          cols = Math.abs(Number(cols.toFixed(0)));
+        } else {
+          rows = 10;
+          cols = 10;
+        }
+
+        NUM_OF_ROWS = rows;
+        NUM_OF_COLS = cols;
+        TOTAL_NUMBER_OF_CELLS = NUM_OF_ROWS * NUM_OF_COLS;
+        for (let i = 0; i < rows; i++) {
+          const row = document.createElement("div");
+          row.setAttribute("data-row", `${i}`);
+          makeOneRowOfCheckboxes(row, i, NUM_OF_COLS);
+          board.appendChild(row);
+        }
+      }
+
       function makeOneRowOfCheckboxes(elementNode, row, cols) {
         for (let i = 0; i < cols; i++) {
           const checkbox = document.createElement("input");
