@@ -203,8 +203,10 @@
         }
       }
 
-      function automaticallyEvolve() {
-        animationID = setInterval(nextRoundGrid, 300);
+      function automaticallyEvolve(time) {
+        if (animationID == undefined) {
+          animationID = setInterval(nextRoundGrid, time);
+        }
       }
 
       function stopautomaticallyEvolve() {
