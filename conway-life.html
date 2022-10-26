@@ -226,6 +226,10 @@
         automaticallyEvolve(period);
       });
       stopButton.addEventListener("click", stopautomaticallyEvolve);
+      clearButton.addEventListener("click", function clearTheBoard() {
+        stopautomaticallyEvolve();
+        resetCheckedCheckboxes();
+      });
     </script>
   </body>
 </html>
