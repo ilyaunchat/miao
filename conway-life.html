@@ -135,6 +135,10 @@
         return res;
       }
 
+      /**
+       * 将被选中的下标对应的checkbox选中
+       * @param {number[]} indices
+       */
       function chooseLivingCells(indices) {
         for (let index of Object.values(indices)) {
           gridArray[Math.floor(index / gridArray[0].length)][
