@@ -222,9 +222,7 @@
       }
 
       function nextRoundGrid() {
-        const nextState = generateNextStateArray(
-          makeCurrentStateArray(gridArray)
-        );
+        const nextState = generateNextStateArray(makeCurrentStateArray());
 
         resetCheckedCheckboxes();
 
