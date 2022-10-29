@@ -193,7 +193,7 @@
       }
 
       function generateNextStateArray() {
-        const nextState = generateDefaultNextStateArray();
+        generateDefaultNextStateArray();
 
         for (let i = 0; i < NUM_OF_ROWS; i++) {
           for (let j = 0; j < NUM_OF_COLS; j++) {
@@ -212,17 +212,15 @@
 
             if (currentStateArray[i][j] === 1) {
               if (numOfLivingNeighbours === 2 || numOfLivingNeighbours === 3) {
-                nextState[i][j] = 1;
+                nextStateArray[i][j] = 1;
               }
             } else if (currentStateArray[i][j] === 0) {
               if (numOfLivingNeighbours === 3) {
-                nextState[i][j] = 1;
+                nextStateArray[i][j] = 1;
               }
             }
           }
         }
-
-        return nextState;
       }
 
       function nextRoundGrid() {
