@@ -179,11 +179,14 @@
       }
 
       function generateDefaultNextStateArray() {
-        const nextState = [];
+        nextStateArray = [];
         const row = Array(gridArray[0].length).fill(0);
 
         for (let i = 0; i < gridArray.length; i++) {
-          nextState.push(row.slice());
+          nextStateArray.push(row.slice());
+        }
+      }
+
         }
 
         return nextState;
