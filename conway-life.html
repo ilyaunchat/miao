@@ -179,15 +179,16 @@
         return currentState;
       }
 
-      function generateNextStateArray(currState) {
-        const NUM_OF_ROWS = currState.length;
-        const NUM_OF_COLS = currState[0].length;
+      function generateDefaultNextStateArray() {
         const nextState = [];
-        const row = Array(NUM_OF_COLS).fill(0);
+        const row = Array(gridArray[0].length).fill(0);
 
-        for (let i = 0; i < NUM_OF_ROWS; i++) {
+        for (let i = 0; i < gridArray.length; i++) {
           nextState.push(row.slice());
         }
+
+        return nextState;
+      }
 
         for (let i = 0; i < NUM_OF_ROWS; i++) {
           for (let j = 0; j < NUM_OF_COLS; j++) {
