@@ -46,6 +46,10 @@
       const clearButton = document.querySelector('button[name="clear"]');
       const board = document.querySelector(".board");
 
+      /**
+       * 初始化屏幕上面的棋盘（默认10行10列）
+       *
+       */
       function initializeCheckboxes(rows = 10, cols = 10) {
         if (!isNaN(rows) && !isNaN(cols)) {
           rows = Math.abs(Number(rows.toFixed(0)));
