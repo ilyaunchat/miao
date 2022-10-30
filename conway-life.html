@@ -213,6 +213,12 @@
         return numOfLivingNeighbors;
       }
 
+      /**
+       * 按照游戏规则，将符合要求的nextStateArray中的格子变成1
+       * @param {number} num
+       * @param {number} i
+       * @param {number} j
+       */
       function flipStatesBasedOnTheRule(num, i, j) {
         if (num === 3) {
           nextStateArray[i][j] = 1;
