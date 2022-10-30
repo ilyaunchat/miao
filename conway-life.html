@@ -199,8 +199,8 @@
         neighbors[7] = currentStateArray[row][col - 1] ?? 0;
 
         const numOfLivingNeighbors = neighbors.reduce((prev, curr) => {
-              return prev + curr;
-            }, 0);
+          return prev + curr;
+        }, 0);
 
         return numOfLivingNeighbors;
       }
@@ -209,18 +209,18 @@
         if (num === 3) {
           nextStateArray[i][j] = 1;
         } else if (num === 2 && currentStateArray[i][j] === 1) {
-                nextStateArray[i][j] = 1;
-              }
-              }
+          nextStateArray[i][j] = 1;
+        }
+      }
 
       function chooseLivingCellsBasedOnNeighbors() {
         for (let i = 0; i < NUM_OF_ROWS; i++) {
           for (let j = 0; j < NUM_OF_COLS; j++) {
             const num = getNumberOfLivingNeighbors(i, j);
             flipStatesBasedOnTheRule(num, i, j);
-            }
           }
         }
+      }
 
       function generateNextStateArray() {
         makeCurrentStateArray();
