@@ -264,6 +264,10 @@
         }
       }
 
+      /**
+       * 按照一定时间间隔自动调用nextRoundGrid()
+       * @param {number} time
+       */
       function automaticallyEvolve(time) {
         if (animationID == undefined) {
           animationID = setInterval(nextRoundGrid, time);
