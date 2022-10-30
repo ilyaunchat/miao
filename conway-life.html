@@ -229,8 +229,7 @@
       }
 
       function nextRoundGrid() {
-        generateNextStateArray(makeCurrentStateArray());
-
+        generateNextStateArray();
         resetCheckedCheckboxes();
 
         for (let i = 0; i < NUM_OF_ROWS; i++) {
