@@ -189,6 +189,12 @@
         }
       }
 
+      /**
+       * 计算一个checkbox周围正在存活的邻居数量
+       * @param {number} row
+       * @param {number} col
+       * @return {number} numOfLivingNeighbors
+       */
       function getNumberOfLivingNeighbors(row, col) {
         const neighbors = [];
         neighbors[0] = currentStateArray[row - 1]?.[col - 1] ?? 0;
