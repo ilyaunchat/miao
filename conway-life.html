@@ -248,6 +248,9 @@
         chooseLivingCellsBasedOnNeighbors();
       }
 
+      /**
+       * 先重置gridArray，然后按照下一轮的规则更新gridArray
+       */
       function nextRoundGrid() {
         generateNextStateArray();
         resetCheckedCheckboxes();
