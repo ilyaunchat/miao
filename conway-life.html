@@ -221,6 +221,11 @@
             }
           }
         }
+
+      function generateNextStateArray() {
+        makeCurrentStateArray();
+        generateDefaultNextStateArray();
+        chooseLivingCellsBasedOnNeighbors();
       }
 
       function nextRoundGrid() {
