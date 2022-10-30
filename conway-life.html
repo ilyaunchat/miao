@@ -227,6 +227,9 @@
         }
       }
 
+      /**
+       * 遍历整个棋盘，使得nextStateArray的所有格子完全符合规则
+       */
       function chooseLivingCellsBasedOnNeighbors() {
         for (let i = 0; i < NUM_OF_ROWS; i++) {
           for (let j = 0; j < NUM_OF_COLS; j++) {
