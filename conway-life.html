@@ -212,6 +212,12 @@
                 nextStateArray[i][j] = 1;
               }
               }
+
+      function chooseLivingCellsBasedOnNeighbors() {
+        for (let i = 0; i < NUM_OF_ROWS; i++) {
+          for (let j = 0; j < NUM_OF_COLS; j++) {
+            const num = getNumberOfLivingNeighbors(i, j);
+            flipStatesBasedOnTheRule(num, i, j);
             }
           }
         }
