@@ -187,31 +187,24 @@
         }
       }
 
-        }
+      function getNumberOfLivingNeighbors(row, col) {
+        const neighbors = [];
+        neighbors[0] = currentStateArray[row - 1]?.[col - 1] ?? 0;
+        neighbors[1] = currentStateArray[row - 1]?.[col] ?? 0;
+        neighbors[2] = currentStateArray[row - 1]?.[col + 1] ?? 0;
+        neighbors[3] = currentStateArray[row][col + 1] ?? 0;
+        neighbors[4] = currentStateArray[row + 1]?.[col + 1] ?? 0;
+        neighbors[5] = currentStateArray[row + 1]?.[col] ?? 0;
+        neighbors[6] = currentStateArray[row + 1]?.[col - 1] ?? 0;
+        neighbors[7] = currentStateArray[row][col - 1] ?? 0;
 
-        return nextState;
-      }
-
-      function generateNextStateArray() {
-        generateDefaultNextStateArray();
-
-        for (let i = 0; i < NUM_OF_ROWS; i++) {
-          for (let j = 0; j < NUM_OF_COLS; j++) {
-            const neighbours = [];
-            neighbours[0] = currentStateArray[i - 1]?.[j - 1] ?? 0;
-            neighbours[1] = currentStateArray[i - 1]?.[j] ?? 0;
-            neighbours[2] = currentStateArray[i - 1]?.[j + 1] ?? 0;
-            neighbours[3] = currentStateArray[i][j + 1] ?? 0;
-            neighbours[4] = currentStateArray[i + 1]?.[j + 1] ?? 0;
-            neighbours[5] = currentStateArray[i + 1]?.[j] ?? 0;
-            neighbours[6] = currentStateArray[i + 1]?.[j - 1] ?? 0;
-            neighbours[7] = currentStateArray[i][j - 1] ?? 0;
-            const numOfLivingNeighbours = neighbours.reduce((prev, curr) => {
+        const numOfLivingNeighbors = neighbors.reduce((prev, curr) => {
               return prev + curr;
             }, 0);
 
-            if (currentStateArray[i][j] === 1) {
-              if (numOfLivingNeighbours === 2 || numOfLivingNeighbours === 3) {
+        return numOfLivingNeighbors;
+      }
+
                 nextStateArray[i][j] = 1;
               }
             } else if (currentStateArray[i][j] === 0) {
