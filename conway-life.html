@@ -205,11 +205,12 @@
         return numOfLivingNeighbors;
       }
 
+      function flipStatesBasedOnTheRule(num, i, j) {
+        if (num === 3) {
+          nextStateArray[i][j] = 1;
+        } else if (num === 2 && currentStateArray[i][j] === 1) {
                 nextStateArray[i][j] = 1;
               }
-            } else if (currentStateArray[i][j] === 0) {
-              if (numOfLivingNeighbours === 3) {
-                nextStateArray[i][j] = 1;
               }
             }
           }
