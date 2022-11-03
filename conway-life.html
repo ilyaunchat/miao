@@ -81,7 +81,6 @@
       const nextRoundButton = document.querySelector(
         'button[name="nextRound"]'
       );
-      // const autoButton = document.querySelector('button[name="auto"]');
       // const stopButton = document.querySelector('button[name="stop"]');
       const autoOrNotToggle = document.querySelector("#toggle-evolve");
       const clearButton = document.querySelector('button[name="clear"]');
@@ -354,9 +353,6 @@
       });
       randomButton.addEventListener("click", randomlySelectCheckboxes);
       nextRoundButton.addEventListener("click", nextRoundGrid);
-      // autoButton.addEventListener("click", function outerautomaticallyEvolve() {
-      //   automaticallyEvolve(period);
-      // });
       autoOrNotToggle.addEventListener("click", function () {
         if (this.checked === true) {
           automaticallyEvolve(period);
