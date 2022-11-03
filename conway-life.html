@@ -336,6 +336,18 @@
         }
       }
 
+      function respondToTheClickOfAutoOrNotToggle() {
+        if (this.checked === true) {
+          automaticallyEvolve(period);
+          nextRoundButton.classList.toggle(`btn-disabled`);
+          toggleCursorNotAllowedForEveryGrid();
+        } else {
+          stopautomaticallyEvolve();
+          nextRoundButton.classList.toggle(`btn-disabled`);
+          toggleCursorNotAllowedForEveryGrid();
+        }
+      }
+
       /**
        * 如果checkbox已经有了cursor-not-allowed类名，移除它
        * 用于clearButton的事件处理函数
@@ -376,17 +388,10 @@
       });
       randomButton.addEventListener("click", randomlySelectCheckboxes);
       nextRoundButton.addEventListener("click", nextRoundGrid);
-      autoOrNotToggle.addEventListener("click", function () {
-        if (this.checked === true) {
-          automaticallyEvolve(period);
-          nextRoundButton.classList.toggle(`btn-disabled`);
-          toggleCursorNotAllowedForEveryGrid();
-        } else {
-          stopautomaticallyEvolve();
-          nextRoundButton.classList.toggle(`btn-disabled`);
-          toggleCursorNotAllowedForEveryGrid();
-        }
-      });
+      autoOrNotToggle.addEventListener(
+        "click",
+        respondToTheClickOfAutoOrNotToggle
+      );
       clearButton.addEventListener("click", clearTheBoard);
     </script>
   </body>
