@@ -10,15 +10,27 @@
     <style></style>
   </head>
   <body>
-    <h1 id="heading">Conway's Game of Life</h1>
-    <div class="board"></div>
-    <div class="buttons">
-      <button type="button" name="nextRound">下一轮</button>
-      <button type="button" name="auto">自动演化</button>
-      <button type="button" name="stop">停止演化</button>
-      <button type="button" name="random">随机</button>
-      <button type="button" name="clear">清空</button>
-    </div>
+    <main class="h-screen flex justify-center items-center">
+      <section class="card bg-base-100 shadow-xl w-auto">
+        <section class="card-body">
+          <h2 class="card-title justify-center">
+            <span>Conway's Game of Life</span>
+          </h2>
+          <section class="divider"></section>
+          <section class="flex justify-center">
+            <section class="board grid grid-cols-1 justify-center"></section>
+          </section>
+          <section class="divider"></section>
+          <div class="buttons">
+            <button type="button" name="nextRound">下一轮</button>
+            <button type="button" name="auto">自动演化</button>
+            <button type="button" name="stop">停止演化</button>
+            <button type="button" name="random">随机</button>
+            <button type="button" name="clear">清空</button>
+          </div>
+        </section>
+      </section>
+    </main>
 
     <script>
       "use strict";
@@ -60,6 +72,7 @@
         for (let i = 0; i < rows; i++) {
           const row = document.createElement("div");
           row.setAttribute("data-row", `${i}`);
+          row.classList.add("flex");
           makeOneRowOfCheckboxes(row, i, NUM_OF_COLS);
           board.appendChild(row);
         }
@@ -77,6 +90,8 @@
           checkbox.setAttribute("type", "checkbox");
           checkbox.setAttribute("data-row", `${row}`);
           checkbox.setAttribute("data-col", `${i}`);
+          checkbox.classList.add(`checkbox`);
+          checkbox.classList.add(`no-animation`);
           elementNode.appendChild(checkbox);
         }
       }
