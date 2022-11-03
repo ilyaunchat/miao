@@ -81,7 +81,6 @@
       const nextRoundButton = document.querySelector(
         'button[name="nextRound"]'
       );
-      // const stopButton = document.querySelector('button[name="stop"]');
       const autoOrNotToggle = document.querySelector("#toggle-evolve");
       const clearButton = document.querySelector('button[name="clear"]');
       const board = document.querySelector(".board");
@@ -364,7 +363,6 @@
           toggleCursorNotAllowedForEveryGrid();
         }
       });
-      // stopButton.addEventListener("click", stopautomaticallyEvolve);
       clearButton.addEventListener("click", function clearTheBoard() {
         autoOrNotToggle.checked = null;
         nextRoundButton.classList.remove(`btn-disabled`);
