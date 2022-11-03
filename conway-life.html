@@ -344,6 +344,14 @@
 
       initializeCheckboxes();
       window.addEventListener("DOMContentLoaded", makeGrid);
+      board.addEventListener("click", function (event) {
+        if (
+          event.target.matches("[type='checkbox']") &&
+          autoOrNotToggle.checked === true
+        ) {
+          event.preventDefault();
+        }
+      });
       randomButton.addEventListener("click", randomlySelectCheckboxes);
       nextRoundButton.addEventListener("click", nextRoundGrid);
       // autoButton.addEventListener("click", function outerautomaticallyEvolve() {
