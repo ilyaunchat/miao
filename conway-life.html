@@ -336,6 +336,10 @@
         }
       }
 
+      /**
+       * 如果checkbox已经有了cursor-not-allowed类名，移除它
+       * 用于clearButton的事件处理函数
+       */
       function removeCursorNotAllowedForEveryGrid() {
         for (let i = 0; i < NUM_OF_ROWS; i++) {
           for (let j = 0; j < NUM_OF_COLS; j++) {
