@@ -326,6 +326,14 @@
         }
       }
 
+      function toggleCursorNotAllowedForEveryGrid() {
+        for (let i = 0; i < NUM_OF_ROWS; i++) {
+          for (let j = 0; j < NUM_OF_COLS; j++) {
+            gridArray[i][j].classList.toggle(`cursor-not-allowed`);
+          }
+        }
+      }
+
       initializeCheckboxes();
       window.addEventListener("DOMContentLoaded", makeGrid);
       randomButton.addEventListener("click", randomlySelectCheckboxes);
