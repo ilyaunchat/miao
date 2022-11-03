@@ -348,6 +348,14 @@
         }
       }
 
+      function clearTheBoard() {
+        autoOrNotToggle.checked = null;
+        nextRoundButton.classList.remove(`btn-disabled`);
+        removeCursorNotAllowedForEveryGrid();
+        stopautomaticallyEvolve();
+        resetCheckedCheckboxes();
+      }
+
       initializeCheckboxes();
       window.addEventListener("DOMContentLoaded", makeGrid);
       board.addEventListener("click", function (event) {
@@ -371,13 +379,7 @@
           toggleCursorNotAllowedForEveryGrid();
         }
       });
-      clearButton.addEventListener("click", function clearTheBoard() {
-        autoOrNotToggle.checked = null;
-        nextRoundButton.classList.remove(`btn-disabled`);
-        removeCursorNotAllowedForEveryGrid();
-        stopautomaticallyEvolve();
-        resetCheckedCheckboxes();
-      });
+      clearButton.addEventListener("click", clearTheBoard);
     </script>
   </body>
 </html>
