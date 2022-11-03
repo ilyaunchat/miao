@@ -353,9 +353,11 @@
         if (this.checked === true) {
           automaticallyEvolve(period);
           nextRoundButton.classList.toggle(`btn-disabled`);
+          toggleCursorNotAllowedForEveryGrid();
         } else {
           stopautomaticallyEvolve();
           nextRoundButton.classList.toggle(`btn-disabled`);
+          toggleCursorNotAllowedForEveryGrid();
         }
       });
       // stopButton.addEventListener("click", stopautomaticallyEvolve);
