@@ -364,6 +364,7 @@
       clearButton.addEventListener("click", function clearTheBoard() {
         autoOrNotToggle.checked = null;
         nextRoundButton.classList.remove(`btn-disabled`);
+        removeCursorNotAllowedForEveryGrid();
         stopautomaticallyEvolve();
         resetCheckedCheckboxes();
       });
