@@ -348,6 +348,14 @@
         }
       }
 
+      /**
+       * 点击clearButton之后应该做的事
+       * 复位autoOrNotToggle
+       * 恢复nextRoundButton的可点击状态
+       * 移除每个checkbox的不可点击cursor提示
+       * 停止自动演化
+       * 重置棋盘
+       */
       function clearTheBoard() {
         autoOrNotToggle.checked = null;
         nextRoundButton.classList.remove(`btn-disabled`);
