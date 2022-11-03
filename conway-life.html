@@ -21,13 +21,47 @@
             <section class="board grid grid-cols-1 justify-center"></section>
           </section>
           <section class="divider"></section>
-          <div class="buttons">
-            <button type="button" name="nextRound">下一轮</button>
-            <button type="button" name="auto">自动演化</button>
-            <button type="button" name="stop">停止演化</button>
-            <button type="button" name="random">随机</button>
-            <button type="button" name="clear">清空</button>
-          </div>
+          <section class="flex justify-center">
+            <div class="buttons">
+              <div class="flex justify-center">
+                <button
+                  class="btn btn-wide btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-md"
+                  type="button"
+                  name="nextRound"
+                >
+                  下一轮
+                </button>
+              </div>
+              <div class="form-control">
+                <label class="label cursor-pointer">
+                  <span class="label-text" id="auto-evolve">自动演化</span>
+                  <input
+                    type="checkbox"
+                    class="toggle toggle-primary"
+                    id="toggle-evolve"
+                  />
+                </label>
+              </div>
+              <div class="flex justify-center">
+                <button
+                  class="btn btn-wide btn-warning btn-xs sm:btn-sm md:btn-md lg:btn-md"
+                  type="button"
+                  name="random"
+                >
+                  随机
+                </button>
+              </div>
+              <div class="flex justify-center">
+                <button
+                  class="btn btn-wide btn-error btn-xs sm:btn-sm md:btn-md lg:btn-md"
+                  type="button"
+                  name="clear"
+                >
+                  清空
+                </button>
+              </div>
+            </div>
+          </section>
         </section>
       </section>
     </main>
@@ -47,8 +81,9 @@
       const nextRoundButton = document.querySelector(
         'button[name="nextRound"]'
       );
-      const autoButton = document.querySelector('button[name="auto"]');
-      const stopButton = document.querySelector('button[name="stop"]');
+      // const autoButton = document.querySelector('button[name="auto"]');
+      // const stopButton = document.querySelector('button[name="stop"]');
+      const autoOrNotToggle = document.querySelector("#toggle-evolve");
       const clearButton = document.querySelector('button[name="clear"]');
       const board = document.querySelector(".board");
 
@@ -295,11 +330,22 @@
       window.addEventListener("DOMContentLoaded", makeGrid);
       randomButton.addEventListener("click", randomlySelectCheckboxes);
       nextRoundButton.addEventListener("click", nextRoundGrid);
-      autoButton.addEventListener("click", function outerautomaticallyEvolve() {
-        automaticallyEvolve(period);
+      // autoButton.addEventListener("click", function outerautomaticallyEvolve() {
+      //   automaticallyEvolve(period);
+      // });
+      autoOrNotToggle.addEventListener("click", function () {
+        if (this.checked === true) {
+          automaticallyEvolve(period);
+          nextRoundButton.classList.toggle(`btn-disabled`);
+        } else {
+          stopautomaticallyEvolve();
+          nextRoundButton.classList.toggle(`btn-disabled`);
+        }
       });
-      stopButton.addEventListener("click", stopautomaticallyEvolve);
+      // stopButton.addEventListener("click", stopautomaticallyEvolve);
       clearButton.addEventListener("click", function clearTheBoard() {
+        autoOrNotToggle.checked = null;
+        nextRoundButton.classList.remove(`btn-disabled`);
         stopautomaticallyEvolve();
         resetCheckedCheckboxes();
       });
