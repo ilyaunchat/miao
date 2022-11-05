@@ -9,13 +9,13 @@
     <script src="./tailwindcss.js"></script>
     <style></style>
   </head>
-  <body>
+  <body class="relative h-screen">
+    <div class="navbar bg-base-300 lg:hidden justify-center">
+      <a class="btn btn-ghost normal-case text-xl">Conway's Game of Life</a>
+    </div>
     <main
-      class="h-screen flex flex-col lg:flex-row justify-center items-center relative lg:static"
+      class="lg:h-screen flex flex-col lg:flex-row justify-center items-center relative lg:static"
     >
-      <div class="navbar bg-base-300 lg:hidden absolute top-0 justify-center">
-        <a class="btn btn-ghost normal-case text-xl">Conway's Game of Life</a>
-      </div>
       <section class="card lg:card-side bg-base-100 shadow-xl w-auto">
         <figure>
           <section class="flex justify-center">
