@@ -10,16 +10,22 @@
     <style></style>
   </head>
   <body>
-    <main class="h-screen flex justify-center items-center">
-      <section class="card bg-base-100 shadow-xl w-auto">
-        <section class="card-body">
-          <h2 class="card-title justify-center">
-            <span>Conway's Game of Life</span>
-          </h2>
-          <section class="divider"></section>
+    <main
+      class="h-screen flex flex-col lg:flex-row justify-center items-center relative lg:static"
+    >
+      <div class="navbar bg-base-100 lg:hidden absolute top-0 justify-center">
+        <a class="btn btn-ghost normal-case text-xl">Conway's Game of Life</a>
+      </div>
+      <section class="card lg:card-side bg-base-100 shadow-xl w-auto">
+        <figure>
           <section class="flex justify-center">
             <section class="board grid grid-cols-1 justify-center"></section>
           </section>
+        </figure>
+        <section class="card-body">
+          <h2 class="card-title justify-center hidden lg:block">
+            <span>Conway's Game of Life</span>
+          </h2>
           <section class="divider"></section>
           <section class="flex justify-center">
             <div class="buttons">
