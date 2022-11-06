@@ -90,6 +90,8 @@
       const autoOrNotToggle = document.querySelector("#toggle-evolve");
       const clearButton = document.querySelector('button[name="clear"]');
       const board = document.querySelector(".board");
+      const navbar = document.querySelector(".navbar");
+      const mainSection = document.querySelector("main");
 
       /**
        * 初始化屏幕上面的棋盘（默认10行10列）
@@ -382,8 +384,35 @@
         resetCheckedCheckboxes();
       }
 
+      function myDebounce(fn, duration) {
+        let prevId;
+
+        return function (...args) {
+          clearTimeout(prevId);
+          prevId = setTimeout(() => {
+            fn.call(this, ...args);
+          }, duration);
+        };
+      }
+
+      function modifyTheHeightOfMainSection() {
+        const viewportHeight = document.documentElement.clientHeight;
+        const navbarHeight = navbar.getBoundingClientRect().bottom;
+        let mainSectionHeight = viewportHeight - navbarHeight;
+        mainSection.style.height = String(mainSectionHeight) + "px";
+      }
+
       initializeCheckboxes();
-      window.addEventListener("DOMContentLoaded", makeGrid);
+      window.addEventListener("DOMContentLoaded", () => {
+        makeGrid();
+        modifyTheHeightOfMainSection();
+      });
+      window.addEventListener(
+        "resize",
+        myDebounce(() => {
+          modifyTheHeightOfMainSection();
+        }, 200)
+      );
       board.addEventListener("click", function (event) {
         if (
           event.target.matches("[type='checkbox']") &&
