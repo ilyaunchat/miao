@@ -54,8 +54,14 @@
         }
         lastTime = time;
 
-        const sunX = Math.cos(angle) * 100 + 300;
-        const sunY = Math.sin(angle) * 100 + 300;
+        const sunX =
+          Math.cos(angle / 1) * 250 +
+          document.documentElement.clientWidth / 2 -
+          25;
+        const sunY =
+          Math.sin(angle / 1) * 250 +
+          document.documentElement.clientHeight / 2 -
+          25;
         sun.style.left = String(sunX) + "px";
         sun.style.top = String(sunY) + "px";
 
