@@ -57,21 +57,37 @@
         const sunX =
           Math.cos(angle / 1) * 250 +
           document.documentElement.clientWidth / 2 -
-          25;
+          sun.getBoundingClientRect().width / 2;
         const sunY =
           Math.sin(angle / 1) * 250 +
           document.documentElement.clientHeight / 2 -
-          25;
+          sun.getBoundingClientRect().height / 2;
         sun.style.left = String(sunX) + "px";
         sun.style.top = String(sunY) + "px";
 
-        const earthX = Math.cos(angle / 2) * 100 + sunX + 25 - 15;
-        const earthY = Math.sin(angle / 2) * 100 + sunY + 25 - 15;
+        const earthX =
+          Math.cos(angle / 2) * 100 +
+          sunX +
+          sun.getBoundingClientRect().width / 2 -
+          earth.getBoundingClientRect().width / 2;
+        const earthY =
+          Math.sin(angle / 2) * 100 +
+          sunY +
+          sun.getBoundingClientRect().height / 2 -
+          earth.getBoundingClientRect().height / 2;
         earth.style.left = earthX + "px";
         earth.style.top = earthY + "px";
 
-        const moonX = Math.cos(angle * 5) * 50 + earthX + 15 - 5;
-        const moonY = Math.sin(angle * 5) * 50 + earthY + 15 - 5;
+        const moonX =
+          Math.cos(angle * 5) * 50 +
+          earthX +
+          earth.getBoundingClientRect().width / 2 -
+          moon.getBoundingClientRect().width / 2;
+        const moonY =
+          Math.sin(angle * 5) * 50 +
+          earthY +
+          earth.getBoundingClientRect().height / 2 -
+          moon.getBoundingClientRect().height / 2;
         moon.style.left = moonX + "px";
         moon.style.top = moonY + "px";
 
