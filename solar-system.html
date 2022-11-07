@@ -41,6 +41,31 @@
     <span id="earth">earth</span>
     <span id="moon">moon</span>
 
-    <script></script>
+    <script>
+      let angle = 0;
+      let lastTime = null;
+      const sun = document.querySelector("#sun");
+      const earth = document.querySelector("#earth");
+      const moon = document.querySelector("#moon");
+
+      requestAnimationFrame(function animate(time) {
+        if (lastTime != null) {
+          angle += (time - lastTime) * 0.001;
+        }
+        lastTime = time;
+
+        const sunX = Math.cos(angle) * 100 + 300;
+        const sunY = Math.sin(angle) * 100 + 300;
+        sun.style.left = String(sunX) + "px";
+        sun.style.top = String(sunY) + "px";
+
+        const earthX = Math.cos(angle / 2) * 200 + sunX;
+        const earthY = Math.sin(angle / 2) * 200 + sunY;
+        earth.style.left = earthX + "px";
+        earth.style.top = earthY + "px";
+
+        requestAnimationFrame(animate);
+      });
+    </script>
   </body>
 </html>
