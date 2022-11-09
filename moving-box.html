@@ -44,6 +44,12 @@
         block.style.left = String(blockX) + "px";
       }
 
+      function goDown() {
+        console.log("往下边走");
+        blockY = blockY + 10;
+        block.style.top = String(blockY) + "px";
+      }
+
       document.addEventListener("keydown", (event) => {
         if (event.key === "ArrowRight") {
           goRight();
@@ -52,9 +58,7 @@
           goLeft();
         }
         if (event.key === "ArrowDown") {
-          console.log("往下边走");
-          blockY = blockY + 10;
-          block.style.top = String(blockY) + "px";
+          goDown();
         }
         if (event.key === "ArrowUp") {
           goUp();
