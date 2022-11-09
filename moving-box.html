@@ -38,11 +38,15 @@
         block.style.left = String(blockX) + "px";
       }
 
+      function goRight() {
+        console.log("往右边走");
+        blockX = blockX + 10;
+        block.style.left = String(blockX) + "px";
+      }
+
       document.addEventListener("keydown", (event) => {
         if (event.key === "ArrowRight") {
-          console.log("往右边走");
-          blockX = blockX + 10;
-          block.style.left = String(blockX) + "px";
+          goRight();
         }
         if (event.key === "ArrowLeft") {
           goLeft();
