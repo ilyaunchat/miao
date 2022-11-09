@@ -5,6 +5,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      div {
+        width: 50px;
+        height: 50px;
+        background-color: aquamarine;
+        position: fixed;
+      }
+    </style>
   </head>
-  <body></body>
+  <body>
+    <div></div>
+    <script>
+      const block = document.querySelector("div");
+      let blockX = Number(block.style.left.slice(0, -2));
+      let blockY = Number(block.style.top.slice(0, -2));
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowRight") {
+          console.log("往右边走");
+          blockX = blockX + 10;
+          block.style.left = String(blockX) + "px";
+        }
+        if (event.key === "ArrowLeft") {
+          console.log("往左边走");
+          blockX = blockX - 10;
+          block.style.left = String(blockX) + "px";
+        }
+        if (event.key === "ArrowDown") {
+          console.log("往下边走");
+          blockY = blockY + 10;
+          block.style.top = String(blockY) + "px";
+        }
+        if (event.key === "ArrowUp") {
+          console.log("往上边走");
+          blockY = blockY - 10;
+          block.style.top = String(blockY) + "px";
+        }
+      });
+    </script>
+  </body>
 </html>
