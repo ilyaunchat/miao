@@ -26,6 +26,18 @@
       let blockX = Number(block.style.left.slice(0, -2));
       let blockY = Number(block.style.top.slice(0, -2));
 
+      function goUp() {
+        console.log("往上边走");
+        blockY = blockY - 10 < 0 ? 0 : blockY - 10;
+        block.style.top = String(blockY) + "px";
+      }
+
+      function goLeft() {
+        console.log("往左边走");
+        blockX = blockX - 10 < 0 ? 0 : blockX - 10;
+        block.style.left = String(blockX) + "px";
+      }
+
       document.addEventListener("keydown", (event) => {
         if (event.key === "ArrowRight") {
           console.log("往右边走");
@@ -33,9 +45,7 @@
           block.style.left = String(blockX) + "px";
         }
         if (event.key === "ArrowLeft") {
-          console.log("往左边走");
-          blockX = blockX - 10;
-          block.style.left = String(blockX) + "px";
+          goLeft();
         }
         if (event.key === "ArrowDown") {
           console.log("往下边走");
@@ -43,9 +53,7 @@
           block.style.top = String(blockY) + "px";
         }
         if (event.key === "ArrowUp") {
-          console.log("往上边走");
-          blockY = blockY - 10;
-          block.style.top = String(blockY) + "px";
+          goUp();
         }
       });
     </script>
