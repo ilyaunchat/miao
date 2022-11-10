@@ -428,6 +428,18 @@
         respondToTheClickOfAutoOrNotToggle
       );
       clearButton.addEventListener("click", clearTheBoard);
+
+      document.body.addEventListener("animationstart", (event) => {
+        console.log("动画开始了", event);
+      });
+
+      document.body.addEventListener("animationend", (event) => {
+        console.log("动画结束了", event);
+      });
+
+      document.body.addEventListener("animationcancel", (event) => {
+        console.log("动画被取消了吗？", event);
+      });
     </script>
   </body>
 </html>
