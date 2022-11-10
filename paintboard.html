@@ -15,7 +15,20 @@
         height: 20px;
 
         position: absolute;
-        background-color: cadetblue;
+        animation: move-up-fade-out 1s forwards;
+        -webkit-user-select: none;
+        user-select: none;
+      }
+
+      @keyframes move-up-fade-out {
+        from {
+          transform: translate(0, 0);
+          opacity: 1;
+        }
+        to {
+          transform: translate(0, -50px);
+          opacity: 0;
+        }
       }
     </style>
   </head>
@@ -25,10 +38,17 @@
       const dot = document.createElement("div");
       dot.classList.add("dot");
 
+      dot.style.backgroundColor =
+        "#" + String(Math.random().toString(16).slice(2, 5));
+
       dot.style.left = String(event.clientX - 10) + "px";
       dot.style.top = String(event.clientY - 10) + "px";
 
       document.body.appendChild(dot);
+
+      dot.addEventListener("animationend", (event) => {
+        document.body.removeChild(dot);
+      });
     });
   </script>
 </html>
