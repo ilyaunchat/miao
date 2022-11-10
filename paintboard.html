@@ -10,7 +10,25 @@
         height: 200px;
         border: 2px solid seagreen;
       }
+      .dot {
+        width: 20px;
+        height: 20px;
+
+        position: absolute;
+        background-color: cadetblue;
+      }
     </style>
   </head>
   <body></body>
+  <script>
+    window.addEventListener("click", (event) => {
+      const dot = document.createElement("div");
+      dot.classList.add("dot");
+
+      dot.style.left = String(event.clientX - 10) + "px";
+      dot.style.top = String(event.clientY - 10) + "px";
+
+      document.body.appendChild(dot);
+    });
+  </script>
 </html>
