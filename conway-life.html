@@ -409,6 +409,9 @@
         mainSection.style.height = String(mainSectionHeight) + "px";
       }
 
+      /**
+       * 在移动端界面，根据有关各元素高度以及视口高度，计算出适合的main元素的Y方向Padding
+       */
       function modifyThePaddingTopAndBottomOfMainSection() {
         const viewportHeight = document.documentElement.clientHeight;
         const navbarHeight = navbar.getBoundingClientRect().bottom;
