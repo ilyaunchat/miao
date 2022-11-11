@@ -415,8 +415,8 @@
         const cardHeight = $card.getBoundingClientRect().height;
         if (navbarHeight > 0) {
           const paddingY = (viewportHeight - navbarHeight - cardHeight) / 2;
-          $card.style.paddingTop = String(paddingY) + "px";
-          $card.style.paddingBottom = String(paddingY) + "px";
+          mainSection.style.paddingTop = String(paddingY) + "px";
+          mainSection.style.paddingBottom = String(paddingY) + "px";
         }
       }
 
