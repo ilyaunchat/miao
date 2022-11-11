@@ -409,6 +409,17 @@
         mainSection.style.height = String(mainSectionHeight) + "px";
       }
 
+      function modifyThePaddingTopAndBottomOfMainSection() {
+        const viewportHeight = document.documentElement.clientHeight;
+        const navbarHeight = navbar.getBoundingClientRect().bottom;
+        const cardHeight = $card.getBoundingClientRect().height;
+        if (navbarHeight > 0) {
+          const paddingY = (viewportHeight - navbarHeight - cardHeight) / 2;
+          $card.style.paddingTop = String(paddingY) + "px";
+          $card.style.paddingBottom = String(paddingY) + "px";
+        }
+      }
+
       initializeCheckboxes();
       window.addEventListener("DOMContentLoaded", () => {
         makeGrid();
