@@ -423,12 +423,12 @@
       initializeCheckboxes();
       window.addEventListener("DOMContentLoaded", () => {
         makeGrid();
-        modifyTheHeightOfMainSection();
+        modifyThePaddingTopAndBottomOfMainSection();
       });
       window.addEventListener(
         "resize",
         myDebounce(() => {
-          modifyTheHeightOfMainSection();
+          modifyThePaddingTopAndBottomOfMainSection();
         }, 200)
       );
       board.addEventListener("click", function (event) {
