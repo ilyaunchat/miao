@@ -384,6 +384,12 @@
         resetCheckedCheckboxes();
       }
 
+      /**
+       * 加一个防抖化函数
+       * @param {function} fn
+       * @param {number} duration
+       * @return {function}
+       */
       function myDebounce(fn, duration) {
         let prevId;
 
