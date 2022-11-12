@@ -418,6 +418,16 @@
         }
       }
 
+      function modifyThePaddingTopOfFigure() {
+        const navbarHeight = navbar.getBoundingClientRect().bottom;
+        const cardBodyPaddingTop = parseFloat(
+          window.getComputedStyle($cardBody)["padding-top"]
+        );
+        if (navbarHeight > 0) {
+          $figure.style.paddingTop = String(cardBodyPaddingTop) + "px";
+        }
+      }
+
       initializeCheckboxes();
       window.addEventListener("DOMContentLoaded", () => {
         makeGrid();
