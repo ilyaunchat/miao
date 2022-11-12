@@ -425,17 +425,21 @@
         );
         if (navbarHeight > 0) {
           $figure.style.paddingTop = String(cardBodyPaddingTop) + "px";
+        } else {
+          $figure.style.paddingTop = "0px";
         }
       }
 
       initializeCheckboxes();
       window.addEventListener("DOMContentLoaded", () => {
         makeGrid();
+        modifyThePaddingTopOfFigure();
         modifyThePaddingTopAndBottomOfMainSection();
       });
       window.addEventListener(
         "resize",
         myDebounce(() => {
+          modifyThePaddingTopOfFigure();
           modifyThePaddingTopAndBottomOfMainSection();
         }, 200)
       );
