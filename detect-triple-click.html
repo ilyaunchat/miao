@@ -6,5 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body></body>
+  <body>
+    <script>
+      let lastDoubleClickTime;
+      window.addEventListener("click", (e) => {
+        console.log("单击");
+        if (Date.now() - lastDoubleClickTime < 200) {
+          console.log("三击");
+        }
+      });
+      window.addEventListener("dblclick", (e) => {
+        console.log("双击");
+        lastDoubleClickTime = Date.now();
+      });
+    </script>
+  </body>
 </html>
