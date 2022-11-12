@@ -5,6 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>sliding bar</title>
+    <style>
+      div {
+        width: 60px;
+        height: 20px;
+        background-color: orange;
+      }
+    </style>
   </head>
-  <body></body>
+  <body>
+    <div></div>
+    <script>
+      const $div = document.querySelector("div");
+      let lastX;
+
+      $div.addEventListener("mousedown", function (e) {
+        if (e.which === 1) {
+          lastX = e.pageX;
+          window.addEventListener("mousemove", move);
+          e.preventDefault();
+        }
+      });
+
+      function move(e) {
+        if (e.which === 0) {
+          window.removeEventListener("mousemove", move);
+        } else {
+          let mouseMoveDistance = e.pageX - lastX;
+          lastX = e.pageX;
+          let newWidth = Math.max(10, $div.offsetWidth + mouseMoveDistance);
+          $div.style.width = String(newWidth) + "px";
+        }
+      }
+    </script>
+  </body>
 </html>
