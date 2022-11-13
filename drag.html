@@ -51,11 +51,18 @@
           let moveX = e.clientX - lastX;
           let moveY = e.clientY - lastY;
 
-          movingElement.style.left =
-            String(parseFloat(movingElement.style.left) + moveX) + "px";
+          let newLeft = String(parseFloat(movingElement.style.left) + moveX);
+          let newTop = String(parseFloat(movingElement.style.top) + moveY);
+          if (newLeft < 0) {
+            newLeft = 0;
+          }
+          if (newTop < 0) {
+            newTop = 0;
+          }
 
-          movingElement.style.top =
-            String(parseFloat(movingElement.style.top) + moveY) + "px";
+          movingElement.style.left = newLeft + "px";
+
+          movingElement.style.top = newTop + "px";
 
           lastX = e.clientX;
           lastY = e.clientY;
