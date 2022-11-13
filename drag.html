@@ -5,6 +5,58 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      .draggable {
+        width: 50px;
+        height: 50px;
+        position: fixed;
+      }
+    </style>
   </head>
-  <body></body>
+  <body>
+    <div
+      class="draggable"
+      style="left: 0px; top: 0px; background-color: mediumorchid"
+    ></div>
+    <div
+      class="draggable"
+      style="left: 0px; top: 0px; background-color: greenyellow"
+    ></div>
+    <div
+      class="draggable"
+      style="left: 0px; top: 0px; background-color: mediumslateblue"
+    ></div>
+
+    <script>
+      let lastX;
+      let lastY;
+      let movingElement;
+      window.addEventListener("mousedown", (e) => {
+        if (e.target.matches(".draggable")) {
+          lastX = e.clientX;
+          lastY = e.clientY;
+          movingElement = e.target;
+          window.addEventListener("mousemove", onMouseMove);
+        }
+      });
+
+      function onMouseMove(e) {
+        if (e.buttons === 0) {
+          window.removeEventListener("mousemove", onMouseMove);
+        } else {
+          let moveX = e.clientX - lastX;
+          let moveY = e.clientY - lastY;
+
+          movingElement.style.left =
+            String(parseFloat(movingElement.style.left) + moveX) + "px";
+
+          movingElement.style.top =
+            String(parseFloat(movingElement.style.top) + moveY) + "px";
+
+          lastX = e.clientX;
+          lastY = e.clientY;
+        }
+      }
+    </script>
+  </body>
 </html>
