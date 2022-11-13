@@ -33,11 +33,13 @@
       let lastX;
       let lastY;
       let movingElement;
+      let maxZIndex = 3;
       window.addEventListener("mousedown", (e) => {
         if (e.target.matches(".draggable")) {
           lastX = e.clientX;
           lastY = e.clientY;
           movingElement = e.target;
+          e.target.style.zIndex = ++maxZIndex;
           window.addEventListener("mousemove", onMouseMove);
         }
       });
