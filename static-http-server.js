@@ -43,6 +43,8 @@ server.on('request', (req, res) => {
                     return
                 }
                 // 先看看文件夹里面有没有index.html文件；如果有，响应这个文件；如果没有，列出文件夹的内容
+                let indexPath = path.join(targetPath, "index.html")
+
                 // 列出文件夹的内容
                 fs.readdir(targetPath, { withFileTypes: true }, (err, entries) => {
 
