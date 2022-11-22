@@ -59,9 +59,10 @@ server.on('request', (req, res) => {
                                 return -1
                             }
                         })
-                        res.writeHead(200, {
-                            // "Content-Type": ,
-                        })
+                        res.write(`<h1>Index of ${pathname}</h1>`)
+                        // res.writeHead(200, {
+                        //     "Content-Type": 'text/html; charset=UTF-8',
+                        // })
                         for (let entry of entries) {
                             const sep = entry.isDirectory() ? "/" : ""
                             res.write(`<div><a href="${entry.name}${sep}">${entry.name}${sep}</a></div>`)
