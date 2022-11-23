@@ -14,7 +14,7 @@ server.on('request', (req, res) => {
     let url = new URL(req.url, "http://localhost/")
     let pathname = url.pathname
 
-    const targetPath = path.join(publicDir, pathname)
+    const targetPath = path.join(publicDir, decodeURIComponent(pathname))
 
     fs.stat(targetPath, (err, stat) => {
         if (err) {
