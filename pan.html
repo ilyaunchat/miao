@@ -23,31 +23,47 @@
   </head>
   <body>
     <div id="wrapper">
+      当前路径：<input type="text" id="currentDirShow" value="/" />
+      <button>上传</button>
+      <button>新建文件夹</button>
       <ul id="list"></ul>
     </div>
     <script>
       let $fileList = document.querySelector("#list");
 
-      fetch("/")
-        .then((it) => it.text())
-        .then((fileNames) => {
-          let names = fileNames.split("\n");
-          for (let filename of names) {
-            let $li = elt(`
-              <li data-filename="${filename}">
-                ${filename}
-                <div>
-                  <button class="view">查看</button>
-                  <button class="del">删除</button>
-                  <button class="download">下载</button>
-                </div>
-              </li>
-            `);
-            $fileList.append($li);
-          }
-        });
+      function reloadDirContent() {
+        fetch("/")
+          .then((it) => it.text())
+          .then((fileNames) => {
+            let names = fileNames.split("\n");
+            for (let filename of names) {
+              let $li = elt(`
+                <li data-filename="${filename}">
+                  ${filename}
+                  <div>
+                    <button data-filename="${filename}" class="view">查看</button>
+                    <button data-filename="${filename}" class="del">删除</button>
+                    <button data-filename="${filename}" class="download">下载</button>
+                  </div>
+                </li>
+              `);
+              $fileList.append($li);
+            }
+          });
+      }
+
+      reloadDirContent();
 
       // 创建由html构成的DOM结构
+      $fileList.addEventListener("click", async (e) => {
+        if (e.target.matches(".del")) {
+          await fetch(currentDirShow + e.target.dataSet.filename, {
+            method: "DELETE",
+          });
+          alert("删除成功");
+          reloadDirContent();
+        }
+      });
       function elt(html) {
         let div = document.createElement("div");
         div.innerHTML = html;
