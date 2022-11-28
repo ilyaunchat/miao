@@ -4,7 +4,25 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>我的网盘</title>
   </head>
-  <body></body>
+  <body>
+    <div id="wrapper">
+      <ul id="list"></ul>
+    </div>
+    <script>
+      let $fileList = document.querySelector("#list");
+      fetch("/")
+        .then((it) => it.text())
+        .then((fileNames) => {
+          let names = fileNames.split("\n");
+          for (let filename of names) {
+            let $li = document.createElement("li");
+            $li.innerHTML = filename;
+            $li.dataset.filename = filename;
+            $fileList.append($li);
+          }
+        });
+    </script>
+  </body>
 </html>
