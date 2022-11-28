@@ -24,36 +24,50 @@
   <body>
     <div id="wrapper">
       当前路径：<input type="text" id="currentDirShow" value="/" />
-      <button>上传</button>
+      <input type="file" title="选择文件" />
       <button>新建文件夹</button>
       <ul id="list"></ul>
     </div>
     <script>
       let $fileList = document.querySelector("#list");
+      const $fileSelect = document.querySelector('input[type="file"]');
 
       function reloadDirContent() {
-        fetch("/")
+        fetch(currentDirShow.value)
           .then((it) => it.text())
           .then((fileNames) => {
             let names = fileNames.split("\n");
             $fileList.innerHTML = "";
             for (let filename of names) {
               let $li = elt(`
-                <li data-filename="${filename}">
-                  ${filename}
-                  <div>
-                    <button data-filename="${filename}" class="view">查看</button>
-                    <button data-filename="${filename}" class="del">删除</button>
-                    <button data-filename="${filename}" class="download">下载</button>
-                  </div>
-                </li>
-              `);
+                      <li data-filename="${filename}">
+                        ${filename}
+                        <div>
+                          <button data-filename="${filename}" class="view">查看</button>
+                          <button data-filename="${filename}" class="del">删除</button>
+                          <button data-filename="${filename}" class="download">下载</button>
+                        </div>
+                      </li>
+                    `);
               $fileList.append($li);
             }
           });
       }
 
       reloadDirContent();
+
+      $fileSelect.addEventListener("change", async (e) => {
+        if (e.target.files.length > 0) {
+          let file = e.target.files[0];
+          await fetch(currentDirShow.value + file.names, {
+            method: "PUT",
+            body: file,
+          });
+          alert("上传成功");
+
+          reloadDirContent();
+        }
+      });
 
       // 创建由html构成的DOM结构
       $fileList.addEventListener("click", async (e) => {
