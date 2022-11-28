@@ -36,6 +36,7 @@
           .then((it) => it.text())
           .then((fileNames) => {
             let names = fileNames.split("\n");
+            $fileList.innerHTML = "";
             for (let filename of names) {
               let $li = elt(`
                 <li data-filename="${filename}">
@@ -62,6 +63,13 @@
           });
           alert("删除成功");
           reloadDirContent();
+        }
+
+        if (e.target.matches(".download")) {
+          const $a = document.createElement("a");
+          $a.download = e.target.dataSet.filename;
+          $a.href = currentDirShow.value + e.target.dataSet.filename;
+          $a.click();
         }
       });
       function elt(html) {
