@@ -9,18 +9,24 @@
     <script src="./tailwindcss.js"></script>
     <style></style>
   </head>
-  <body>
-    <main class="h-screen flex justify-center items-center">
-      <section class="card bg-base-100 shadow-xl w-auto">
-        <section class="card-body">
-          <h2 class="card-title justify-center">
-            <span>Conway's Game of Life</span>
-          </h2>
-          <section class="divider"></section>
+  <body class="relative h-screen touch-none">
+    <div class="navbar bg-base-300 lg:hidden justify-center">
+      <a class="btn btn-ghost normal-case text-xl">Conway's Game of Life</a>
+    </div>
+    <main
+      class="lg:h-screen flex flex-col lg:flex-row justify-center items-center relative lg:static overflow-auto"
+    >
+      <section class="card lg:card-side bg-base-200 shadow-xl w-auto">
+        <figure>
           <section class="flex justify-center">
             <section class="board grid grid-cols-1 justify-center"></section>
           </section>
-          <section class="divider"></section>
+        </figure>
+        <section class="card-body">
+          <h2 class="card-title justify-center hidden lg:block">
+            <span>Conway's Game of Life</span>
+          </h2>
+          <!-- <section class="divider"></section> -->
           <section class="flex justify-center">
             <div class="buttons">
               <div class="flex justify-center">
@@ -84,6 +90,11 @@
       const autoOrNotToggle = document.querySelector("#toggle-evolve");
       const clearButton = document.querySelector('button[name="clear"]');
       const board = document.querySelector(".board");
+      const navbar = document.querySelector(".navbar");
+      const mainSection = document.querySelector("main");
+      const $card = document.querySelector(".card");
+      const $figure = document.querySelector("figure");
+      const $cardBody = document.querySelector(".card-body");
 
       /**
        * 初始化屏幕上面的棋盘（默认10行10列）
@@ -376,8 +387,62 @@
         resetCheckedCheckboxes();
       }
 
+      /**
+       * 加一个防抖化函数
+       * @param {function} fn
+       * @param {number} duration
+       * @return {function}
+       */
+      function myDebounce(fn, duration) {
+        let prevId;
+
+        return function (...args) {
+          clearTimeout(prevId);
+          prevId = setTimeout(() => {
+            fn.call(this, ...args);
+          }, duration);
+        };
+      }
+
+      /**
+       * 在移动端界面，根据有关各元素高度以及视口高度，计算出适合的main元素的Y方向Padding
+       */
+      function modifyThePaddingTopAndBottomOfMainSection() {
+        const viewportHeight = document.documentElement.clientHeight;
+        const navbarHeight = navbar.getBoundingClientRect().bottom;
+        const cardHeight = $card.getBoundingClientRect().height;
+        if (navbarHeight > 0) {
+          const paddingY = (viewportHeight - navbarHeight - cardHeight) / 2;
+          mainSection.style.paddingTop = String(paddingY) + "px";
+          mainSection.style.paddingBottom = String(paddingY) + "px";
+        }
+      }
+
+      function modifyThePaddingTopOfFigure() {
+        const navbarHeight = navbar.getBoundingClientRect().bottom;
+        const cardBodyPaddingTop = parseFloat(
+          window.getComputedStyle($cardBody)["padding-top"]
+        );
+        if (navbarHeight > 0) {
+          $figure.style.paddingTop = String(cardBodyPaddingTop) + "px";
+        } else {
+          $figure.style.paddingTop = "0px";
+        }
+      }
+
       initializeCheckboxes();
-      window.addEventListener("DOMContentLoaded", makeGrid);
+      window.addEventListener("DOMContentLoaded", () => {
+        makeGrid();
+        modifyThePaddingTopOfFigure();
+        modifyThePaddingTopAndBottomOfMainSection();
+      });
+      window.addEventListener(
+        "resize",
+        myDebounce(() => {
+          modifyThePaddingTopOfFigure();
+          modifyThePaddingTopAndBottomOfMainSection();
+        }, 200)
+      );
       board.addEventListener("click", function (event) {
         if (
           event.target.matches("[type='checkbox']") &&
@@ -393,6 +458,18 @@
         respondToTheClickOfAutoOrNotToggle
       );
       clearButton.addEventListener("click", clearTheBoard);
+
+      document.body.addEventListener("animationstart", (event) => {
+        console.log("动画开始了", event);
+      });
+
+      document.body.addEventListener("animationend", (event) => {
+        console.log("动画结束了", event);
+      });
+
+      document.body.addEventListener("animationcancel", (event) => {
+        console.log("动画被取消了吗？", event);
+      });
     </script>
   </body>
 </html>
