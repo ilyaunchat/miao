@@ -127,7 +127,7 @@
       <section class="main">
         <input id="toggle-all" class="toggle-all" type="checkbox" />
         <label for="toggle-all"></label>
-        <ul></ul>
+        <ul class="items"></ul>
       </section>
     </section>
 
@@ -162,13 +162,13 @@
         }, 0)
       }
 
-      const $input = document.querySelector("input")
+      const $inputText = document.querySelector("input[type='text']")
       const $ul = document.querySelector("section.main > ul")
 
-      $input.addEventListener("keydown", (event) => {
+      $inputText.addEventListener("keydown", (event) => {
         if (event.key === "Enter") {
           console.log("回车键被按下")
-          const text = $input.value
+          const text = $inputText.value
 
           const item = {
             name: text,
@@ -185,7 +185,7 @@
             numOfCompleted
           )
 
-          $input.value = ""
+          $inputText.value = ""
 
           const $li = document.createElement("li")
           $li.setAttribute("data-uuid", item.uuid)
@@ -212,6 +212,7 @@
           if (event.target.checked) {
             event.target.parentElement.parentElement.classList.add("completed")
 
+            const $inputToggleAll = document.querySelector("input.toggle-all")
             const found = todosList.find((element) => {
               return element.uuid === event.target.getAttribute("data-uuid")
             })
@@ -220,17 +221,16 @@
 
             refreshNumofActive()
             refreshNumofCompleted()
-            console.log(
-              "numOfActive",
-              numOfActive,
-              "numOfCompleted",
-              numOfCompleted
-            )
-          } else {
+            if (numOfCompleted === todosList.length) {
+              $inputToggleAll.setAttribute("checked", "checked")
+              console.log(`$inputToggleAll.setAttribute("checked", "checked")`)
+            }
+          } else if (!event.target.checked) {
             event.target.parentElement.parentElement.classList.remove(
               "completed"
             )
 
+            const $inputToggleAll = document.querySelector("input.toggle-all")
             const found = todosList.find((element) => {
               return element.uuid === event.target.getAttribute("data-uuid")
             })
@@ -239,12 +239,28 @@
 
             refreshNumofActive()
             refreshNumofCompleted()
-            console.log(
-              "numOfActive",
-              numOfActive,
-              "numOfCompleted",
-              numOfCompleted
-            )
+            if (numOfCompleted !== todosList.length) {
+              $inputToggleAll.removeAttribute("checked")
+              console.log(`$inputToggleAll.removeAttribute("checked")`)
+            }
+          }
+        }
+
+        if (event.target.matches("input.toggle-all")) {
+          const $$inputs = document.querySelectorAll(
+            "ul.items > * > div > input"
+          )
+
+          if (event.target.checked) {
+            for (let $inputBox of $$inputs) {
+              if (!$inputBox.checked) {
+                $inputBox.click()
+              }
+            }
+          } else if (!event.target.checked) {
+            for (let $inputBox of $$inputs) {
+              $inputBox.click()
+            }
           }
         }
       })
