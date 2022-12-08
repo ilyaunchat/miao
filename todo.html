@@ -44,6 +44,39 @@
 
       li > div {
         display: flex;
+        position: relative;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        padding-right: 15px;
+        padding-left: 60px;
+      }
+
+      div > input[type="checkbox"] {
+        position: absolute;
+        left: 10px;
+        bottom: 25.25px;
+      }
+
+      /* li.completed {
+      } */
+
+      .destroy {
+        display: none;
+        position: absolute;
+        top: 0;
+        right: 10px;
+        bottom: 0;
+        margin-top: auto;
+        margin-right: 0px;
+        margin-left: 0px;
+        width: 40px;
+        height: 40px;
+        font-size: 30px;
+        margin-bottom: 11px;
+      }
+
+      .destroy::after {
+        content: "×";
       }
     </style>
   </head>
@@ -87,10 +120,13 @@
           const $checkbox = document.createElement("input")
           $checkbox.type = "checkbox"
           const $span = document.createElement("span")
+          const $destroyButton = document.createElement("button")
+          $destroyButton.classList.add("destroy")
 
           $span.innerText = item.Name
           $div.append($checkbox)
           $div.append($span)
+          $div.append($destroyButton)
           $li.append($div)
           $ul.append($li)
         }
