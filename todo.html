@@ -57,8 +57,10 @@
         bottom: 25.25px;
       }
 
-      /* li.completed {
-      } */
+      li.completed span {
+        color: #d9d9d9;
+        text-decoration-line: line-through;
+      }
 
       .destroy {
         display: none;
@@ -119,7 +121,9 @@
           const $div = document.createElement("div")
           const $checkbox = document.createElement("input")
           $checkbox.type = "checkbox"
+          $checkbox.setAttribute("data-uuid", item.uuid)
           const $span = document.createElement("span")
+          $checkbox.setAttribute("data-uuid", item.uuid)
           const $destroyButton = document.createElement("button")
           $destroyButton.classList.add("destroy")
 
@@ -129,6 +133,18 @@
           $div.append($destroyButton)
           $li.append($div)
           $ul.append($li)
+        }
+      })
+
+      document.addEventListener("click", (event) => {
+        if (event.target.matches("input[type='checkbox']")) {
+          if (event.target.checked) {
+            event.target.parentElement.parentElement.classList.add("completed")
+          } else {
+            event.target.parentElement.parentElement.classList.remove(
+              "completed"
+            )
+          }
         }
       })
     </script>
