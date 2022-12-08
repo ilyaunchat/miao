@@ -63,7 +63,9 @@
       </section>
     </section>
 
-    <script>
+    <script type="module">
+      import { v4 as uuidv4 } from "https://jspm.dev/uuid"
+
       const todosList = []
       const $input = document.querySelector("input")
       const $ul = document.querySelector("section.main > ul")
@@ -74,11 +76,13 @@
           const item = {
             Name: text,
             Status: "Active",
+            uuid: uuidv4(),
           }
           todosList.push(item)
           $input.value = ""
 
           const $li = document.createElement("li")
+          $li.setAttribute("data-uuid", item.uuid)
           const $div = document.createElement("div")
           const $checkbox = document.createElement("input")
           $checkbox.type = "checkbox"
