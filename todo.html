@@ -102,6 +102,33 @@
       import { v4 as uuidv4 } from "https://jspm.dev/uuid"
 
       const todosList = []
+      let numOfActive = 0
+      let numOfCompleted = 0
+
+      function refreshNumofActive() {
+        const numOfActive = todosList.reduce((prev, curr) => {
+          if ((curr?.status ?? "") === "Active") {
+            return prev + 1
+          } else if ((curr?.status ?? "") === "Completed") {
+            return prev
+          }
+        }, 0)
+
+        return numOfActive
+      }
+
+      function refreshNumofCompleted() {
+        const numOfCompleted = todosList.reduce((prev, curr) => {
+          if ((curr?.status ?? "") === "Completed") {
+            return prev + 1
+          } else if ((curr?.status ?? "") === "Active") {
+            return prev
+          }
+        }, 0)
+
+        return numOfCompleted
+      }
+
       const $input = document.querySelector("input")
       const $ul = document.querySelector("section.main > ul")
 
@@ -109,8 +136,8 @@
         if (event.key === "Enter") {
           const text = $input.value
           const item = {
-            Name: text,
-            Status: "Active",
+            name: text,
+            status: "Active",
             uuid: uuidv4(),
           }
           todosList.push(item)
@@ -127,7 +154,7 @@
           const $destroyButton = document.createElement("button")
           $destroyButton.classList.add("destroy")
 
-          $span.innerText = item.Name
+          $span.innerText = item.name
           $div.append($checkbox)
           $div.append($span)
           $div.append($destroyButton)
