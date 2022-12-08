@@ -39,12 +39,13 @@
 
       .main li {
         border: 1px solid seagreen;
+        font-size: 24px;
       }
     </style>
   </head>
   <body>
     <section class="learn-bar">
-      <section class="header">
+      <header class="header">
         <h1>todos</h1>
         <input
           class="new-todo"
@@ -52,11 +53,21 @@
           placeholder="What needs to be done?"
           autofocus
         />
-      </section>
+      </header>
       <section class="main">
         <ul>
-          <li>aaa</li>
-          <li>bbb</li>
+          <li>
+            <div>
+              <input type="checkbox" name="" id="" />
+              <span>aaa</span>
+            </div>
+          </li>
+          <li>
+            <div>
+              <input type="checkbox" name="" id="" />
+              <span>bbb</span>
+            </div>
+          </li>
         </ul>
       </section>
     </section>
