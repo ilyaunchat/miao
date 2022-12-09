@@ -143,7 +143,7 @@
       let numOfActive = 0
       let numOfCompleted = 0
 
-      function refreshNumofActive() {
+      function refreshStatus() {
         numOfActive = todosList.reduce((prev, curr) => {
           if ((curr?.status ?? "") === ACTIVE) {
             return prev + 1
@@ -151,9 +151,7 @@
             return prev
           }
         }, 0)
-      }
 
-      function refreshNumofCompleted() {
         numOfCompleted = todosList.reduce((prev, curr) => {
           if ((curr?.status ?? "") === COMPLETED) {
             return prev + 1
@@ -161,11 +159,6 @@
             return prev
           }
         }, 0)
-      }
-
-      function refreshStatus() {
-        refreshNumofActive()
-        refreshNumofCompleted()
       }
 
       function determineWhetherToggleAll() {
