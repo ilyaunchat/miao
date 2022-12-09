@@ -255,9 +255,7 @@
               $inputToggleAlljQuery.prop("checked", false)
             }
           }
-        }
-
-        if (event.target.matches("input.toggle-all")) {
+        } else if (event.target.matches("input.toggle-all")) {
           const $$inputs = document.querySelectorAll(
             "ul.items > * > div > input"
           )
