@@ -162,6 +162,17 @@
         }, 0)
       }
 
+      function determineWhetherToggleAll() {
+        refreshNumofActive()
+        refreshNumofCompleted()
+
+        if (numOfCompleted === todosList.length) {
+          return true
+        } else {
+          return false
+        }
+      }
+
       const $inputText = document.querySelector("input[type='text']")
       const $ul = document.querySelector("section.main > ul")
 
