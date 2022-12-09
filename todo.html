@@ -215,6 +215,13 @@
           $div.append($destroyButton)
           $li.append($div)
           $ul.append($li)
+
+          const indicator = determineWhetherToggleAll()
+          if (indicator) {
+            $inputToggleAlljQuery.prop("checked", true)
+          } else {
+            $inputToggleAlljQuery.prop("checked", false)
+          }
         }
       })
 
