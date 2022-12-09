@@ -177,44 +177,55 @@
         }
       }
 
+      function areWhitespaceCharacters(ary) {
+        const result = ary.every((item) => isWhitespaceCharacter(item))
+
+        return result
+      }
+
       $inputText.addEventListener("keydown", (event) => {
         if (event.key === "Enter") {
           console.log("回车键被按下")
           const text = $inputText.value
+          const textArray = text.split("")
 
-          const item = {
-            name: text,
-            status: ACTIVE,
-            uuid: uuidv4(),
-          }
-          todosList.push(item)
-          refreshStatus()
-
-          $inputText.value = ""
-
-          const $li = document.createElement("li")
-          $li.setAttribute("data-uuid", item.uuid)
-          const $div = document.createElement("div")
-          const $checkbox = document.createElement("input")
-          $checkbox.type = "checkbox"
-          $checkbox.setAttribute("data-uuid", item.uuid)
-          const $span = document.createElement("span")
-          $checkbox.setAttribute("data-uuid", item.uuid)
-          const $destroyButton = document.createElement("button")
-          $destroyButton.classList.add("destroy")
-
-          $span.innerText = item.name
-          $div.append($checkbox)
-          $div.append($span)
-          $div.append($destroyButton)
-          $li.append($div)
-          $ul.append($li)
-
-          const indicator = determineWhetherToggleAll()
-          if (indicator) {
-            $inputToggleAlljQuery.prop("checked", true)
+          if (areWhitespaceCharacters(textArray)) {
+            return undefined
           } else {
-            $inputToggleAlljQuery.prop("checked", false)
+            const item = {
+              name: text,
+              status: ACTIVE,
+              uuid: uuidv4(),
+            }
+            todosList.push(item)
+            refreshStatus()
+
+            $inputText.value = ""
+
+            const $li = document.createElement("li")
+            $li.setAttribute("data-uuid", item.uuid)
+            const $div = document.createElement("div")
+            const $checkbox = document.createElement("input")
+            $checkbox.type = "checkbox"
+            $checkbox.setAttribute("data-uuid", item.uuid)
+            const $span = document.createElement("span")
+            $checkbox.setAttribute("data-uuid", item.uuid)
+            const $destroyButton = document.createElement("button")
+            $destroyButton.classList.add("destroy")
+
+            $span.innerText = item.name
+            $div.append($checkbox)
+            $div.append($span)
+            $div.append($destroyButton)
+            $li.append($div)
+            $ul.append($li)
+
+            const indicator = determineWhetherToggleAll()
+            if (indicator) {
+              $inputToggleAlljQuery.prop("checked", true)
+            } else {
+              $inputToggleAlljQuery.prop("checked", false)
+            }
           }
         }
       })
