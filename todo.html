@@ -163,9 +163,13 @@
         }, 0)
       }
 
-      function determineWhetherToggleAll() {
+      function refreshStatus() {
         refreshNumofActive()
         refreshNumofCompleted()
+      }
+
+      function determineWhetherToggleAll() {
+        refreshStatus()
 
         if (numOfCompleted === todosList.length) {
           return true
@@ -188,14 +192,7 @@
             uuid: uuidv4(),
           }
           todosList.push(item)
-          refreshNumofActive()
-          refreshNumofCompleted()
-          console.log(
-            "numOfActive",
-            numOfActive,
-            "numOfCompleted",
-            numOfCompleted
-          )
+          refreshStatus()
 
           $inputText.value = ""
 
@@ -225,17 +222,19 @@
             event.target.parentElement.parentElement.classList.add("completed")
 
             const $inputToggleAll = document.querySelector("input.toggle-all")
+            const $inputToggleAlljQuery = $($inputToggleAll)
             const found = todosList.find((element) => {
               return element.uuid === event.target.getAttribute("data-uuid")
             })
 
             found.status = COMPLETED
 
-            refreshNumofActive()
-            refreshNumofCompleted()
-            if (numOfCompleted === todosList.length) {
-              $inputToggleAll.setAttribute("checked", "checked")
-              console.log(`$inputToggleAll.setAttribute("checked", "checked")`)
+            refreshStatus()
+            const indicator = determineWhetherToggleAll()
+            if (indicator) {
+              $inputToggleAlljQuery.prop("checked", true)
+            } else {
+              $inputToggleAlljQuery.prop("checked", false)
             }
           } else if (!event.target.checked) {
             event.target.parentElement.parentElement.classList.remove(
@@ -243,17 +242,19 @@
             )
 
             const $inputToggleAll = document.querySelector("input.toggle-all")
+            const $inputToggleAlljQuery = $($inputToggleAll)
             const found = todosList.find((element) => {
               return element.uuid === event.target.getAttribute("data-uuid")
             })
 
             found.status = ACTIVE
 
-            refreshNumofActive()
-            refreshNumofCompleted()
-            if (numOfCompleted !== todosList.length) {
-              $inputToggleAll.removeAttribute("checked")
-              console.log(`$inputToggleAll.removeAttribute("checked")`)
+            refreshStatus()
+            const indicator = determineWhetherToggleAll()
+            if (indicator) {
+              $inputToggleAlljQuery.prop("checked", true)
+            } else {
+              $inputToggleAlljQuery.prop("checked", false)
             }
           }
         }
