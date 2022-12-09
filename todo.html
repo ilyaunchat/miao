@@ -180,6 +180,8 @@
 
       const $inputText = document.querySelector("input[type='text']")
       const $ul = document.querySelector("section.main > ul")
+      const $inputToggleAll = document.querySelector("input.toggle-all")
+      const $inputToggleAlljQuery = $($inputToggleAll)
 
       $inputText.addEventListener("keydown", (event) => {
         if (event.key === "Enter") {
@@ -221,8 +223,6 @@
           if (event.target.checked) {
             event.target.parentElement.parentElement.classList.add("completed")
 
-            const $inputToggleAll = document.querySelector("input.toggle-all")
-            const $inputToggleAlljQuery = $($inputToggleAll)
             const found = todosList.find((element) => {
               return element.uuid === event.target.getAttribute("data-uuid")
             })
@@ -241,8 +241,6 @@
               "completed"
             )
 
-            const $inputToggleAll = document.querySelector("input.toggle-all")
-            const $inputToggleAlljQuery = $($inputToggleAll)
             const found = todosList.find((element) => {
               return element.uuid === event.target.getAttribute("data-uuid")
             })
