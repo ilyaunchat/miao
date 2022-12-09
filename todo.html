@@ -144,6 +144,11 @@
       let numOfActive = 0
       let numOfCompleted = 0
 
+      const $inputText = document.querySelector("input[type='text']")
+      const $ul = document.querySelector("section.main > ul")
+      const $inputToggleAll = document.querySelector("input.toggle-all")
+      const $inputToggleAlljQuery = $($inputToggleAll)
+
       function refreshStatus() {
         numOfActive = todosList.reduce((prev, curr) => {
           if ((curr?.status ?? "") === ACTIVE) {
@@ -171,11 +176,6 @@
           return false
         }
       }
-
-      const $inputText = document.querySelector("input[type='text']")
-      const $ul = document.querySelector("section.main > ul")
-      const $inputToggleAll = document.querySelector("input.toggle-all")
-      const $inputToggleAlljQuery = $($inputToggleAll)
 
       $inputText.addEventListener("keydown", (event) => {
         if (event.key === "Enter") {
