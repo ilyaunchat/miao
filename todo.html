@@ -33,21 +33,25 @@
         border: 2px solid black;
       }
 
-      .toggle-all {
+      input.toggle-all {
         position: absolute;
         right: 100%;
         bottom: 100%;
-        width: 1px;
-        height: 1px;
+        /* width: 1px; */
+        /* height: 1px; */
         border: none;
-        opacity: 0;
+        /* opacity: 0; */
       }
 
-      .toggle-all + label {
+      input.toggle-all + label {
         position: absolute;
         top: -52px;
         left: -13px;
         transform: rotate(90deg);
+      }
+
+      .toggle-all:checked + label::before {
+        color: #737373;
       }
 
       .toggle-all + label::before {
