@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todos Vue3</title>
+  </head>
+  <body>
+    <div id="container">
+      <h1>Todos</h1>
+      <div>
+        <input
+          type="checkbox"
+          :checked="todos.every(it => it.completed === true)"
+          :style="{visibility: todos.length ? 'visible' : 'hidden'}"
+          @click="切换全选()"
+        />
+        <input type="text" @keydown="addTodo" />
+      </div>
+      <ul>
+        <li v-for="(todo,index) in todos">
+          <span>{{index + 1}}</span>
+          <input
+            type="checkbox"
+            :checked="todo.completed"
+            @click="todo.completed = !todo.completed"
+          />
+          <input
+            @blur="编辑框失焦时($event, index)"
+            @keydown="编辑框被按下键的时候($event, index)"
+            v-if="index === editingIdx"
+            type="text"
+            :value="todo.text"
+          />
+          <span @dblclick="editingIdx = index" v-else>{{todo.text}}</span>
+          <button @click="deleteTodo(index)">x</button>
+        </li>
+      </ul>
+      <div>
+        <span
+          >{{todos.filter(it => it.completed === false).length}} item(s)
+          left</span
+        >
+        <div>
+          <label for="ALL"
+            ><input
+              type="radio"
+              name="visible"
+              :checked="visible === 'ALL'"
+              value="ALL"
+              id="ALL"
+              @click="visible = 'ALL'"
+            />
+            All</label
+          >
+          <label for="ACTIVE"
+            ><input
+              type="radio"
+              name="visible"
+              :checked="visible === 'ACTIVE'"
+              value="ACTIVE"
+              id="ACTIVE"
+              @click="visible = 'ACTIVE'"
+            />
+            Active
+          </label>
+          <label for="COMPLETED"
+            ><input
+              type="radio"
+              name="visible"
+              :checked="visible === 'COMPLETED'"
+              value="COMPLETED"
+              id="COMPLETED"
+              @click="visible = 'COMPLETED'"
+            />
+            Completed</label
+          >
+        </div>
+        <button
+          v-if="todos.some(it => it.completed === true)"
+          @click="清空已完成项目()"
+        >
+          Clear completed
+        </button>
+      </div>
+    </div>
+
+    <script src="./vue-3.2.45.js"></script>
+    <script>
+      const todoApp = Vue.createApp({
+        data() {
+          return {
+            todos: [
+              { text: "eat", completed: false },
+              { text: "drink", completed: true },
+            ],
+            visible: "ALL",
+            editingIdx: -1,
+            escapeQueue: [],
+          }
+        },
+        methods: {
+          deleteTodo(index) {
+            this.todos.splice(index, 1)
+          },
+          addTodo(event) {
+            if (event.key === "Enter") {
+              const text = event.target.value.trim()
+              if (text !== "") {
+                this.todos.push({
+                  text: text,
+                  completed: false,
+                })
+                event.target.value = ""
+              } else {
+                event.target.value = ""
+              }
+            }
+          },
+          切换全选() {
+            if (this.todos.every((it) => it.completed === true)) {
+              this.todos.forEach((it) => {
+                it.completed = false
+              })
+            } else {
+              this.todos.forEach((it) => {
+                it.completed = true
+              })
+            }
+          },
+          清空已完成项目() {
+            this.todos = this.todos.filter((it) => it.completed === false)
+          },
+          编辑框失焦时(event, index) {
+            const lastEsc = this.escapeQueue.shift() ?? false
+
+            if (!lastEsc) {
+              const text = event.target.value.trim()
+              this.todos[index].text = text
+            } else {
+              if (Math.abs(event.timeStamp - lastEsc?.timeStamp) >= 7) {
+                const text = event.target.value.trim()
+                this.todos[index].text = text
+              }
+            }
+
+            this.editingIdx = -1
+          },
+          编辑框被按下键的时候(event, index) {
+            if (event.key === "Enter") {
+              const text = event.target.value.trim()
+              this.todos[index].text = text
+              this.editingIdx = -1
+            } else if (event.key === "Escape") {
+              this.escapeQueue.push(event)
+              this.editingIdx = -1
+            }
+          },
+        },
+      }).mount("#container")
+    </script>
+  </body>
+</html>
