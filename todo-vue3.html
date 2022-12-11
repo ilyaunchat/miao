@@ -19,23 +19,27 @@
         <input type="text" @keydown="addTodo" />
       </div>
       <ul>
-        <li v-for="(todo,index) in todos">
-          <span>{{index + 1}}</span>
-          <input
-            type="checkbox"
-            :checked="todo.completed"
-            @click="todo.completed = !todo.completed"
-          />
-          <input
-            @blur="编辑框失焦时($event, index)"
-            @keydown="编辑框被按下键的时候($event, index)"
-            v-if="index === editingIdx"
-            type="text"
-            :value="todo.text"
-          />
-          <span @dblclick="editingIdx = index" v-else>{{todo.text}}</span>
-          <button @click="deleteTodo(index)">x</button>
-        </li>
+        <template v-for="(todo,index) in todos">
+          <li
+            v-if="((visible === 'ALL') || ((todo.completed ? 'COMPLETED' : 'ACTIVE') === visible))"
+          >
+            <span>{{index + 1}}</span>
+            <input
+              type="checkbox"
+              :checked="todo.completed"
+              @click="todo.completed = !todo.completed"
+            />
+            <input
+              @blur="编辑框失焦时($event, index)"
+              @keydown="编辑框被按下键的时候($event, index)"
+              v-if="index === editingIdx"
+              type="text"
+              :value="todo.text"
+            />
+            <span @dblclick="editingIdx = index" v-else>{{todo.text}}</span>
+            <button @click="deleteTodo(index)">x</button>
+          </li>
+        </template>
       </ul>
       <div>
         <span
