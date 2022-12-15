@@ -51,10 +51,9 @@
             ><input
               type="radio"
               name="visible"
-              :checked="visible === 'ALL'"
               value="ALL"
               id="ALL"
-              @click="visible = 'ALL'"
+              v-model="visible"
             />
             All</label
           >
@@ -62,10 +61,9 @@
             ><input
               type="radio"
               name="visible"
-              :checked="visible === 'ACTIVE'"
               value="ACTIVE"
               id="ACTIVE"
-              @click="visible = 'ACTIVE'"
+              v-model="visible"
             />
             Active
           </label>
@@ -73,10 +71,9 @@
             ><input
               type="radio"
               name="visible"
-              :checked="visible === 'COMPLETED'"
               value="COMPLETED"
               id="COMPLETED"
-              @click="visible = 'COMPLETED'"
+              v-model="visible"
             />
             Completed</label
           >
