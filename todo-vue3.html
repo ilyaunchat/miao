@@ -19,7 +19,7 @@
         <input type="text" @keydown="addTodo" />
       </div>
       <ul>
-        <template v-for="(todo,index) in todos">
+        <template v-for="(todo,index) in todos" :key="todo.uuid">
           <li
             v-if="((visible === 'ALL') || ((todo.completed ? 'COMPLETED' : 'ACTIVE') === visible))"
           >
@@ -33,7 +33,7 @@
               :value="todo.text"
             />
             <span @dblclick="editingIdx = index" v-else>{{todo.text}}</span>
-            <button @click="deleteTodo(index)">x</button>
+            <button @click="deleteTodo(todo.uuid)">x</button>
           </li>
         </template>
       </ul>
@@ -84,13 +84,15 @@
     </div>
 
     <script src="./vue-3.2.45.js"></script>
-    <script>
+    <script type="module">
+      import { v4 as uuidv4 } from "https://jspm.dev/uuid"
+
       const todoApp = Vue.createApp({
         data() {
           return {
             todos: [
-              { text: "eat", completed: false },
-              { text: "drink", completed: true },
+              { text: "eat", completed: false, uuid: uuidv4() },
+              { text: "drink", completed: true, uuid: uuidv4() },
             ],
             visible: "ALL",
             editingIdx: -1,
@@ -98,8 +100,8 @@
           }
         },
         methods: {
-          deleteTodo(index) {
-            this.todos.splice(index, 1)
+          deleteTodo(uuid) {
+            this.todos = this.todos.filter((it) => it.uuid !== uuid)
           },
           addTodo(event) {
             if (event.key === "Enter") {
@@ -108,6 +110,7 @@
                 this.todos.push({
                   text: text,
                   completed: false,
+                  uuid: uuidv4(),
                 })
                 event.target.value = ""
               } else {
