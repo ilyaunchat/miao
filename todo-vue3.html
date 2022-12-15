@@ -24,11 +24,7 @@
             v-if="((visible === 'ALL') || ((todo.completed ? 'COMPLETED' : 'ACTIVE') === visible))"
           >
             <span>{{index + 1}}</span>
-            <input
-              type="checkbox"
-              :checked="todo.completed"
-              @click="todo.completed = !todo.completed"
-            />
+            <input type="checkbox" v-model="todo.completed" />
             <input
               @blur="编辑框失焦时($event, index)"
               @keydown="编辑框被按下键的时候($event, index)"
