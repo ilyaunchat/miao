@@ -8,7 +8,7 @@
   </head>
   <body>
     <div id="container">
-      <h1>Todos</h1>
+      <heading></heading>
       <div>
         <input
           type="checkbox"
@@ -90,11 +90,11 @@
       const todoApp = Vue.createApp({
         data() {
           return {
-            todos: [
+            todos: JSON.parse(localStorage.getItem("TODOS")) ?? [
               { text: "eat", completed: false, uuid: uuidv4() },
               { text: "drink", completed: true, uuid: uuidv4() },
             ],
-            visible: "ALL",
+            visible: JSON.parse(localStorage.getItem("VISIBLE")) ?? "ALL",
             editingIdx: -1,
             escapeQueue: [],
           }
@@ -158,7 +158,21 @@
             }
           },
         },
-      }).mount("#container")
+        mounted() {
+          window.addEventListener("unload", (e) => {
+            localStorage.setItem("TODOS", JSON.stringify(this.todos))
+            localStorage.setItem("VISIBLE", JSON.stringify(this.visible))
+          })
+        },
+      })
+
+      todoApp.component("heading", {
+        template: /* html */ `
+          <h1>Todos</h1>
+        `,
+      })
+
+      todoApp.mount("#container")
     </script>
   </body>
 </html>
