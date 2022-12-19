@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="container"></div>
+
+    <script src="./vue-3.2.45.js"></script>
+    <script type="module">
+      import { v4 as uuidv4 } from "https://jspm.dev/uuid"
+
+      const todoApp = Vue.createApp({
+        setup() {
+          const todos = Vue.ref(
+            JSON.parse(localStorage.getItem("TODOS")) ?? [
+              { text: "eat", completed: false, uuid: uuidv4() },
+              { text: "drink", completed: true, uuid: uuidv4() },
+            ]
+          )
+          const visible = Vue.ref(
+            JSON.parse(localStorage.getItem("VISIBLE")) ?? "ALL"
+          )
+          const editingIdx = Vue.ref(-1)
+          const escapeQueue = Vue.ref([])
+
+          function updateLocalStorage() {
+            localStorage.setItem("TODOS", JSON.stringify(todos.value))
+            localStorage.setItem("VISIBLE", JSON.stringify(visible.value))
+          }
+
+          function deleteTodo(uuid) {
+            todos.value = todos.value.filter((it) => it.uuid !== uuid)
+          }
+
+          function addTodo(event) {
+            if (event.key === "Enter") {
+              const text = event.target.value.trim()
+              if (text !== "") {
+                todos.value.push({
+                  text: text,
+                  completed: false,
+                  uuid: uuidv4(),
+                })
+                event.target.value = ""
+              } else {
+                event.target.value = ""
+              }
+            }
+          }
+
+          function 切换全选() {
+            if (todos.value.every((it) => it.completed === true)) {
+              todos.value.forEach((it) => {
+                it.completed = false
+              })
+            } else {
+              todos.value.forEach((it) => {
+                it.completed = true
+              })
+            }
+          }
+
+          function 清空已完成项目() {
+            todos.value = todos.value.filter((it) => it.completed === false)
+          }
+
+          function 编辑框失焦时(event, index) {
+            const lastEsc = escapeQueue.value.shift() ?? false
+
+            if (!lastEsc) {
+              const text = event.target.value.trim()
+              todos.value[index].text = text
+            } else {
+              if (Math.abs(event.timeStamp - lastEsc?.timeStamp) >= 7) {
+                const text = event.target.value.trim()
+                todos.value[index].text = text
+              }
+            }
+
+            editingIdx.value = -1
+          }
+
+          function 编辑框被按下键的时候(event, index) {
+            if (event.key === "Enter") {
+              const text = event.target.value.trim()
+              todos.value[index].text = text
+              editingIdx.value = -1
+            } else if (event.key === "Escape") {
+              escapeQueue.value.push(event)
+              editingIdx.value = -1
+            }
+          }
+
+          Vue.onMounted(() => {
+            window.addEventListener("unload", (e) => {
+              updateLocalStorage()
+            })
+          })
+
+          return {
+            todos,
+            visible,
+            editingIdx,
+            escapeQueue,
+            deleteTodo,
+            addTodo,
+            切换全选,
+            清空已完成项目,
+            编辑框失焦时,
+            编辑框被按下键的时候,
+          }
+        },
+
+        template: /* html */ `
+          <h1>Todos</h1>
+          <div>
+            <input
+              type="checkbox"
+              :checked="todos.every(it => it.completed === true)"
+              :style="{visibility: todos.length ? 'visible' : 'hidden'}"
+              @click="切换全选()"
+            />
+            <input type="text" @keydown="addTodo" />
+          </div>
+          <ul>
+            <template v-for="(todo,index) in todos" :key="todo.uuid">
+              <li
+                v-if="((visible === 'ALL') || ((todo.completed ? 'COMPLETED' : 'ACTIVE') === visible))"
+              >
+                <span>{{index + 1}}</span>
+                <input type="checkbox" v-model="todo.completed" />
+                <input
+                  @blur="编辑框失焦时($event, index)"
+                  @keydown="编辑框被按下键的时候($event, index)"
+                  v-if="index === editingIdx"
+                  type="text"
+                  :value="todo.text"
+                />
+                <span @dblclick="editingIdx = index" v-else>{{todo.text}}</span>
+                <button @click="deleteTodo(todo.uuid)">x</button>
+              </li>
+            </template>
+          </ul>
+          <div>
+            <span
+              >{{todos.filter(it => it.completed === false).length}} item(s)
+              left</span
+            >
+            <div>
+              <label for="ALL"
+                ><input
+                  type="radio"
+                  name="visible"
+                  value="ALL"
+                  id="ALL"
+                  v-model="visible"
+                />
+                All</label
+              >
+              <label for="ACTIVE"
+                ><input
+                  type="radio"
+                  name="visible"
+                  value="ACTIVE"
+                  id="ACTIVE"
+                  v-model="visible"
+                />
+                Active
+              </label>
+              <label for="COMPLETED"
+                ><input
+                  type="radio"
+                  name="visible"
+                  value="COMPLETED"
+                  id="COMPLETED"
+                  v-model="visible"
+                />
+                Completed</label
+              >
+            </div>
+            <button
+              v-if="todos.some(it => it.completed === true)"
+              @click="清空已完成项目()"
+            >
+              Clear completed
+            </button>
+          </div>
+        `,
+      }).mount("#container")
+    </script>
+  </body>
+</html>
