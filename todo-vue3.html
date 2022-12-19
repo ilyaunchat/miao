@@ -90,11 +90,11 @@
       const todoApp = Vue.createApp({
         data() {
           return {
-            todos: [
+            todos: JSON.parse(localStorage.getItem("TODOS")) ?? [
               { text: "eat", completed: false, uuid: uuidv4() },
               { text: "drink", completed: true, uuid: uuidv4() },
             ],
-            visible: "ALL",
+            visible: JSON.parse(localStorage.getItem("VISIBLE")) ?? "ALL",
             editingIdx: -1,
             escapeQueue: [],
           }
@@ -157,6 +157,12 @@
               this.editingIdx = -1
             }
           },
+        },
+        mounted() {
+          window.addEventListener("unload", (e) => {
+            localStorage.setItem("TODOS", JSON.stringify(this.todos))
+            localStorage.setItem("VISIBLE", JSON.stringify(this.visible))
+          })
         },
       })
 
