@@ -25,6 +25,10 @@
           const editingIdx = Vue.ref(-1)
           const escapeQueue = Vue.ref([])
 
+          function updateLocalStorage() {
+            localStorage.setItem("TODOS", JSON.stringify(todos.value))
+          }
+
           function deleteTodo(uuid) {
             todos.value = todos.value.filter((it) => it.uuid !== uuid)
           }
@@ -87,6 +91,12 @@
               editingIdx.value = -1
             }
           }
+
+          Vue.onMounted(() => {
+            window.addEventListener("unload", (e) => {
+              updateLocalStorage()
+            })
+          })
 
           return {
             todos,
