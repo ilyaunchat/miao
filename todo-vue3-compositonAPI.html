@@ -21,12 +21,15 @@
               { text: "drink", completed: true, uuid: uuidv4() },
             ]
           )
-          const visible = Vue.ref("ALL")
+          const visible = Vue.ref(
+            JSON.parse(localStorage.getItem("VISIBLE")) ?? "ALL"
+          )
           const editingIdx = Vue.ref(-1)
           const escapeQueue = Vue.ref([])
 
           function updateLocalStorage() {
             localStorage.setItem("TODOS", JSON.stringify(todos.value))
+            localStorage.setItem("VISIBLE", JSON.stringify(visible.value))
           }
 
           function deleteTodo(uuid) {
