@@ -11,7 +11,6 @@
       * {
         margin: 0;
         padding: 0;
-
         box-sizing: border-box;
       }
 
@@ -28,7 +27,6 @@
         max-width: 800px;
         margin: 0 auto;
         border: 1px solid;
-
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -40,23 +38,21 @@
 
       #container > nav {
         height: 100px;
-
         background-color: aquamarine;
-
         display: flex;
         justify-content: space-between;
-
-        /* display: none; */
       }
 
       #container > nav > * {
         flex-basis: 0px;
         flex-grow: 1;
-
         height: 100%;
         text-align: center;
-
         border: 2px solid black;
+      }
+
+      main:has(.moment) + nav#navbar {
+        display: none;
       }
     </style>
   </head>
@@ -74,10 +70,45 @@
     </div>
 
     <script>
-      const 微信 = { template: "<div>这是微信</div>" }
-      const 通讯录 = { template: "<div>这是通讯录</div>" }
-      const 发现 = { template: "<div>朋友圈的入口</div>" }
-      const 我 = { template: "<div>这是「我」</div>" }
+      const 微信 = {
+        template: /* html */ `
+          <div>这是微信</div>
+        `,
+      }
+      const 通讯录 = {
+        template: /* html */ `
+          <div>这是通讯录</div>
+        `,
+      }
+      const 发现 = {
+        template: /* html */ `
+          <div>
+            <router-link to="/find/moment">朋友圈</router-link>
+          </div>
+        `,
+      }
+      const 我 = {
+        template: /* html */ `
+          <div>这是「我」</div>
+        `,
+      }
+      const 朋友圈 = {
+        data() {
+          return {
+            moment: "moment",
+          }
+        },
+        template: /* html */ `
+          <section :class='moment'>
+            <div>
+              <router-link to="/find">回到「发现」</router-link>
+            </div>
+            <div>
+              这里是帖子
+            </div>
+          </section>
+        `,
+      }
 
       const routes = [
         { path: "/", component: 微信 },
@@ -85,6 +116,7 @@
         { path: "/contacts", component: 通讯录 },
         { path: "/find", component: 发现 },
         { path: "/me", component: 我 },
+        { path: "/find/moment", component: 朋友圈 },
       ]
 
       const router = VueRouter.createRouter({
