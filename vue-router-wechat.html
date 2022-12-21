@@ -11,12 +11,48 @@
       * {
         margin: 0;
         padding: 0;
+
+        box-sizing: border-box;
       }
 
       html {
         height: 100%;
       }
+
+      body {
+        height: 100%;
+      }
+
+      #container {
+        height: 100%;
+        width: 500px;
+        margin: 0 auto;
+        border: 1px solid;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      #container > main {
+        background-color: coral;
+
+        flex-grow: 1;
+      }
+
+      #container > nav {
+        height: 100px;
+
+        background-color: aquamarine;
+      }
     </style>
   </head>
-  <body></body>
+  <body>
+    <div id="container">
+      <main></main>
+      <nav></nav>
+    </div>
+
+    <script></script>
+  </body>
 </html>
