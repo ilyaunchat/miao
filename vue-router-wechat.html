@@ -25,7 +25,7 @@
 
       #container {
         height: 100%;
-        width: 500px;
+        max-width: 800px;
         margin: 0 auto;
         border: 1px solid;
 
@@ -35,8 +35,6 @@
       }
 
       #container > main {
-        background-color: coral;
-
         flex-grow: 1;
       }
 
@@ -44,15 +42,59 @@
         height: 100px;
 
         background-color: aquamarine;
+
+        display: flex;
+        justify-content: space-between;
+
+        /* display: none; */
+      }
+
+      #container > nav > * {
+        flex-basis: 0px;
+        flex-grow: 1;
+
+        height: 100%;
+        text-align: center;
+
+        border: 2px solid black;
       }
     </style>
   </head>
   <body>
     <div id="container">
-      <main></main>
-      <nav></nav>
+      <main>
+        <router-view></router-view>
+      </main>
+      <nav id="navbar">
+        <router-link to="/wechat">微信</router-link>
+        <router-link to="/contacts">通讯录</router-link>
+        <router-link to="/find">发现</router-link>
+        <router-link to="/me">我</router-link>
+      </nav>
     </div>
 
-    <script></script>
+    <script>
+      const 微信 = { template: "<div>这是微信</div>" }
+      const 通讯录 = { template: "<div>这是通讯录</div>" }
+      const 发现 = { template: "<div>朋友圈的入口</div>" }
+      const 我 = { template: "<div>这是「我」</div>" }
+
+      const routes = [
+        { path: "/", component: 微信 },
+        { path: "/wechat", component: 微信 },
+        { path: "/contacts", component: 通讯录 },
+        { path: "/find", component: 发现 },
+        { path: "/me", component: 我 },
+      ]
+
+      const router = VueRouter.createRouter({
+        history: VueRouter.createWebHashHistory(),
+        routes,
+      })
+
+      const app = Vue.createApp({})
+      app.use(router)
+      app.mount("#container")
+    </script>
   </body>
 </html>
