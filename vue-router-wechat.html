@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://unpkg.com/vue-router@4"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        height: 100%;
+      }
+
+      body {
+        height: 100%;
+      }
+
+      #container {
+        height: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        border: 1px solid;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      #container > main {
+        flex-grow: 1;
+      }
+
+      #container > nav {
+        height: 100px;
+        background-color: aquamarine;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      #container > nav > * {
+        flex-basis: 0px;
+        flex-grow: 1;
+        height: 100%;
+        border: 2px solid black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      main:has(.moment) + nav#navbar {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <main>
+        <router-view></router-view>
+      </main>
+      <nav id="navbar">
+        <router-link to="/wechat">微信</router-link>
+        <router-link to="/contacts">通讯录</router-link>
+        <router-link to="/find">发现</router-link>
+        <router-link to="/me">我</router-link>
+      </nav>
+    </div>
+
+    <script>
+      const 微信 = {
+        template: /* html */ `
+          <div>这是微信</div>
+        `,
+      }
+      const 通讯录 = {
+        template: /* html */ `
+          <div>这是通讯录</div>
+        `,
+      }
+      const 发现 = {
+        template: /* html */ `
+          <div>
+            <router-link to="/find/moment">朋友圈</router-link>
+          </div>
+        `,
+      }
+      const 我 = {
+        template: /* html */ `
+          <div>这是「我」</div>
+        `,
+      }
+      const 朋友圈 = {
+        data() {
+          return {
+            moment: "moment",
+          }
+        },
+        template: /* html */ `
+          <section :class='moment'>
+            <div>
+              <router-link to="/find">回到「发现」</router-link>
+            </div>
+            <div>
+              这里是帖子
+            </div>
+          </section>
+        `,
+      }
+
+      const routes = [
+        { path: "/", component: 微信 },
+        { path: "/wechat", component: 微信 },
+        { path: "/contacts", component: 通讯录 },
+        { path: "/find", component: 发现 },
+        { path: "/me", component: 我 },
+        { path: "/find/moment", component: 朋友圈 },
+      ]
+
+      const router = VueRouter.createRouter({
+        history: VueRouter.createWebHashHistory(),
+        routes,
+      })
+
+      const app = Vue.createApp({})
+      app.use(router)
+      app.mount("#container")
+    </script>
+  </body>
+</html>
