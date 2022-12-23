@@ -10,27 +10,20 @@
     <div id="container"></div>
 
     <script src="./vue-3.2.45.js"></script>
+    <script src="https://unpkg.com/@vueuse/shared"></script>
+    <script src="https://unpkg.com/@vueuse/core"></script>
     <script type="module">
       import { v4 as uuidv4 } from "https://jspm.dev/uuid"
 
       const todoApp = Vue.createApp({
         setup() {
-          const todos = Vue.ref(
-            JSON.parse(localStorage.getItem("TODOS")) ?? [
-              { text: "eat", completed: false, uuid: uuidv4() },
-              { text: "drink", completed: true, uuid: uuidv4() },
-            ]
-          )
-          const visible = Vue.ref(
-            JSON.parse(localStorage.getItem("VISIBLE")) ?? "ALL"
-          )
+          const todos = VueUse.useStorage("my-todo", [
+            { text: "eat", completed: false, uuid: uuidv4() },
+            { text: "drink", completed: true, uuid: uuidv4() },
+          ])
+          const visible = VueUse.useStorage("my-visible", "ALL")
           const editingIdx = Vue.ref(-1)
           const escapeQueue = Vue.ref([])
-
-          function updateLocalStorage() {
-            localStorage.setItem("TODOS", JSON.stringify(todos.value))
-            localStorage.setItem("VISIBLE", JSON.stringify(visible.value))
-          }
 
           function deleteTodo(uuid) {
             todos.value = todos.value.filter((it) => it.uuid !== uuid)
@@ -94,12 +87,6 @@
               editingIdx.value = -1
             }
           }
-
-          Vue.onMounted(() => {
-            window.addEventListener("unload", (e) => {
-              updateLocalStorage()
-            })
-          })
 
           return {
             todos,
